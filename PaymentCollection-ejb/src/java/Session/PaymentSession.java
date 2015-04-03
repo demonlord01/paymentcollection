@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -78,10 +79,19 @@ public class PaymentSession implements PaymentSessionLocal {
     }
 
     @Override
-    public SalesMan verifySalesman(String emailid, String password) {
-        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='" + emailid
-                + "'").getSingleResult();
-        return salesman;
+    public boolean verifySalesman(String emailid, String password) {
+        try {
+            SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='" + emailid
+                    + "'").getSingleResult();
+            if (salesman != null) {
+                if (salesman.getS_emailid().equals(emailid) && salesman.getS_password().equals(password)) {
+                    return true;
+                }
+            }
+        } catch (NoResultException e) {
+            System.out.println("********************ERROR: NoResultException********************:"+e);
+        }
+        return false;
     }
 
 //---------------------------------------------------Route-------------------------------------------------------
@@ -292,13 +302,17 @@ public class PaymentSession implements PaymentSessionLocal {
 
 //----------------------------------------------------Admin-------------------------------------------------------
     @Override
-    public boolean getAdmin(String username, String password) {
-        AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" + username
-                + "'").getSingleResult();
-        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
-            return true;
-        } else {
-            verifySalesman(username, password);
+    public boolean verifyAdmin(String username, String password) {
+        try {
+            AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" + username
+                    + "'").getSingleResult();
+            if (admin != null) {
+                if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+                    return true;
+                }
+            }
+        } catch (NoResultException e) {
+            System.out.println("********************ERROR: NoResultException********************:"+e);
         }
         return false;
     }

@@ -40,17 +40,17 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            String username = (String) session.getAttribute("username");
-            String password = (String) session.getAttribute("password");
-//            AdminTable admin = paymentSession.getAdmin(username);
-//            if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
-//                request.getRequestDispatcher("").forward(request, response);
-//            } else {
-//                SalesMan salesman = paymentSession.verifySalesman(username);
-//                if (salesman.getS_emailid().equals(username) && salesman.getS_password().equals(password)) {
-//                    request.getRequestDispatcher("").forward(request, response);
-//                }
-//            }
+            String username = (String) request.getParameter("username");
+            String password = (String) request.getParameter("password");
+            if (paymentSession.verifyAdmin(username, password) == true) {
+                request.getRequestDispatcher("second.jsp").forward(request, response);
+            } else {
+                if (paymentSession.verifySalesman(username, password) == true) {
+                    request.getRequestDispatcher("salesmansecond.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            }
         }
     }
 

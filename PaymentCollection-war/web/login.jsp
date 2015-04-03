@@ -26,7 +26,7 @@
             <div id="content">
                 <div id="content_inner">
 
-                    <form action="LoginServlet" align="center" autocomplete="on">
+                    <form action="LoginServlet" method="POST"align="center" autocomplete="on">
                         <fieldset>
                             <label for="admin_username">User name:</label>
                             <input id="admin_username" type="text" name="username" placeholder="User name" size="24"><br>

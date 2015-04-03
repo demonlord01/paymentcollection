@@ -33,7 +33,7 @@ public interface PaymentSessionLocal {
 
     public boolean deleteSalesman(Long id);
 
-    public SalesMan verifySalesman(String emailid, String password);
+    public boolean verifySalesman(String emailid, String password);
 
 //---------------------------------------------------Route-------------------------------------------------------
     public boolean insertRoute(String name, String city);
@@ -89,6 +89,6 @@ public interface PaymentSessionLocal {
     public boolean deletePayment(Long id);
     
 //----------------------------------------------------Admin-------------------------------------------------------
-    public boolean getAdmin(String usermane, String password);
+    public boolean verifyAdmin(String usermane, String password);
 
 }

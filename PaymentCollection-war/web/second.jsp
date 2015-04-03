@@ -1,6 +1,6 @@
 <html>
 <head>
-<link href="css/stylesheet11.css" type="text/css" rel="stylesheet">
+<link href="css/stylesheet12.css" type="text/css" rel="stylesheet">
 
 </head>
 
@@ -34,77 +34,13 @@
 <div id="content_left_lower">
 <table>
 <tr>
-   <th>Id</th>
-   <th>Name</th>
-   <th>Route</th>
+   <td>Id</td>
+   <td>Name</td>
+   <td>Route</td>
 </tr>
-<tr>
-										<td>1</td>
-										<td>Satish</td>
-										<td>Sector 17,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Manish</td>
-										<td>Sector 22,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Sunil</td>
-										<td>Sector 34,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>Mahesh</td>
-										<td>Sector 35,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>Sudesh</td>
-										<td>Akaash Avenue,Amritsar</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td>Girish</td>
-										<td>Ranjit Avenue,Amritsar</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td>Suresh</td>
-										<td>Green Avenue,Amritsar</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td>Akilesh</td>
-										<td>Baba Deep Singh Colony,Amritsar</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td>Ashish</td>
-										<td>Sector 21,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td>Aman</td>
-										<td>Sector 36,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>11</td>
-										<td>Ashwani</td>
-										<td>Sector 43,Chandigarh</td>
-									</tr>
-									<tr>
-										<td>12</td>
-										<td>Bhavesh</td>
-										<td>Sector 52,Chandigarh</td>
-									</tr>
+
 </table>
-<center>
-<form>
-<input type="button" value="Previous">
-<input type="button" value="Next">
-</form>
-</center>
+
 </div>
 </div>
 <div id="content_right">
