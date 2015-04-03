@@ -1,0 +1,21 @@
+table.tableSection {
+    display: table;
+	margin-left:10px;
+	margin-top:10px;
+    width: 94%;
+}
+table.tableSection thead, table.tableSection tbody {
+    float: left;
+    width: 100%;
+}
+table.tableSection tbody {
+    overflow: auto;
+    height: 300px;
+}
+table.tableSection tr {
+    width: 100%;
+    display: table;
+}
+table.tableSection th, table.tableSection td {	
+    width:12%;
+}
