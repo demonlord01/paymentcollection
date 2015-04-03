@@ -1,0 +1,306 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package session;
+
+import Entities.AdminTable;
+import Entities.Customer;
+import Entities.Payment;
+import Entities.Route;
+import Entities.SalesMan;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+/**
+ *
+ * @author Vaibhav Bhagat (वैभव)
+ */
+@Stateless
+public class PaymentSession implements PaymentSessionLocal {
+
+    @PersistenceContext
+    EntityManager em;
+
+//--------------------------------------------------SalesMan-----------------------------------------------------
+    @Override
+    public boolean insertSalesman(String name, String password, Long phonenumber,
+            String emailid, String address, String dateofjoining, List<Route> routes) {
+        SalesMan s = new SalesMan();
+        s.setS_name(name);
+        s.setS_password(password);
+        s.setS_phonenumber(phonenumber);
+        s.setS_emailid(emailid);
+        s.setS_address(address);
+        s.setS_dateofjoining(dateofjoining);
+        s.setS_route(routes);
+        em.persist(s);
+        return true;
+    }
+
+    @Override
+    public List<SalesMan> getAllSalesman() {
+        List<SalesMan> allSalesMans = em.createQuery("SELECT s FROM SalesMan s ").getResultList();
+        return allSalesMans;
+    }
+
+    @Override
+    public SalesMan getSalesmanByID(Long id) {
+        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.id='" + id
+                + "'").getSingleResult();
+        return salesman;
+    }
+
+//    @Override
+//    public List<SalesMan> getAllSalesMenByRoute(Long id) {
+//        Route routeName = (Route) em.createQuery("SELECT r FROM Route r WHERE"
+//                + "r.id='" + id + "'").getSingleResult();
+//        return routeName.getSalesMans();
+//    }
+    @Override
+    public boolean updateSalesman(Long id, String name, String password, Long phonenumber,
+            String emailid, String address, String dateofjoining) {
+        em.createQuery("UPDATE SalesMan s SET s.s_name='" + name + "', s.s_password='" + password + "',"
+                + "s.s_address='" + address + "', s.s_phonenumber='" + phonenumber + "',"
+                + "s.s_emailid='" + emailid + "', s.s_dateofjoining='" + dateofjoining + "'"
+                + "WHERE s.id='" + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean deleteSalesman(Long id) {
+        em.createQuery("DELETE FROM SalesMan s WHERE s.id='" + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public SalesMan verifySalesman(String emailid, String password) {
+        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='" + emailid
+                + "'").getSingleResult();
+        return salesman;
+    }
+
+//---------------------------------------------------Route-------------------------------------------------------
+    @Override
+    public boolean insertRoute(String name, String city) {
+        Route r = new Route();
+        r.setR_name(name);
+        r.setCity(city);
+        em.persist(r);
+        return true;
+    }
+
+//    @Override
+//    public boolean insertRoute(String name, String city, List<SalesMan> salesMans) {
+//        Route r = new Route();
+//        r.setR_name(name);
+//        r.setCity(city);
+//        r.setSalesMans(salesMans);
+//        em.persist(r);
+//        return true;
+//    }
+    @Override
+    public List<Route> getAllRoutes() {
+        List<Route> allRoutes = em.createQuery("SELECT r FROM Route r ").getResultList();
+        return allRoutes;
+    }
+
+    @Override
+    public Route getRouteByID(Long id) {
+        Route route = (Route) em.createQuery("SELECT r FROM Route r WHERE r.id='" + id
+                + "'").getSingleResult();
+        return route;
+    }
+
+    @Override
+    public List<Route> getAllRoutesBySalesMan(Long id) {
+        SalesMan salesmanName = (SalesMan) em.createQuery("SELECT r FROM SalesMan r WHERE"
+                + "r.id='" + id + "'").getSingleResult();
+        return salesmanName.getS_route();
+    }
+
+    @Override
+    public boolean updateRoute(Long id, String name, String city) {
+        em.createQuery("UPDATE Route r SET r.r_name='" + name + "', r.city='" + city + "'"
+                + "WHERE r.id='" + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean deleteRoute(Long id) {
+        em.createQuery("DELETE FROM Route r WHERE r.id='" + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean assignNewRouteToSalesman(SalesMan s, Route r) {
+        List<Route> newRouteList = new ArrayList<>();
+        newRouteList = s.getS_route();
+        newRouteList.add(r);
+        s.setS_route(newRouteList);
+        em.merge(s);
+//        em.createQuery("UPDATE SalesMan s SET s.route='" + newRouteList + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean deleteRouteOfSalesman(SalesMan s, Route r) {
+        List<Route> oldRouteList = new ArrayList<>();
+        oldRouteList = s.getS_route();
+        oldRouteList.remove(r);
+        s.setS_route(oldRouteList);
+        em.merge(s);
+        return true;
+    }
+
+//--------------------------------------------------Customer------------------------------------------------------
+    @Override
+    public boolean insertCustomer(String name, Long phonenumber, String emailid,
+            String address, double payment, Route route) {
+        Customer c = new Customer();
+        c.setC_name(name);
+        c.setC_phonenumber(phonenumber);
+        c.setC_emailid(emailid);
+        c.setC_address(address);
+        c.setC_duepayment(payment);
+        c.setC_route(route);
+        em.persist(c);
+        return true;
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        List<Customer> allCustomers = em.createQuery("SELECT c FROM Customer c ").getResultList();
+        return allCustomers;
+    }
+
+    @Override
+    public Customer getCustomerByID(Long id) {
+        Customer customer = (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.id='" + id
+                + "'").getSingleResult();
+        return customer;
+    }
+
+    @Override
+    public Route getCustomerRoute(Customer c) {
+        return c.getC_route();
+    }
+
+    @Override
+    public double getDuePaymentByCustomer(Customer c) {
+        return c.getC_duepayment();
+    }
+
+    @Override
+    public boolean updateCustomer(String name, Long phonenumber, String emailid, String address, Long id) {
+        em.createQuery("UPDATE Customer c SET c.c_name=" + name + "', c.c_phonenumber='" + phonenumber
+                + "', c.c_emailid='" + emailid + "', c.c_address='" + address
+                + "' WHERE c.id='" + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean updateCustomerPayment(Customer c, double duepayment) {
+        Long id = c.getId();
+        em.createQuery("UPDATE Customer c SET c.c_duepayment='" + duepayment + "' WHERE c.id='"
+                + id + "'").executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean updateCustomerRoute(Customer c, Route route) {
+        c.setC_route(route);
+        em.merge(c);
+        return true;
+    }
+
+    @Override
+    public boolean deleteCustomer(Customer c) {
+//        deleteCustomerRoute(c);
+//        if (c.getC_route() == null) {
+        Long id = c.getId();
+        c = em.find(Customer.class, id);
+        if (c != null) {
+            em.remove(c);
+//            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteCustomerRoute(Customer c) {
+        if (c.getC_route() != null) {
+            c.setC_route(null);
+            em.merge(c);
+        }
+        return true;
+    }
+
+//--------------------------------------------------Payment------------------------------------------------------
+    @Override
+    public boolean insertPayment(double recievepayment, String gpslocation, String date,
+            SalesMan salesman, Customer customer) {
+        Payment p = new Payment();
+        p.setP_recievepayment(recievepayment);
+        p.setP_gpslocation(gpslocation);
+        p.setP_date(date);
+        p.setP_salesman(salesman);
+        p.setP_customer(customer);
+        em.persist(p);
+        return true;
+    }
+
+    @Override
+    public List<Payment> getAllPaymentByCustomer(Customer c) {
+        List<Payment> plist = em.createQuery("SELECT p FROM Payment p WHERE p.p_customer = :customerobj")
+                .setParameter("customerobj", c).getResultList();
+        return plist;
+    }
+
+    @Override
+    public List<Payment> getAllPaymentBySalesman(SalesMan s) {
+        List<Payment> plist = em.createQuery("SELECT p FROM Payment p WHERE p.p_salesman = :salesmanobj")
+                .setParameter("salesmanobj", s).getResultList();
+        return plist;
+    }
+
+    @Override
+    public double getTotalPayment() {
+        double totalPayment = 0;
+        return totalPayment;
+    }
+
+    @Override
+    public List<Double> getPaymentByDate(String date) {
+        List<Double> plist = em.createQuery("SELECT p.p_recievepayment FROM Payment p WHERE p.p_date='"
+                + date + "'").getResultList();
+        return plist;
+    }
+
+    @Override
+    public boolean deletePayment(Long id) {
+        Payment p = em.find(Payment.class, id);
+        if (p != null) {
+            em.remove(p);
+        }
+        return true;
+    }
+
+//----------------------------------------------------Admin-------------------------------------------------------
+    @Override
+    public boolean getAdmin(String username, String password) {
+        AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" + username
+                + "'").getSingleResult();
+        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+            return true;
+        } else {
+            verifySalesman(username, password);
+        }
+        return false;
+    }
+
+}
