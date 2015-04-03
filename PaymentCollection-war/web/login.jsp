@@ -15,10 +15,10 @@
 <div id="navigation">
 <ul>
 
-<li><a href="first.html">Home</a></li>
-<li><a href="login.html">Login</a></li>
-<li><a href="aboutus.html">About us</a></li>
-<li><a href="contactus.html">Contact us</a></li>
+<li><a href="first.jsp">Home</a></li>
+<li><a href="login.jsp">Login</a></li>
+<li><a href="aboutus.jsp">About us</a></li>
+<li><a href="contactus.jsp">Contact us</a></li>
 </ul>
 </div>
 
@@ -26,12 +26,18 @@
 <div id="content">
 <div id="content_inner">
 
-<form align="center" autocomplete="on">
+    <form action="LoginServlet" align="center" autocomplete="on">
+<fieldset>
+<label for="admin_username">User name:</label>
+<input id="admin_username" type="text" name="username" placeholder="User name" size="24"><br>
+							
+<label for="admin_password">Password:</label>
+<input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br>
+							
+<input type="submit" value="Login" style="margin-left:80px;margin-top:10px;">
 <br>
-<p>Username <input type="text"></p>
-<p>Password <input type="password"></p>
-<p><input type="button" value="Login"></p>
-<p><input type="button" value="Forget Password"></p>
+<input type="submit" value="Forget Password" style="margin-left:48px;margin-top:5px;">
+</fieldset>
 </form>
 
 </div>
