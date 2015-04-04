@@ -9,7 +9,7 @@
         <servlet-class>Servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Salesman</servlet-name>
+        <servlet-name>SalesmanServlet</servlet-name>
         <servlet-class>AdminServlets.SalesmanServlet</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -21,8 +21,8 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Salesman</servlet-name>
-        <url-pattern>/Salesman</url-pattern>
+        <servlet-name>SalesmanServlet</servlet-name>
+        <url-pattern>/SalesmanServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
