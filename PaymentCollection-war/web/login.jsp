@@ -27,17 +27,18 @@
                 <div id="content_inner">
 
                     <form action="LoginServlet" method="POST"align="center" autocomplete="on">
-                        <fieldset>
-                            <label for="admin_username">User name:</label>
-                            <input id="admin_username" type="text" name="username" placeholder="User name" size="24"><br>
+                  
+                        <br><br><br>
+                            <label for="admin_username">Username:</label>
+                            <input id="admin_username" type="text" name="username" placeholder="Username" size="24"><br><br>
 
                             <label for="admin_password">Password:</label>
-                            <input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br>
+                            <input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br><br>
 
-                            <input type="submit" value="Login" style="margin-left:80px;margin-top:10px;">
-                            <br>
-                            <input type="submit" value="Forget Password" style="margin-left:48px;margin-top:5px;">
-                        </fieldset>
+                            <input type="submit" value="Login">
+                            <br><br>
+                            <input type="submit" value="Forget Password">
+                      
                     </form>
 
                 </div>
