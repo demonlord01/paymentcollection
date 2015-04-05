@@ -21,7 +21,7 @@
 				<div id="content_login">
 					<form action="adminManage.html" autocomplete="on">
 						<fieldset>
-							<label for="admin_username">User name:</label>
+							<label for="admin_username">Username:</label>
 							<input id="admin_username" type="text" placeholder="User name" size="24"><br>
 							
 							<label for="admin_password">Password:</label>
