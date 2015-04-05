@@ -7,22 +7,16 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import session.PaymentSessionLocal;
 
 /**
  *
  * @author Vaibhav Bhagat
  */
-public class LoginServlet extends HttpServlet {
-
-    @EJB
-    private PaymentSessionLocal paymentSession;
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +31,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                session.setAttribute("Usertype", "admin");
-                request.getRequestDispatcher("SalesmanServlet").forward(request, response);
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
-                    session.setAttribute("Usertype", "salesman");
-                    request.getRequestDispatcher("salesmansecond.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
-            }
+            
         }
     }
 

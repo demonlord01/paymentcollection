@@ -5,7 +5,6 @@
  */
 package session;
 
-import Entities.AdminTable;
 import Entities.Customer;
 import Entities.Payment;
 import Entities.Route;
