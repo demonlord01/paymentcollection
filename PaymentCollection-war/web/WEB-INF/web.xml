@@ -5,7 +5,7 @@
         <filter-class>Filter.AuthFilter</filter-class>
         <init-param>
             <param-name>avoid-urls</param-name>
-            <param-value>index.jsp</param-value>
+            <param-value>index.jsp, login.jsp, aboutus.jsp, contactus.jsp</param-value>
         </init-param>
     </filter>
     <filter-mapping>
