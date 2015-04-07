@@ -15,7 +15,7 @@
             <div id="navigation">
                 <ul>
 
-                    <li><a href="first.jsp">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="login.jsp">Login</a></li>
                     <li><a href="aboutus.jsp">About us</a></li>
                     <li><a href="contactus.jsp">Contact us</a></li>
@@ -26,7 +26,7 @@
             <div id="content">
                 <div id="content_inner">
 
-                    <form action="LoginServlet" method="POST"align="center" autocomplete="on">
+                    <form action="LoginServlet" method="POST" align="center" autocomplete="on">
                   
                         <br><br><br>
                             <label for="admin_username">Username:</label>

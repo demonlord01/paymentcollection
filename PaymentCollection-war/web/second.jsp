@@ -20,8 +20,8 @@
             </div>
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="first.jsp">Home</a></li>
-                    <li><a href="second.jsp">Salesman</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="SalesmanServlet">Salesman</a></li>
                     <li><a href="third.jsp">Customer</a></li>
                     <li><a href="fourth.jsp">Route</a></li>
                     <li><a href="fifth.jsp">Payment Details</a></li>
@@ -39,52 +39,22 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Route</th>
+                                <th>Phone Number</th>
+                                <th>E-mail ID</th>
+                                <th>Address</th>
+                                <th>Date Of Joining</th>
                             </tr>
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
                             <tr>
                                 <td>${salesman.id}</td>
                                 <td>${salesman.s_name}</td>
-                                <td><s:set var="route" value="${salesman.s_route}"/>${route}</td>
+                                <td>${salesman.s_phonenumber}</td>
+                                <td>${salesman.s_emailid}</td>
+                                <td>${salesman.s_address}</td>
+                                <td>${salesman.s_dateofjoining}</td>
                             </tr>
                             </s:forEach>
                         </table>
-                    </div>
-                </div>
-                <div id="content_right">
-                    <div id="content_right_upper">
-                        <h1>Salesman Details</h1>
-                    </div>
-                    <div id="content_right_lower">
-                        <form>
-                            <font>
-                            <br>
-                            Salesman Id<input type="text" name="Salesman Id" style="margin-left:65px;"></font>
-                            <br><br>
-                            <font>Salesman Password<input type="text" name="Salesman Password" style="margin-left:8px;"></font>
-                            <br><br>
-                            <font>Salesman Name<input type="text" name="Salesman Name" style="margin-left:38px;"></font>
-                            <br><br>
-                            <font>Phone Number<input type="text" name="Phone number" style="margin-left:45px;"></font>
-                            <br><br>
-                            <font>Email id<input type="text" name="Emailid" style="margin-left:95px;"></font>
-                            <br><br>
-                            <font>Address<input type="text" name="Address" style="margin-left:98px;"></font>
-                            <br><br>
-                            <font>Route 
-                            <select name="route" style="margin-left:113px;">
-                                <option value="route1">Green Avenue</option>
-                                <option value="route2">Sector 21</option>
-                            </select></font>
-                            <br>
-                            <font>Date Of Joining<input type="text" name="Date of joining" style="margin-left:38px;"></font>
-                            <br><br><br>
-                            <font style="margin-left:120px;">
-                            <input type="button" value="Add">
-                            <input type="button" value="Update">
-                            <input type="button" value="Delete">
-                            </font>
-                        </form>
                     </div>
                 </div>
             </div>
