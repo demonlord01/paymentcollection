@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Payment Collection</title>
         <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -22,13 +22,13 @@
 
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="viewsalesman.html">Salesman</a></li>
-                    <li><a href="viewcustomer.html">Customer</a></li>
-                    <li><a href="viewroute.html">Route</a></li>
-                    <li><a href="viewpayment.html">Payment Details</a></li>
-                    <li><a href="confirmpassword.html">Change Password</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="viewsalesman.jsp">Salesman</a></li>
+                    <li><a href="viewcustomer.jsp">Customer</a></li>
+                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="viewpayment.jsp">Payment Details</a></li>
+                    <li><a href="confirmpassword.jsp">Change Password</a></li>
+                    <li><a href="index.jsp">Logout</a></li>
                 </ul>
             </div>
 
