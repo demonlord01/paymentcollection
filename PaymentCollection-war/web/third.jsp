@@ -14,13 +14,12 @@
 
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="indrx.jsp">Home</a></li>
                     <li><a href="SalesmanServlet">Salesman</a></li>
                     <li><a href="third.jsp">Customer</a></li>
                     <li><a href="fourth.jsp">Route</a></li>
                     <li><a href="fifth.jsp">Payment Details</a></li>
                     <li><a href="sixth.jsp">Change Password</a></li>
-                    <li><a href="first.jsp">Logout</a></li>
+                    <li><a href="LogoutServlet">Logout</a></li>
                 </ul>
             </div>
 
