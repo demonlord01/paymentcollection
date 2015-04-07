@@ -39,7 +39,7 @@ public class SalesmanServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             List<SalesMan> salesmanlist = paymentSession.getAllSalesman();
             request.setAttribute("salesmanList", salesmanlist);
-            request.getRequestDispatcher("second.jsp").forward(request, response);
+            request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
         }
     }
 

@@ -1,0 +1,270 @@
+#wrapper {
+    background:white;
+    height:850px;
+    width:1000px;
+    margin:0 auto;
+    border:1px solid black;
+}
+
+#header {
+    background:white;
+    float:left;
+    height:100px;
+    width:100%;
+}
+
+#header h1 {
+    color:#6091ba;
+    font-weight:bold;
+    font-size:50px;
+    text-align:center;
+    text-decoration:none;
+}
+
+#navigation {
+    background:#6091ba;
+    float:left;
+    height:50px;
+    width:100%;
+}
+
+#navigation ul {
+    width:100%;
+    height:100%;
+    float:left;
+}
+
+#navigation ul li {
+    width:auto;
+    height:100px;
+    float:left;
+    list-style:none;
+}
+
+#navigation ul li a {
+    width:auto;
+    float:left;
+    height:25px;
+    margin:0 75px;
+    padding:0 10px;
+    float:left;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    line-height:25px;
+}
+
+#navigation ul li a:hover {
+    color:#6091ba;
+    background:white;
+}
+
+#navigation_inner {
+    background:#6091ba;
+    float:left;
+    height:50px;
+    width:100%;
+}
+
+#navigation_inner ul {
+    width:100%;
+    height:100%;
+    float:left;
+}
+
+#navigation_inner ul li {
+    width:auto;
+    height:100px;
+    float:left;
+    list-style:none;
+}
+
+#navigation_inner ul li a {
+    width:auto;
+    float:left;
+    height:25px;
+    margin:0 22px;
+    float:left;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    border-radius:50px;
+    line-height:25px;
+}
+
+#navigation_inner ul li a:hover {
+    color:#6091ba;
+    background:white;
+    border-radius:50px;
+
+}
+
+#content {
+    height:690px;
+    width:990px;
+    float:left;
+    background:white;
+    margin:5px 5px;
+
+}
+
+#content_upper {
+    background:white;
+    float:left;
+    height:90px;
+    width:980px;
+    line-height:70px;
+    margin:5px 5px;
+    text-align:center;
+
+}
+
+#content_upper h1 {
+    font-size:38px;
+    text-align:center;
+    color:#6091ba;
+    font-weight:bold;
+}
+
+#content_lower {
+    height:590px;
+    width:970px;
+    float:left;
+    margin:5px 5px;
+}
+
+#content_lower_form {
+    height:80px;
+    margin:20px 5px 0px 5px;
+    width:960px;
+    color:white;
+    font_weight:bold;
+    border-radius:10px;
+}
+
+#content_lower_table {
+    height:470px;
+    width:960px;
+    float:left;
+    margin:10px 5px;
+}
+
+#CSS_Table_Example {
+    margin:0px;padding:0px;
+    width:100%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #000000;
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+}
+
+#CSS_Table_Example table{
+    width:100%;
+    height:100%;
+    margin:0px;padding:0px;
+}
+
+#CSS_Table_Example tr:last-child td:last-child {
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+}
+
+#CSS_Table_Example table tr:first-child td:first-child {
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+}
+
+#CSS_Table_Example table tr:first-child td:last-child {
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+}
+
+#CSS_Table_Example tr:last-child td:first-child {
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+}
+
+#CSS_Table_Example tr:hover td {
+    background-color:#6091ba;
+    background:-o-linear-gradient(bottom, #6091ba 5%, #6091ba 100%);	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6091ba), color-stop(1, #6091ba) );
+    background:-moz-linear-gradient( center top, #6091ba 5%, #6091ba 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#6091ba", endColorstr="#6091ba");	background: -o-linear-gradient(top,#6091ba,6091ba);
+}
+
+#CSS_Table_Example tr:first-child td {
+    background:-o-linear-gradient(bottom, #6091ba 5%, #6091ba 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6091ba), color-stop(1, #6091ba) );
+    background:-moz-linear-gradient( center top, #6091ba 5%, #6091ba 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#6091ba", endColorstr="#6091ba");	background: -o-linear-gradient(top,#6091ba,6091ba);
+    background-color:#06091ba;
+    border:0px solid #000000;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:18px;
+    font-weight:bold;
+    color:#ffffff;
+}
+
+#CSSTableGenerator tr:first-child:hover td {
+    background:-o-linear-gradient(bottom, #6091ba 5%, #6091ba 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6091ba), color-stop(1, #6091ba) );
+    background:-moz-linear-gradient( center top, #6091ba 5%, #6091ba 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#6091ba", endColorstr="#6091ba");	background: -o-linear-gradient(top,#6091ba,6091ba);
+    background-color:#6091ba;
+}
+
+#CSS_Table_Example tr:first-child td:first-child {
+    border-width:0px 0px 1px 0px;
+}
+
+#CSS_Table_Example tr:first-child td:last-child {
+    border-width:0px 0px 1px 1px;
+}
+
+#CSS_Table_Example td {
+    background:-o-linear-gradient(bottom, #6091ba 5%, #6091ba 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6091ba), color-stop(1, #6091ba) ); 
+    background:-moz-linear-gradient( center top, #6091ba 5%, #6091ba 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#6091ba", endColorstr="#6091ba");	background: -o-linear-gradient(top,#6091ba,6091ba);
+    background-color:#6091ba;
+    border:1px solid #000000;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:7px;
+    font-size:12px;
+    font-weight:bold;
+    color:#000000;
+}
+
+#CSS_Table_Example tr:last-child td {
+    border-width:0px 1px 0px 0px;
+}
+
+#CSS_Table_Example tr td:last-child {
+    border-width:0px 0px 1px 0px;
+}
+
+#CSS_Table_Example tr:last-child td:last-child {
+    border-width:0px 0px 0px 0px;
+}
+
+.btn-style {
+    border : solid 2px #ffffff;
+    border-radius : 3px;
+    moz-border-radius : 3px;
+    font-size : 20px;
+    color : #ffffff;
+    padding : 1px 17px;
+    background-color : #6091ba;
+}

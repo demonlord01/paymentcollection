@@ -1,16 +1,23 @@
+<%-- 
+    Document   : login
+    Created on : Apr 7, 2015, 3:21:56 PM
+    Author     : Vaibhav Bhagat
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
-        <title>Login</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Payment Collection</title>
+        <link href="css/stylesheetlogin.css" type="text/css" rel="stylesheet">
     </head>
-
     <body>
         <div id="wrapper">
 
             <div id="header">
                 <h1>Payment Collection</h1>
             </div>
-
 
             <div id="navigation">
                 <ul>
@@ -22,27 +29,24 @@
                 </ul>
             </div>
 
-
             <div id="content">
                 <div id="content_inner">
 
-                    <form action="LoginServlet" method="POST" align="center" autocomplete="on">
-                  
+                    <form action="LoginServlet" method="POST"align="center" autocomplete="on">
+
                         <br><br><br>
-                            <label for="admin_username">Username:</label>
-                            <input id="admin_username" type="text" name="username" placeholder="Username" size="24"><br><br>
+                        <label for="admin_username">Username:</label>
+                        <input id="admin_username" type="text" name="username" placeholder="Username" size="24"><br><br>
 
-                            <label for="admin_password">Password:</label>
-                            <input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br><br>
+                        <label for="admin_password">Password:</label>
+                        <input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br><br>
 
-                            <input type="submit" value="Login">
-                            <br><br>
-                            <input type="submit" value="Forget Password">
-                      
+                        <input type="submit" value="Login" class="btn-style">
+                        <br><br>
+                        <input type="submit" value="Forget Password" class="btn-style">
+
                     </form>
-
                 </div>
-
             </div>
 
             <div id="content_inner2">

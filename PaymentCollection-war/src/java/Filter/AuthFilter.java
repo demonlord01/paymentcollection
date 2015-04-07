@@ -143,8 +143,9 @@ public class AuthFilter implements Filter {
 //        check session 
 //        if already exist dont do anything
 //        if no session exist send request to login
+        
         HttpServletRequest httprequest = (HttpServletRequest) request;
-        //HttpServletResponse httpresponse = (HttpServletResponse) response;
+//        HttpServletResponse httpresponse = (HttpServletResponse) response;
         String url = httprequest.getServletPath();
         boolean allowedRequest = false;
 
@@ -159,7 +160,6 @@ public class AuthFilter implements Filter {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
-
         chain.doFilter(request, response);
     }
 
