@@ -1,11 +1,10 @@
 <%-- 
-    Document   : viewsalesman
-    Created on : Apr 7, 2015, 3:28:27 PM
+    Document   : viewcustomer
+    Created on : Apr 7, 2015, 4:18:11 PM
     Author     : Vaibhav Bhagat
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +34,7 @@
             <div id="content">
 
                 <div id="content_upper">
-                    <h1>Salesman List</h1>
+                    <h1>Customer List</h1>
                 </div>
 
                 <div id="content_lower">
@@ -44,23 +43,29 @@
 
                         <table style="width:970px;height:470px;">
                             <tr> 
-                                <td>Salesman Id</td>
-                                <td>Salesman Name</td>
-                                <td>Phone Number</td>
-                                <td>Email Id</td>
-                                <td>Address</td>
-                                <td>Date Of Joining</td>
+
+                                <td>
+                                    Customer Id
+                                </td>
+                                <td >
+                                    Customer Name
+                                </td>
+                                <td>
+                                    Phone Number
+                                </td>
+                                <td>
+                                    Email Id
+                                </td>
+                                <td>
+                                    Address
+                                </td>
+                                <td>
+                                    Payment Received
+                                </td>
+                                <td>
+                                    Due Payment
+                                </td>
                             </tr>
-                            <s:forEach var="salesman" items="${requestScope['salesmanList']}">
-                                <tr>
-                                    <td>${salesman.id}</td>
-                                    <td>${salesman.s_name}</td>
-                                    <td>${salesman.s_phonenumber}</td>
-                                    <td>${salesman.s_emailid}</td>
-                                    <td>${salesman.s_address}</td>
-                                    <td>${salesman.s_dateofjoining}</td>
-                                </tr>
-                            </s:forEach>
                         </table>
                     </div>
 
@@ -70,9 +75,9 @@
                                 <input type="button" name="Previous" class="btn-style" value="Previous">
                                 <input type="button" name="Next" class="btn-style" value="Next"><br><br>
                                 <input type="button" name="View" class="btn-style" value="View Routes">
-                                <input type="button" name="Add" class="btn-style" value="Add Salesman">
-                                <input type="button" name="Edit" class="btn-style" value="Edit Salesman">
-                                <input type="button" name="Delete" class="btn-style" value="Delete Salesman">
+                                <input type="button" name="Add" class="btn-style" value="Add Customer">
+                                <input type="button" name="Edit" class="btn-style" value="Edit Customer">
+                                <input type="button" name="Delete" class="btn-style" value="Delete Customer">
                             </form>
                         </center>
                     </div>
