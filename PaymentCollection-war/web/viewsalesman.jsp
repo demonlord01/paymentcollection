@@ -22,7 +22,7 @@
 
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="index.jsp">Home</a></li>
+                  
                     <li><a href="SalesmanServlet">Salesman</a></li>
                     <li><a href="viewcustomer.jsp">Customer</a></li>
                     <li><a href="viewroute.jsp">Route</a></li>
@@ -44,12 +44,12 @@
 
                         <table style="width:970px;height:470px;">
                             <tr> 
-                                <td>Salesman Id</td>
-                                <td>Salesman Name</td>
-                                <td>Phone Number</td>
-                                <td>Email Id</td>
-                                <td>Address</td>
-                                <td>Date Of Joining</td>
+                                <th>Salesman Id</th>
+                                <th>Salesman Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <th>Address</th>
+                                <th>Date Of Joining</th>
                             </tr>
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
                                 <tr>
@@ -69,10 +69,9 @@
                             <form>
                                 <input type="button" name="Previous" class="btn-style" value="Previous">
                                 <input type="button" name="Next" class="btn-style" value="Next"><br><br>
-                                <input type="button" name="View" class="btn-style" value="View Routes">
+                           
                                 <input type="button" name="Add" class="btn-style" value="Add Salesman">
-                                <input type="button" name="Edit" class="btn-style" value="Edit Salesman">
-                                <input type="button" name="Delete" class="btn-style" value="Delete Salesman">
+                               
                             </form>
                         </center>
                     </div>

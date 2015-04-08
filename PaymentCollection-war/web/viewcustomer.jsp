@@ -21,7 +21,7 @@
 
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="index.jsp">Home</a></li>
+                    
                     <li><a href="SalesmanServlet">Salesman</a></li>
                     <li><a href="viewcustomer.jsp">Customer</a></li>
                     <li><a href="viewroute.jsp">Route</a></li>
@@ -74,10 +74,9 @@
                             <form>
                                 <input type="button" name="Previous" class="btn-style" value="Previous">
                                 <input type="button" name="Next" class="btn-style" value="Next"><br><br>
-                                <input type="button" name="View" class="btn-style" value="View Routes">
+                           
                                 <input type="button" name="Add" class="btn-style" value="Add Customer">
-                                <input type="button" name="Edit" class="btn-style" value="Edit Customer">
-                                <input type="button" name="Delete" class="btn-style" value="Delete Customer">
+                               
                             </form>
                         </center>
                     </div>

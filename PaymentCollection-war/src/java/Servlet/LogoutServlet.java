@@ -34,6 +34,7 @@ public class LogoutServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
             if (session != null) {
+                
                 session.invalidate();
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
