@@ -3,20 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdminServlets;
+package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import session.PaymentSessionLocal;
 
 /**
  *
  * @author Vaibhav Bhagat
  */
-public class CustomerServlet extends HttpServlet {
+public class Login extends HttpServlet {
+
+    @EJB
+    private PaymentSessionLocal paymentSession;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +37,31 @@ public class CustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+            String username = (String) request.getParameter("username");
+            String password = (String) request.getParameter("password");
+            if (paymentSession.verifyAdmin(username, password) == true) {
+                HttpSession session = request.getSession(false);
+                if (session == null) {
+                    session = request.getSession();
+                }
+                if (session != null) {
+                    session.setAttribute("Usertype", "admin");
+                }
+                request.getRequestDispatcher("ViewSalesman").forward(request, response);
+            } else {
+                if (paymentSession.verifySalesman(username, password) == true) {
+                    HttpSession session = request.getSession(false);
+                    if (session == null) {
+                        session = request.getSession();
+                    }
+                    if (session != null) {
+                        session.setAttribute("Usertype", "salesman");
+                    }
+                    request.getRequestDispatcher("salesmansecond.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            }
         }
     }
 

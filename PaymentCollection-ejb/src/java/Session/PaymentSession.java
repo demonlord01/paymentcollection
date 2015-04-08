@@ -304,8 +304,8 @@ public class PaymentSession implements PaymentSessionLocal {
     @Override
     public boolean verifyAdmin(String username, String password) {
         try {
-            AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" + username
-                    + "'").getSingleResult();
+            AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" 
+                    + username + "'").getSingleResult();
             if (admin != null) {
                 if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
                     return true;

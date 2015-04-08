@@ -144,9 +144,9 @@ public class AuthFilter implements Filter {
 //        if already exist dont do anything
 //        if no session exist send request to login
         
-        HttpServletRequest httprequest = (HttpServletRequest) request;
-//        HttpServletResponse httpresponse = (HttpServletResponse) response;
-        String url = httprequest.getServletPath();
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        String url = req.getServletPath();
         boolean allowedRequest = false;
 
         if (urlList.contains(url)) {
@@ -154,13 +154,14 @@ public class AuthFilter implements Filter {
         }
 
         if (!allowedRequest) {
-            HttpSession session = httprequest.getSession(false);
+            HttpSession session = req.getSession(false);
             if (null == session) {
-//                httpresponse.sendRedirect("index.jsp");
+//                response.sendRedirect("index.jsp");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
             }
         }
-        chain.doFilter(request, response);
+        chain.doFilter(req, res);
     }
 
     /**

@@ -31,13 +31,12 @@
 
             <div id="navigation_inner">
                 <ul>
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="SalesmanServlet">Salesman</a></li>
+                    <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="viewcustomer.jsp">Customer</a></li>
                     <li><a href="viewroute.jsp">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
-                    <li><a href="LogoutServlet">Logout</a></li>
+                    <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
 

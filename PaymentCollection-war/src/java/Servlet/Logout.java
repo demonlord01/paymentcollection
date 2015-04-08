@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdminServlets;
+package Servlet;
 
-import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import session.PaymentSessionLocal;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Vaibhav Bhagat
  */
-public class SalesmanServlet extends HttpServlet {
-    @EJB
-    private PaymentSessionLocal paymentSession;
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,9 +32,15 @@ public class SalesmanServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<SalesMan> salesmanlist = paymentSession.getAllSalesman();
-            request.setAttribute("salesmanList", salesmanlist);
-            request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
+            HttpSession session = request.getSession(false);
+            if (session != null) {                
+//                session.invalidate();
+                session.setMaxInactiveInterval(1);
+                response.sendRedirect("index.jsp");
+            } else {
+                System.out.println("********************Login First********************");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
         }
     }
 

@@ -5,7 +5,7 @@
         <filter-class>Filter.AuthFilter</filter-class>
         <init-param>
             <param-name>avoid-urls</param-name>
-            <param-value>index.jsp, login.jsp, aboutus.jsp, contactus.jsp</param-value>
+            <param-value>index.jsp, login.jsp, aboutus.jsp, contactus.jsp, ViewSalesman</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -17,40 +17,40 @@
         <servlet-class>Servlet.PaymentServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>Servlet.LoginServlet</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>Servlet.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SalesmanServlet</servlet-name>
-        <servlet-class>AdminServlets.SalesmanServlet</servlet-class>
+        <servlet-name>ViewSalesman</servlet-name>
+        <servlet-class>AdminServlets.ViewSalesman</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>Servlet.LogoutServlet</servlet-class>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Servlet.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CustomerServlet</servlet-name>
-        <servlet-class>AdminServlets.CustomerServlet</servlet-class>
+        <servlet-name>Customer</servlet-name>
+        <servlet-class>AdminServlets.Customer</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SalesmanServlet</servlet-name>
-        <url-pattern>/SalesmanServlet</url-pattern>
+        <servlet-name>ViewSalesman</servlet-name>
+        <url-pattern>/ViewSalesman</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/CustomerServlet</url-pattern>
+        <servlet-name>Customer</servlet-name>
+        <url-pattern>/Customer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>1</session-timeout>

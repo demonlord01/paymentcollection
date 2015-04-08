@@ -22,12 +22,12 @@
             <div id="navigation_inner">
                 <ul>
                    
-                    <li><a href="SalesmanServlet">Salesman</a></li>
+                    <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="viewcustomer.jsp">Customer</a></li>
                     <li><a href="viewroute.jsp">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
-                    <li><a href="LogoutServlet">Logout</a></li>
+                    <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
 
@@ -62,10 +62,10 @@
                     <div id="content_lower_form">
                         <center>
                             <form>
-                                <input type="button" name="Previous" class="btn-style" value="Previous">
-                                <input type="button" name="Next" class="btn-style" value="Next"><br><br>
+                                <input type="button" name="previous" class="btn-style" value="Previous">
+                                <input type="button" name="next" class="btn-style" value="Next"><br><br>
                    
-                                <input type="button" name="Add" class="btn-style" value="Add Route">
+                                <input type="button" name="add" class="btn-style" value="Add Route">
                                 
                             </form>
                         </center>

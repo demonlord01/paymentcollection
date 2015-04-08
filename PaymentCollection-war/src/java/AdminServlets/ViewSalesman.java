@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package AdminServlets;
 
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +21,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class LoginServlet extends HttpServlet {
+public class ViewSalesman extends HttpServlet {
 
     @EJB
     private PaymentSessionLocal paymentSession;
@@ -37,25 +39,18 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                HttpSession session = request.getSession();
-                if (session != null) {
-                    session.setAttribute("Usertype", "admin");
-                }
-                request.getRequestDispatcher("SalesmanServlet").forward(request, response);
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
-                    HttpSession session = request.getSession();
-                    if (session != null) {
-                        session.setAttribute("Usertype", "salesman");
-                    }
-                    request.getRequestDispatcher("salesmansecond.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
-            }
+            HttpSession session = request.getSession(false);
+            System.out.println(request.isRequestedSessionIdValid());
+//            if (session != null) {
+//                String getAdmin = (String) session.getAttribute("Usertype");
+//                if (getAdmin.equals("admin")) {
+                    List<SalesMan> salesmanlist = paymentSession.getAllSalesman();
+                    request.setAttribute("salesmanList", salesmanlist);
+                    request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
+//                }
+//            } else {
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
+//            }
         }
     }
 
