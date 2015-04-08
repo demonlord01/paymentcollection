@@ -40,17 +40,17 @@ public class ViewSalesman extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
-            System.out.println(request.isRequestedSessionIdValid());
-//            if (session != null) {
-//                String getAdmin = (String) session.getAttribute("Usertype");
-//                if (getAdmin.equals("admin")) {
+            if (session != null) {
+                String getAdmin = (String) session.getAttribute("Usertype");
+                if (getAdmin.equals("admin")) {
                     List<SalesMan> salesmanlist = paymentSession.getAllSalesman();
                     request.setAttribute("salesmanList", salesmanlist);
                     request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
-//                }
-//            } else {
-//                request.getRequestDispatcher("login.jsp").forward(request, response);
-//            }
+                } else {
+                    session.invalidate();
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            }
         }
     }
 

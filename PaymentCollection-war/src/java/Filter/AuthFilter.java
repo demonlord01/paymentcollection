@@ -143,25 +143,30 @@ public class AuthFilter implements Filter {
 //        check session 
 //        if already exist dont do anything
 //        if no session exist send request to login
-        
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
+//        System.out.println("0000000000 :" + req.isRequestedSessionIdValid());
         String url = req.getServletPath();
+//        System.out.println("getServletPath: " + url);
         boolean allowedRequest = false;
-
+//        System.out.println("urlList: " + urlList);
         if (urlList.contains(url)) {
             allowedRequest = true;
+//            System.out.println("111111111 :" + req.isRequestedSessionIdValid());
         }
 
         if (!allowedRequest) {
             HttpSession session = req.getSession(false);
             if (null == session) {
-//                response.sendRedirect("index.jsp");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+//                System.out.println("222222222222 :" + req.isRequestedSessionIdValid());
+                res.sendRedirect("index.jsp");
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
                 return;
             }
         }
-        chain.doFilter(req, res);
+//        System.out.println("888888888 :" + req.isRequestedSessionIdValid());
+        chain.doFilter(request, response);
+//        System.out.println("999999999 :" + req.isRequestedSessionIdValid());
     }
 
     /**
@@ -200,13 +205,17 @@ public class AuthFilter implements Filter {
 //            }
 //        }
         String urls = filterConfig.getInitParameter("avoid-urls");
-        StringTokenizer token = new StringTokenizer(urls, ",");
-
+//        StringTokenizer token = new StringTokenizer(urls);
+        String arrUrls[] = urls.split(",");
+        
         urlList = new ArrayList<>();
-
-        while (token.hasMoreTokens()) {
-            urlList.add(token.nextToken());
+        
+        for (int i = 0; i < arrUrls.length; i++) {
+            urlList.add(arrUrls[i]);
         }
+//        while (token.hasMoreTokens()) {
+//            urlList.add(token.nextToken());
+//        }
     }
 
     /**

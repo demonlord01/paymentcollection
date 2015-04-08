@@ -34,8 +34,8 @@ public class Logout extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
             if (session != null) {                
-//                session.invalidate();
-                session.setMaxInactiveInterval(1);
+                session.invalidate();
+//                session.setMaxInactiveInterval(1);
                 response.sendRedirect("index.jsp");
             } else {
                 System.out.println("********************Login First********************");

@@ -5,7 +5,9 @@
         <filter-class>Filter.AuthFilter</filter-class>
         <init-param>
             <param-name>avoid-urls</param-name>
-            <param-value>index.jsp, login.jsp, aboutus.jsp, contactus.jsp, ViewSalesman</param-value>
+            <param-value>/index.jsp,/login.jsp,/aboutus.jsp,/contactus.jsp,/Login,/css/stylesheet.css,
+                /css/stylesheet1.css,/css/stylesheet2.css,/css/stylesheetlogin.css,/images/image1.jpg,
+                /images/image2.jpg,/images/image3.jpg,/images/image4.jpg,/images/image5.jpg</param-value>
         </init-param>
     </filter>
     <filter-mapping>

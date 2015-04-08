@@ -4,7 +4,7 @@
     Author     : Vaibhav Bhagat
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html>
 <html>
     <head>

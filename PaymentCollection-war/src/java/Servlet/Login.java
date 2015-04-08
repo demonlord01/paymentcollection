@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
                     if (session != null) {
                         session.setAttribute("Usertype", "salesman");
                     }
-                    request.getRequestDispatcher("salesmansecond.jsp").forward(request, response);
+                    request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
