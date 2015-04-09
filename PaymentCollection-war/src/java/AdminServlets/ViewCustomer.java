@@ -5,7 +5,7 @@
  */
 package AdminServlets;
 
-import Entities.SalesMan;
+import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,8 +21,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class ViewSalesman extends HttpServlet {
-
+public class ViewCustomer extends HttpServlet {
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -43,9 +42,9 @@ public class ViewSalesman extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    List<SalesMan> salesmanlist = paymentSession.getAllSalesmans();
-                    request.setAttribute("salesmanList", salesmanlist);
-                    request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
+                    List<Customer> customerlist = paymentSession.getAllCustomer();
+                    request.setAttribute("customerList", customerlist);
+                    request.getRequestDispatcher("viewcustomer.jsp").forward(request, response);
                 } else {
                     session.invalidate();
                     request.getRequestDispatcher("login.jsp").forward(request, response);

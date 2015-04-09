@@ -22,8 +22,8 @@
             <div id="navigation_inner">
                 <ul>
                     <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="viewcustomer.jsp">Customer</a></li>
-                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="ViewCustomer">Customer</a></li>
+                    <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>

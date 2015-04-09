@@ -15,7 +15,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.StringTokenizer;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -159,8 +158,7 @@ public class AuthFilter implements Filter {
             HttpSession session = req.getSession(false);
             if (null == session) {
 //                System.out.println("222222222222 :" + req.isRequestedSessionIdValid());
-                res.sendRedirect("index.jsp");
-//                request.getRequestDispatcher("login.jsp").forward(request, response);
+                res.sendRedirect("login.jsp");
                 return;
             }
         }

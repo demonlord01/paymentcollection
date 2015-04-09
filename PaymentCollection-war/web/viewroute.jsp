@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="r"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,10 +22,10 @@
 
             <div id="navigation_inner">
                 <ul>
-                   
+
                     <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="viewcustomer.jsp">Customer</a></li>
-                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="ViewCustomer">Customer</a></li>
+                    <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
@@ -44,17 +45,17 @@
 
                             <table style="width:500px;height:470px;align:center">
                                 <tr> 
-                                    <td >
-                                        Route Id
-                                    </td>
-
-                                    <td >
-                                        Route Name
-                                    </td>
-                                    <td >
-                                        City
-                                    </td>
+                                    <th>Route Id</th>
+                                    <th>Route Name</th>
+                                    <th>City</th>
                                 </tr>
+                                <r:forEach var="route" items="${requestScope['routeList']}">
+                                    <tr>
+                                        <td>${route.id}</td>
+                                        <td>${route.r_name}</td>
+                                        <td>${route.city}</td>                                        
+                                    </tr>
+                                </r:forEach>
                             </table>
                         </div>
                     </center>
@@ -64,9 +65,9 @@
                             <form>
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
-                   
+
                                 <input type="button" name="add" class="btn-style" value="Add Route">
-                                
+
                             </form>
                         </center>
                     </div>

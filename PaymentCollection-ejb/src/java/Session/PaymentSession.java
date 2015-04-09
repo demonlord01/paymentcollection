@@ -44,7 +44,7 @@ public class PaymentSession implements PaymentSessionLocal {
     }
 
     @Override
-    public List<SalesMan> getAllSalesman() {
+    public List<SalesMan> getAllSalesmans() {
         List<SalesMan> allSalesMans = em.createQuery("SELECT s FROM SalesMan s ").getResultList();
         return allSalesMans;
     }

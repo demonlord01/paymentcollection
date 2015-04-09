@@ -23,7 +23,7 @@ public interface PaymentSessionLocal {
     public boolean insertSalesman(String name, String password, Long phonenumber,
             String emailid, String address, String dateofjoining, List<Route> routes);
 
-    public List<SalesMan> getAllSalesman();
+    public List<SalesMan> getAllSalesmans();
 
     public SalesMan getSalesmanByID(Long id);
 

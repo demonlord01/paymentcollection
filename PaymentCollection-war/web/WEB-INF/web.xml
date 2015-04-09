@@ -15,10 +15,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <servlet>
-        <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>Servlet.PaymentServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>Servlet.Login</servlet-class>
     </servlet>
@@ -31,13 +27,17 @@
         <servlet-class>Servlet.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Customer</servlet-name>
-        <servlet-class>AdminServlets.Customer</servlet-class>
+        <servlet-name>ViewCustomer</servlet-name>
+        <servlet-class>AdminServlets.ViewCustomer</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>PaymentServlet</servlet-name>
-        <url-pattern>/PaymentServlet</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewRoute</servlet-name>
+        <servlet-class>AdminServlets.ViewRoute</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSalesman</servlet-name>
+        <servlet-class>AdminServlets.AddSalesman</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -51,10 +51,18 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Customer</servlet-name>
-        <url-pattern>/Customer</url-pattern>
+        <servlet-name>ViewCustomer</servlet-name>
+        <url-pattern>/ViewCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRoute</servlet-name>
+        <url-pattern>/ViewRoute</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSalesman</servlet-name>
+        <url-pattern>/AddSalesman</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>1</session-timeout>
+        <session-timeout>10</session-timeout>
     </session-config>
 </web-app>

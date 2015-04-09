@@ -5,9 +5,10 @@
  */
 package AdminServlets;
 
-import Entities.SalesMan;
+import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class ViewSalesman extends HttpServlet {
+public class AddSalesman extends HttpServlet {
 
     @EJB
     private PaymentSessionLocal paymentSession;
@@ -43,9 +44,28 @@ public class ViewSalesman extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    List<SalesMan> salesmanlist = paymentSession.getAllSalesmans();
-                    request.setAttribute("salesmanList", salesmanlist);
-                    request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);
+                    String add = request.getParameter("add");
+                    String submit = request.getParameter("submit");
+
+                    if (add != null) {
+                        List<Route> routeslist = paymentSession.getAllRoutes();
+                        request.setAttribute("routesList", routeslist);
+                        request.getRequestDispatcher("editsalesman.jsp").forward(request, response);
+                    } else if (submit != null) {
+                        String salesmanName = request.getParameter("salesmanName");
+                        String salesmanPassword = request.getParameter("salesmanPassword");
+                        Long salesmanPhoneNumber = Long.parseLong(request.getParameter("salesmanPhoneNumber"));
+                        String salesmanEmailid = request.getParameter("salesmanEmailid");
+                        String salesmanAddress = request.getParameter("salesmanAddress");
+                        Long salesmanRoute = Long.parseLong(request.getParameter("salesmanRoute"));
+                        String salesmanDateOfJoining = request.getParameter("salesmanDateOfJoining");
+                        
+                        List<Route> route = new ArrayList<>();
+                        route.add(paymentSession.getRouteByID(salesmanRoute));
+                        paymentSession.insertSalesman(salesmanName, salesmanPassword, salesmanPhoneNumber,
+                                salesmanEmailid, salesmanAddress, salesmanDateOfJoining, route);
+                        response.sendRedirect("ViewSalesman");
+                    }
                 } else {
                     session.invalidate();
                     request.getRequestDispatcher("login.jsp").forward(request, response);

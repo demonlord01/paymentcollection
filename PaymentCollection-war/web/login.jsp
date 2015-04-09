@@ -32,7 +32,7 @@
             <div id="content">
                 <div id="content_inner">
 
-                    <form action="Login" method="POST"align="center" autocomplete="on">
+                    <form action="Login" method="POST" align="center" autocomplete="on">
 
                         <br><br><br>
                         <label for="admin_username">Username:</label>

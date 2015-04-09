@@ -24,8 +24,8 @@
                 <ul>
                   
                     <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="viewcustomer.jsp">Customer</a></li>
-                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="ViewCustomer">Customer</a></li>
+                    <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
@@ -53,7 +53,7 @@
                             </tr>
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
                                 <tr>
-                                    <td>${salesman.id}</td>
+                                    <td><a>${salesman.id}</a></td>
                                     <td>${salesman.s_name}</td>
                                     <td>${salesman.s_phonenumber}</td>
                                     <td>${salesman.s_emailid}</td>
@@ -66,7 +66,7 @@
 
                     <div id="content_lower_form">
                         <center>
-                            <form action="">
+                            <form action="AddSalesman" method="POST">
                                 <input type="submit" name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="submit" name="add" class="btn-style" value="Add Salesman">  

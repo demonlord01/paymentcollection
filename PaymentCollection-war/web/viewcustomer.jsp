@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,8 +24,8 @@
                 <ul>
                     
                     <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="viewcustomer.jsp">Customer</a></li>
-                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="ViewCustomer">Customer</a></li>
+                    <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
@@ -43,29 +44,23 @@
 
                         <table style="width:970px;height:470px;">
                             <tr> 
-
-                                <td>
-                                    Customer Id
-                                </td>
-                                <td >
-                                    Customer Name
-                                </td>
-                                <td>
-                                    Phone Number
-                                </td>
-                                <td>
-                                    Email Id
-                                </td>
-                                <td>
-                                    Address
-                                </td>
-                                <td>
-                                    Payment Received
-                                </td>
-                                <td>
-                                    Due Payment
-                                </td>
+                                <th>Customer Id</th>
+                                <th>Customer Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <th>Address</th>
+                                <th>Due Payment</th>
                             </tr>
+                            <c:forEach var="customer" items="${requestScope['customerList']}">
+                                <tr>
+                                    <td>${customer.id}</td>
+                                    <td>${customer.c_name}</td>
+                                    <td>${customer.c_phonenumber}</td>
+                                    <td>${customer.c_emailid}</td>
+                                    <td>${customer.c_address}</td>
+                                    <td>${customer.c_duepayment}</td>
+                                </tr>
+                            </c:forEach>
                         </table>
                     </div>
 
@@ -74,9 +69,7 @@
                             <form>
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
-                           
                                 <input type="button" name="add" class="btn-style" value="Add Customer">
-                               
                             </form>
                         </center>
                     </div>

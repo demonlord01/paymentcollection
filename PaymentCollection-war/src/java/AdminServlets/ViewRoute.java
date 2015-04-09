@@ -5,18 +5,25 @@
  */
 package AdminServlets;
 
+import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import session.PaymentSessionLocal;
 
 /**
  *
  * @author Vaibhav Bhagat
  */
-public class Customer extends HttpServlet {
+public class ViewRoute extends HttpServlet {
+    @EJB
+    private PaymentSessionLocal paymentSession;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +38,18 @@ public class Customer extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                String getAdmin = (String) session.getAttribute("Usertype");
+                if (getAdmin.equals("admin")) {
+                    List<Route> routelist = paymentSession.getAllRoutes();
+                    request.setAttribute("routeList", routelist);
+                    request.getRequestDispatcher("viewroute.jsp").forward(request, response);
+                } else {
+                    session.invalidate();
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            }
         }
     }
 

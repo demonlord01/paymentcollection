@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="routes"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,8 +23,8 @@
             <div id="navigation_inner">
                 <ul>
                     <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="viewcustomer.jsp">Customer</a></li>
-                    <li><a href="viewroute.jsp">Route</a></li>
+                    <li><a href="ViewCustomer">Customer</a></li>
+                    <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
                     <li><a href="confirmpassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
@@ -33,35 +34,35 @@
             <div id="content">
 
                 <center>
-                    <form>
-
+                    <form action="AddSalesman" method="POST">
                         <upper>
                             <h1>Salesman Details</h1>
                         </upper>
 
                         <lower>
                             <br><br>
-                            <font>Salesman Password<input type="text" name="Salesman Password" style="margin-left:8px;"></font>
+                            <font>Salesman Name<input type="text" name="salesmanName" required style="margin-left:38px;"></font>
                             <br><br>
-                            <font>Salesman Name<input type="text" name="Salesman Name" style="margin-left:38px;"></font>
+                            <font>Salesman Password<input type="text" name="salesmanPassword" required style="margin-left:8px;"></font>                            
                             <br><br>
-                            <font>Phone Number<input type="text" name="Phone number" style="margin-left:45px;"></font>
+                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="10000000" max="999999999999999" maxlength="15" required style="margin-left:45px;"></font>
                             <br><br>
-                            <font>Email id<input type="text" name="Emailid" style="margin-left:95px;"></font>
+                            <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;"></font>
                             <br><br>
-                            <font>Address<input type="text" name="Address" style="margin-left:98px;"></font>
+                            <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;"></font>
                             <br><br>
                             <font>Route 
-                            <select name="route" style="margin-left:113px;">
-                                <option value="route1"></option>
-                                <option value="route2"></option>
+                            <select name="salesmanRoute" style="margin-left:113px;">
+                                <routes:forEach var="route" items="${requestScope['routesList']}">
+                                    <option value="${route.id}">${route.r_name}</option>
+                                </routes:forEach>
                             </select></font>
                             <br><br>
-                            <font>Date Of Joining<input type="text" name="Date of joining" style="margin-left:38px;"></font>
+                            <font>Date Of Joining<input type="date" name="salesmanDateOfJoining" style="margin-left:38px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="button" name="Submit" class="btn-style" value="Submit">
-                            <a href="editsalesman.html"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
+                            <input type="submit" name="submit" class="btn-style" value="Submit">
+                            <input type="submit" name="Reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>
