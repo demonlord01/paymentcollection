@@ -53,8 +53,8 @@
                             </tr>
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
                                 <tr>
-                                    <td><a>${salesman.id}</a></td>
-                                    <td>${salesman.s_name}</td>
+                                    <td>${salesman.id}</td>
+                                    <td><a href="UpdateSalesman?sid=${salesman.id}">${salesman.s_name}</a></td>
                                     <td>${salesman.s_phonenumber}</td>
                                     <td>${salesman.s_emailid}</td>
                                     <td>${salesman.s_address}</td>

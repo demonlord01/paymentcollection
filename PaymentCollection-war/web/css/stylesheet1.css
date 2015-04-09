@@ -167,8 +167,6 @@
     -moz-border-radius-topleft:0px;
     -webkit-border-top-left-radius:0px;
     border-top-left-radius:0px;
-   
-    
 }
 
 #CSS_Table_Example table{
@@ -185,7 +183,6 @@
     color:white;
     font-size:20px;
     font-weight:bold;
-    
     border:1px solid #000000;
     border-width:0px 1px 1px 0px;
 }
@@ -195,7 +192,6 @@
     -moz-border-radius-bottomright:0px;
     -webkit-border-bottom-right-radius:0px;
     border-bottom-right-radius:0px;
-    
     font-size:18px;
 }
 
@@ -219,13 +215,11 @@
     -moz-border-radius-bottomleft:0px;
     -webkit-border-bottom-left-radius:0px;
     border-bottom-left-radius:0px;
-    
     font-size:18px;
 }
 
 #CSS_Table_Example tr:hover td {
     background:white;
-   
     color:#6091ba;
     font-size:18px;
 }
@@ -239,7 +233,6 @@
     text-align:center;
     border-width:0px 0px 1px 1px;
     font-size:18px;
-    
     color:white;
 }
 

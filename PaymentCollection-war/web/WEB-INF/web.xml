@@ -38,6 +38,10 @@
         <servlet-name>AddSalesman</servlet-name>
         <servlet-class>AdminServlets.AddSalesman</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateSalesman</servlet-name>
+        <servlet-class>AdminServlets.UpdateSalesman</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -61,6 +65,10 @@
     <servlet-mapping>
         <servlet-name>AddSalesman</servlet-name>
         <url-pattern>/AddSalesman</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSalesman</servlet-name>
+        <url-pattern>/UpdateSalesman</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>10</session-timeout>

@@ -21,7 +21,7 @@
 
             <div id="navigation_inner">
                 <ul>
-                    
+
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -42,29 +42,13 @@
                     <div id="CSS_Table_Example" >
 
                         <table style="width:970px;height:470px;">
-                            <tr> 
-
-                                <td>
-                                    Payment Id
-                                </td>
-                                <td >
-                                    Payment Due
-                                </td>
-                                <td>
-                                    Salesman
-                                </td>
-                                <td>
-                                    Customer
-                                </td>
-                                <td>
-                                    Address
-                                </td>
-                                <td>
-                                    Payment Received
-                                </td>
-                                <td>
-                                    Date Of Payment
-                                </td>
+                            <tr>
+                                <td>Payment Id</td>
+                                <td>Payment Due</td>
+                                <td>Salesman</td>
+                                <td>Customer</td>
+                                <td>Payment Received</td>
+                                <td>Date Of Payment</td>
                             </tr>
                         </table>
                     </div>
@@ -74,9 +58,7 @@
                             <form>
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
-                         
                                 <input type="button" name="add" class="btn-style" value="Add Payment">
-                                
                             </form>
                         </center>
                     </div>
