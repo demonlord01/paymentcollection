@@ -129,15 +129,15 @@
 
 #content_lower {
     height:590px;
-    width:970px;
+    width:930px;
     float:left;
-    margin:5px 5px;
+    margin:5px 25px;
 }
 
 #content_lower_form {
     height:80px;
     margin:20px 5px 0px 5px;
-    width:960px;
+    width:930px;
     color:white;
     font_weight:bold;
     border-radius:10px;
@@ -145,9 +145,9 @@
 
 #content_lower_table {
     height:470px;
-    width:960px;
+    width:930px;
     float:left;
-    margin:10px 5px;
+    margin:10px 25px;
 }
 
 #CSS_Table_Example {

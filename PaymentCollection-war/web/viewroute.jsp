@@ -51,6 +51,7 @@
                                 </tr>
                                 <r:forEach var="route" items="${requestScope['routeList']}">
                                     <tr>
+                                       
                                         <td>${route.id}</td>
                                         <td>${route.r_name}</td>
                                         <td>${route.city}</td>                                        
@@ -67,6 +68,7 @@
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
 
                                 <input type="button" name="add" class="btn-style" value="Add Route">
+                                <input type="button" name="delete" class="btn-style" value="Delete Route">
 
                             </form>
                         </center>

@@ -42,7 +42,7 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table style="width:970px;height:470px;">
+                        <table style="width:930px;height:470px;">
                             <tr> 
                                 <th>Customer Id</th>
                                 <th>Customer Name</th>
@@ -70,6 +70,8 @@
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="button" name="add" class="btn-style" value="Add Customer">
+                                <input type="button" name="update" class="btn-style" value="Update Customer">
+                                <input type="button" name="route" class="btn-style" value="Show Routes">
                             </form>
                         </center>
                     </div>

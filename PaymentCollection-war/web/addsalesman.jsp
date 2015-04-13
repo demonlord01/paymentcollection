@@ -51,13 +51,7 @@
                             <br><br>
                             <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;"></font>
                             <br><br>
-                            <font>Route 
-                            <select name="salesmanRoute" style="margin-left:113px;">
-                                <routes:forEach var="route" items="${requestScope['routesList']}">
-                                    <option value="${route.id}">${route.r_name}</option>
-                                </routes:forEach>
-                            </select></font>
-                            <br><br>
+                            
                             <font>Date Of Joining<input type="date" name="salesmanDateOfJoining" style="margin-left:38px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">

@@ -42,7 +42,7 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table style="width:970px;height:470px;">
+                        <table style="width:930px;height:470px;">
                             <tr> 
                                 <th>Salesman Id</th>
                                 <th>Salesman Name</th>
@@ -69,7 +69,9 @@
                             <form action="AddSalesman" method="POST">
                                 <input type="submit" name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
-                                <input type="submit" name="add" class="btn-style" value="Add Salesman">  
+                                <input type="submit" name="add" class="btn-style" value="Add Salesman">
+                                <input type="submit" name="update" class="btn-style" value="Update Salesman Details"> 
+                                <input type="submit" name="route" class="btn-style" value="Show Routes"> 
                             </form>
                         </center>
                     </div>
