@@ -128,7 +128,7 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public List<Route> getAllRoutesBySalesMan(Long id) {
-        SalesMan salesmanName = (SalesMan) em.createQuery("SELECT r FROM SalesMan r WHERE"
+        SalesMan salesmanName = (SalesMan) em.createQuery("SELECT r FROM SalesMan r WHERE "
                 + "r.id='" + id + "'").getSingleResult();
         return salesmanName.getS_route();
     }
