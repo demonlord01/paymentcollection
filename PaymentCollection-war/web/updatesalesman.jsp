@@ -14,44 +14,51 @@
         <link href="css/stylesheet2.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <div id="wrapper">
+        <s:set value="${salesman.id}" var="id" scope="request"></s:set>
+        <s:set value="${salesman.s_name}" var="name" scope="request"></s:set>
+        <s:set value="${salesman.s_password}" var="password" scope="request"></s:set>
+        <s:set value="${salesman.s_phonenumber}" var="phonenumber" scope="request"></s:set>
+        <s:set value="${salesman.s_emailid}" var="emailid" scope="request"></s:set>
+        <s:set value="${salesman.s_address}" var="address" scope="request"></s:set>
+        <s:set value="${salesman.s_dateofjoining}" var="dateofjoining" scope="request"></s:set>
+            <div id="wrapper">
 
-            <div id="header">
-                <h1>Payment Collection</h1>
-            </div>
+                <div id="header">
+                    <h1>Payment Collection</h1>
+                </div>
 
 
-            <div id="navigation_inner">
-                <ul>
-                    <li><a href="ViewSalesman">Salesman</a></li>
-                    <li><a href="ViewCustomer">Customer</a></li>
-                    <li><a href="ViewRoute">Route</a></li>
-                    <li><a href="viewpayment.jsp">Payment Details</a></li>
-                    <li><a href="confirmpassword.jsp">Change Password</a></li>
-                    <li><a href="Logout">Logout</a></li>
-                </ul>
-            </div>
+                <div id="navigation_inner">
+                    <ul>
+                        <li><a href="ViewSalesman">Salesman</a></li>
+                        <li><a href="ViewCustomer">Customer</a></li>
+                        <li><a href="ViewRoute">Route</a></li>
+                        <li><a href="viewpayment.jsp">Payment Details</a></li>
+                        <li><a href="confirmpassword.jsp">Change Password</a></li>
+                        <li><a href="Logout">Logout</a></li>
+                    </ul>
+                </div>
 
-            <div id="content">
+                <div id="content">
 
-                <center>
-                    <form action="AddSalesman" method="POST">
-                        <upper>
-                            <h1>Salesman Details</h1>
-                        </upper>
+                    <center>
+                        <form action="UpdateSalesman" method="POST">
+                            <upper>
+                                <h1>Salesman Details</h1>
+                            </upper>
 
-                        <lower>
+                            <lower>
+                                <br><br>
+                                <input type="text" name="salesmanid" hidden style="margin-left:38px;" value="<s:out value="${id}"/>">
+                                <font>Salesman Name<input type="text" name="salesmanName" required style="margin-left:38px;" value="<s:out value="${name}"/>"></font>
                             <br><br>
-                            <%--<s:set var="salesman" scope="${requestScope['salesman']}" value="${salesman.}">--%>
-                            <font>Salesman Name<input type="text" name="salesmanName" required style="margin-left:38px;"></font>
+                            <font>Salesman Password<input type="text" name="salesmanPassword" required style="margin-left:8px;" value="<s:out value="${password}"/>"></font>                            
                             <br><br>
-                            <font>Salesman Password<input type="text" name="salesmanPassword" required style="margin-left:8px;"></font>                            
+                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="10000000" max="999999999999999" maxlength="15" required style="margin-left:45px;" value="<s:out value="${phonenumber}"/>"></font>
                             <br><br>
-                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="10000000" max="999999999999999" maxlength="15" required style="margin-left:45px;"></font>
+                            <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;" value="<s:out value="${emailid}"/>"></font>
                             <br><br>
-                            <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;"></font>
-                            <br><br>
-                            <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;"></font>
+                            <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;" value="<s:out value="${address}"/>"></font>
                             <br><br>
                             <font>Route 
                             <select name="salesmanRoute" style="margin-left:113px;">
@@ -60,12 +67,12 @@
                                 </s:forEach>
                             </select></font>
                             <br><br>
-                            <font>Date Of Joining<input type="date" name="salesmanDateOfJoining" style="margin-left:38px;"></font>
-                            </s:set>
+                            <font>Date Of Joining<input type="date" name="salesmanDateOfJoining" style="margin-left:38px;" value="<s:out value="${dateofjoining}"/>"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="submit" name="submit" class="btn-style" value="Submit">
-                            <input type="submit" name="Reset" class="btn-style" value="Reset">
+                            <input type="submit" name="update" class="btn-style" value="update">
+                            <input type="submit" name="delete" class="btn-style" value="Delete"><br><br>
+                            <input type="submit" name="route" class="btn-style" value="View Route">
                             </font>
                         </lower>
                     </form>

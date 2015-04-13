@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,8 +54,9 @@
                             <br><br><br>
                             <font>Route 
                             <select name="route" style="margin-left:113px;">
-                                <option value="route1"></option>
-                                <option value="route2"></option>
+                                <s:forEach var="route" items="${requestScope['routesList']}">
+                                    <option value="${route.id}">${route.r_name}</option>
+                                </s:forEach>
                             </select></font>
                             <br><br>
 

@@ -44,14 +44,14 @@ public class AddSalesman extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    String add = request.getParameter("add");
-                    String submit = request.getParameter("submit");
+                    String addBtn = request.getParameter("add");
+                    String submitBtn = request.getParameter("submit");
 
-                    if (add != null) {
+                    if (addBtn != null) {
                         List<Route> routeslist = paymentSession.getAllRoutes();
                         request.setAttribute("routesList", routeslist);
                         request.getRequestDispatcher("editsalesman.jsp").forward(request, response);
-                    } else if (submit != null) {
+                    } else if (submitBtn != null) {
                         String salesmanName = request.getParameter("salesmanName");
                         String salesmanPassword = request.getParameter("salesmanPassword");
                         Long salesmanPhoneNumber = Long.parseLong(request.getParameter("salesmanPhoneNumber"));
