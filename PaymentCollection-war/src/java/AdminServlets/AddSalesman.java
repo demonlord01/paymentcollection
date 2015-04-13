@@ -50,7 +50,7 @@ public class AddSalesman extends HttpServlet {
                     if (addBtn != null) {
                         List<Route> routeslist = paymentSession.getAllRoutes();
                         request.setAttribute("routesList", routeslist);
-                        request.getRequestDispatcher("editsalesman.jsp").forward(request, response);
+                        request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
                     } else if (submitBtn != null) {
                         String salesmanName = request.getParameter("salesmanName");
                         String salesmanPassword = request.getParameter("salesmanPassword");
