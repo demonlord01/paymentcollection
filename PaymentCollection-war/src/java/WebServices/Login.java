@@ -13,8 +13,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Login {
+    private Long id;
     private String username;
     private String password;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -31,4 +40,5 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

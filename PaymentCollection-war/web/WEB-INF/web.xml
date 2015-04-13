@@ -73,4 +73,10 @@
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>
+    <ejb-local-ref>
+        <ejb-ref-name>PaymentSession</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>session.PaymentSessionLocal</local>
+        <ejb-link>PaymentCollection-ejb.jar#PaymentSession</ejb-link>
+    </ejb-local-ref>
 </web-app>

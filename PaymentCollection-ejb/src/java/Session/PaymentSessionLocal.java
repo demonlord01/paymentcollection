@@ -27,6 +27,8 @@ public interface PaymentSessionLocal {
 
     public SalesMan getSalesmanByID(Long id);
 
+    public SalesMan getSalesman(String username, String password);
+
     public boolean updateSalesman(Long id, String name, String password, Long phonenumber,
             String emailid, String address, String dateofjoining);
 

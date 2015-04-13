@@ -56,12 +56,22 @@ public class PaymentSession implements PaymentSessionLocal {
         return salesman;
     }
 
+    @Override
+    public SalesMan getSalesman(String username, String password) {
+        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='" +
+                username + "'").getSingleResult();
+        if(salesman.getS_emailid().equals(username) && salesman.getS_password().equals(password)){
+            return salesman;
+        }
+        return null;
+    }
 //    @Override
 //    public List<SalesMan> getAllSalesMenByRoute(Long id) {
 //        Route routeName = (Route) em.createQuery("SELECT r FROM Route r WHERE"
 //                + "r.id='" + id + "'").getSingleResult();
 //        return routeName.getSalesMans();
 //    }
+
     @Override
     public boolean updateSalesman(Long id, String name, String password, Long phonenumber,
             String emailid, String address, String dateofjoining) {
@@ -89,7 +99,7 @@ public class PaymentSession implements PaymentSessionLocal {
                 }
             }
         } catch (NoResultException e) {
-            System.out.println("********************ERROR: NoResultException********************:"+e);
+            System.out.println("********************ERROR: NoResultException********************:" + e);
         }
         return false;
     }
@@ -304,7 +314,7 @@ public class PaymentSession implements PaymentSessionLocal {
     @Override
     public boolean verifyAdmin(String username, String password) {
         try {
-            AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='" 
+            AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='"
                     + username + "'").getSingleResult();
             if (admin != null) {
                 if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
@@ -312,7 +322,7 @@ public class PaymentSession implements PaymentSessionLocal {
                 }
             }
         } catch (NoResultException e) {
-            System.out.println("********************ERROR: NoResultException********************:"+e);
+            System.out.println("********************ERROR: NoResultException********************:" + e);
         }
         return false;
     }
