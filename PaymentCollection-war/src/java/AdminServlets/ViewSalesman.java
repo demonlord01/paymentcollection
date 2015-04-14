@@ -50,7 +50,7 @@ public class ViewSalesman extends HttpServlet {
                     if (addBtn != null) {
                         request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
                     } else if (updateBtn != null) {
-                        request.getRequestDispatcher("").forward(request, response);
+                        request.getRequestDispatcher("updatesalesman.jsp").forward(request, response);
                     } else if (showrouteBtn != null) {
 
                     }

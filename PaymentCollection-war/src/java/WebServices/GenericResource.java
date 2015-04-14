@@ -5,9 +5,12 @@
  */
 package WebServices;
 
+import Entities.Customer;
+import Entities.Route;
 import Entities.SalesMan;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -66,7 +69,7 @@ public class GenericResource {
             login.setId(salesman.getId());
             login.setUsername(salesman.getS_emailid());
             login.setPassword(salesman.getS_password());
-            
+
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
             json = gson.toJson(login);
@@ -77,7 +80,7 @@ public class GenericResource {
     @GET
     @Produces("application/json")
     @Path("salesmanroutes")
-    public String getRoutes(@QueryParam("id") long salesmanId) {
+    public String getRoutes(@QueryParam("sid") long salesmanId) {
 //  http://localhost:8080/PaymentCollection-war/webresources/generic/salesmanroutes
 
         SalesMan salesman = paymentSession.getSalesmanByID(salesmanId);
@@ -85,10 +88,30 @@ public class GenericResource {
         if (salesman != null) {
             SalesmanRoutes sRoutes = new SalesmanRoutes();
             sRoutes.setRoutes(salesman.getS_route());
-            
+
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
             json = gson.toJson(sRoutes);
+        }
+        return json;
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("routecustomers")
+    public String getCustomers(@QueryParam("rid") long routeId) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers
+
+        Route route = paymentSession.getRouteByID(routeId);
+        List<Customer> customers = paymentSession.getCustomersByRoute(route);
+        String json = null;
+        if (customers != null) {
+            RouteCustomers rCustomers = new RouteCustomers();
+            rCustomers.setCustomers(customers);
+
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            json = gson.toJson(rCustomers);
         }
         return json;
     }

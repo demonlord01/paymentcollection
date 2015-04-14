@@ -58,9 +58,9 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public SalesMan getSalesman(String username, String password) {
-        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='" +
-                username + "'").getSingleResult();
-        if(salesman.getS_emailid().equals(username) && salesman.getS_password().equals(password)){
+        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='"
+                + username + "'").getSingleResult();
+        if (salesman.getS_emailid().equals(username) && salesman.getS_password().equals(password)) {
             return salesman;
         }
         return null;
@@ -203,6 +203,13 @@ public class PaymentSession implements PaymentSessionLocal {
         Customer customer = (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.id='" + id
                 + "'").getSingleResult();
         return customer;
+    }
+
+    @Override
+    public List<Customer> getCustomersByRoute(Route route) {
+        List<Customer> customers = em.createQuery("SELECT c FROM Customer c WHERE c.c_route=:route")
+                .setParameter("route", route).getResultList();
+        return customers;
     }
 
     @Override

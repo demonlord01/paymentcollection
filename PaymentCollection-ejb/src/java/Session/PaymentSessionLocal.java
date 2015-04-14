@@ -60,6 +60,8 @@ public interface PaymentSessionLocal {
     public List<Customer> getAllCustomer();
 
     public Customer getCustomerByID(Long id);
+    
+    public List<Customer> getCustomersByRoute(Route route);
 
     public Route getCustomerRoute(Customer c);
 
