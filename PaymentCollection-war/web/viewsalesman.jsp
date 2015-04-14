@@ -71,7 +71,7 @@
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="submit" name="add" class="btn-style" value="Add Salesman">
                                 <input type="submit" name="update" class="btn-style" value="Update Salesman Details"> 
-                                <input type="submit" name="route" class="btn-style" value="Show Routes"> 
+                                <input type="submit" name="showroute" class="btn-style" value="Show Routes"> 
                             </form>
                         </center>
                     </div>

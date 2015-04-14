@@ -5,6 +5,7 @@
  */
 package AdminServlets;
 
+import Entities.Route;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,6 +44,16 @@ public class ViewSalesman extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
+                    String addBtn = request.getParameter("add");
+                    String updateBtn = request.getParameter("update");
+                    String showrouteBtn = request.getParameter("showroute");
+                    if (addBtn != null) {
+                        request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
+                    } else if (updateBtn != null) {
+                        
+                    } else if (showrouteBtn != null) {
+
+                    }
                     List<SalesMan> salesmanlist = paymentSession.getAllSalesmans();
                     request.setAttribute("salesmanList", salesmanlist);
                     request.getRequestDispatcher("viewsalesman.jsp").forward(request, response);

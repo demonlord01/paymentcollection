@@ -58,19 +58,7 @@ public class UpdateSalesman extends HttpServlet {
                         
                         request.getRequestDispatcher("updatesalesman.jsp").forward(request, response);
                     } else if (updateBtn != null) {
-                        Long id = Long.parseLong(request.getParameter("salesmanid"));
-                        String salesmanName = request.getParameter("salesmanName");
-                        String salesmanPassword = request.getParameter("salesmanPassword");
-                        Long salesmanPhoneNumber = Long.parseLong(request.getParameter("salesmanPhoneNumber"));
-                        String salesmanEmailid = request.getParameter("salesmanEmailid");
-                        String salesmanAddress = request.getParameter("salesmanAddress");
-//                        Long salesmanRoute = Long.parseLong(request.getParameter("salesmanRoute"));
-                        String salesmanDateOfJoining = request.getParameter("salesmanDateOfJoining");
-
-                        paymentSession.updateSalesman(id, salesmanName, salesmanPassword, salesmanPhoneNumber,
-                                salesmanEmailid, salesmanAddress, salesmanDateOfJoining);
                         
-                        response.sendRedirect("ViewSalesman");
                     } else if (routebtn != null) {
                         Long id = Long.parseLong(request.getParameter("salesmanid"));
                         

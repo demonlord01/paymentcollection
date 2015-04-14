@@ -57,13 +57,10 @@ public class AddSalesman extends HttpServlet {
                         Long salesmanPhoneNumber = Long.parseLong(request.getParameter("salesmanPhoneNumber"));
                         String salesmanEmailid = request.getParameter("salesmanEmailid");
                         String salesmanAddress = request.getParameter("salesmanAddress");
-                        Long salesmanRoute = Long.parseLong(request.getParameter("salesmanRoute"));
                         String salesmanDateOfJoining = request.getParameter("salesmanDateOfJoining");
                         
-                        List<Route> route = new ArrayList<>();
-                        route.add(paymentSession.getRouteByID(salesmanRoute));
                         paymentSession.insertSalesman(salesmanName, salesmanPassword, salesmanPhoneNumber,
-                                salesmanEmailid, salesmanAddress, salesmanDateOfJoining, route);
+                                salesmanEmailid, salesmanAddress, salesmanDateOfJoining, null);
                         response.sendRedirect("ViewSalesman");
                     }
                 } else {
