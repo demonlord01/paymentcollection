@@ -22,7 +22,7 @@
 
             <div id="navigation_inner">
                 <ul>
-                    
+
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -52,7 +52,7 @@
                                 <th>Due Payment</th>
                             </tr>
                             <c:forEach var="customer" items="${requestScope['customerList']}">
-                                <tr>
+                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
                                     <td>${customer.id}</td>
                                     <td>${customer.c_name}</td>
                                     <td>${customer.c_phonenumber}</td>
@@ -66,17 +66,53 @@
 
                     <div id="content_lower_form">
                         <center>
-                            <form>
+                            <form name="toservlet" action="" method="POST">
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="button" name="add" class="btn-style" value="Add Customer">
                                 <input type="button" name="update" class="btn-style" value="Update Customer">
-                                <input type="button" name="route" class="btn-style" value="Show Routes">
                             </form>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var preEl;
+            var orgBColor;
+            var orgTColor;
+            function myFunction(el, backColor, textColor) {
+                if (typeof (preEl) !== 'undefined') {
+                    preEl.bgColor = orgBColor;
+                    try {
+                        ChangeTextColor(preEl, orgTColor);
+                    } catch (e) {
+                        ;
+                    }
+                }
+                orgBColor = el.bgColor;
+                orgTColor = el.style.color;
+                el.bgColor = backColor;
+
+                try {
+                    ChangeTextColor(el, textColor);
+                } catch (e) {
+                    ;
+                }
+                preEl = el;
+            }
+            function ChangeTextColor(a_obj, a_color) {
+                for (i = 0; i < a_obj.cells.length; i++) {
+                    var y = a_obj.cells;
+                    var getId = y[0].innerHTML;
+                    document.getElementById("editid_U").value = getId;
+                    document.getElementById("editid_R").value = getId;
+                    a_obj.cells(i).style.color = a_color;
+                }
+            }
+            function callservlet() {
+                document.getElementsByName('toservlet')[0].submit();
+            }
+        </script>
     </body>
 </html>

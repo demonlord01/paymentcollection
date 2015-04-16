@@ -42,6 +42,10 @@
         <servlet-name>UpdateSalesman</servlet-name>
         <servlet-class>AdminServlets.UpdateSalesman</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <servlet-class>AdminServlets.UpdateCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -70,8 +74,12 @@
         <servlet-name>UpdateSalesman</servlet-name>
         <url-pattern>/UpdateSalesman</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <url-pattern>/UpdateCustomer</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>10</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <ejb-local-ref>
         <ejb-ref-name>PaymentSession</ejb-ref-name>

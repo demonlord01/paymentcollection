@@ -61,7 +61,6 @@
                                     <td>${salesman.s_dateofjoining}</td>
                                 </tr>
                             </s:forEach>
-                                <!--<a href="UpdateSalesman?sid=${salesman.id}">${salesman.s_name}</a>-->
                         </table>
                     </div>
 
