@@ -22,7 +22,7 @@
 
             <div id="navigation_inner">
                 <ul>
-                  
+
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -52,7 +52,7 @@
                                 <th>Date Of Joining</th>
                             </tr>
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
-                                <tr>
+                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
                                     <td>${salesman.id}</td>
                                     <td><a href="UpdateSalesman?sid=${salesman.id}">${salesman.s_name}</a></td>
                                     <td>${salesman.s_phonenumber}</td>
@@ -69,14 +69,57 @@
                             <form action="AddSalesman" method="POST">
                                 <input type="submit" name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
-                                <input type="submit" name="add" class="btn-style" value="Add Salesman">
+                                <input type="submit" name="add2" class="btn-style" value="Add Salesman">
                                 <input type="submit" name="update" class="btn-style" value="Update Salesman Details"> 
                                 <input type="submit" name="showroute" class="btn-style" value="Show Routes"> 
                             </form>
+                            <button id="editid" name="add" value="" onclick="callservlet()">Add</button>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var preEl;
+            var orgBColor;
+            var orgTColor;
+            function myFunction(el, backColor, textColor) {
+                alert("Section row index is: " + el.sectionRowIndex);
+                if (typeof (preEl) != 'undefined') {
+                    preEl.bgColor = orgBColor;
+                    try {
+                        ChangeTextColor(preEl, orgTColor);
+                    } catch (e) {
+                        ;
+                    }
+                }
+                orgBColor = el.bgColor;
+                orgTColor = el.style.color;
+                el.bgColor = backColor;
+
+                try {
+                    ChangeTextColor(el, textColor);
+                } catch (e) {
+                    ;
+                }
+                preEl = el;
+            }
+            function ChangeTextColor(a_obj, a_color) {
+                for (i = 0; i < a_obj.cells.length; i++)
+                {
+
+                    var y = a_obj.cells;
+                    var getId = y[0].innerHTML;
+                    document.getElementById("editid").value = getId;
+                    alert("Section row index is: " + y[0].innerHTML);
+                    a_obj.cells(i).style.color = a_color;
+                }
+
+            }
+            function callservlet() {
+                
+                document.getElementsByName('editid')[0].submit();
+            }
+        </script>
     </body>
 </html>
