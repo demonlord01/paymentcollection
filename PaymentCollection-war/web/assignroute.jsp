@@ -42,7 +42,7 @@
 
                     <center>
                         <div id="CSS_Table_Example" style="width:500px;height:470px;">
-
+                    
                             <table style="width:500px;height:470px;align:center">
                                 <tr>
                                     <th>        </th>
@@ -60,8 +60,7 @@
                                 </r:forEach>
                             </table>
                         </div>
-                    </center>
-
+                    
                     <div id="content_lower_form">
                         <center>
                             <form>
@@ -73,8 +72,8 @@
                             </form>
                         </center>
                     </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </body>
 </html>
