@@ -5,7 +5,6 @@
  */
 package AdminServlets;
 
-import Entities.Route;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;

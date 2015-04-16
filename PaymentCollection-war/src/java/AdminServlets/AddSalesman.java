@@ -6,9 +6,9 @@
 package AdminServlets;
 
 import Entities.Route;
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -45,11 +45,11 @@ public class AddSalesman extends HttpServlet {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
                     String addBtn = request.getParameter("add");
-                    String submitBtn = request.getParameter("submit");
+                    String submitBtn = request.getParameter("submit"); //for Insertion (addsalesman Page)
+                    String updateBtn = request.getParameter("update");
+                    String showrouteBtn = request.getParameter("showroute");
 
                     if (addBtn != null) {
-                        List<Route> routeslist = paymentSession.getAllRoutes();
-                        request.setAttribute("routesList", routeslist);
                         request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
                     } else if (submitBtn != null) {
                         String salesmanName = request.getParameter("salesmanName");
@@ -58,20 +58,43 @@ public class AddSalesman extends HttpServlet {
                         String salesmanEmailid = request.getParameter("salesmanEmailid");
                         String salesmanAddress = request.getParameter("salesmanAddress");
                         String salesmanDateOfJoining = request.getParameter("salesmanDateOfJoining");
-                        
+
                         paymentSession.insertSalesman(salesmanName, salesmanPassword, salesmanPhoneNumber,
                                 salesmanEmailid, salesmanAddress, salesmanDateOfJoining, null);
+
                         response.sendRedirect("ViewSalesman");
+                    } else if (updateBtn != null) {
+                        if (!updateBtn.equals("update")) {
+                            Long id = Long.parseLong(updateBtn);
+                            SalesMan salesman = paymentSession.getSalesmanByID(id);
+
+                            request.setAttribute("salesman", salesman);
+                            request.getRequestDispatcher("updatesalesman.jsp").forward(request, response);
+                        } else {
+                            out.print("Please select any row first");
+                        }
+                    } else if (showrouteBtn != null) {
+                        if (!showrouteBtn.equals("showroute")) {
+                            Long id = Long.parseLong(showrouteBtn);
+
+                            List<Route> routes = paymentSession.getAllRoutesBySalesMan(id);
+                            request.setAttribute("routeList", routes);
+                            
+                            request.getRequestDispatcher("assignroute.jsp").forward(request, response);
+                        } else {
+                            out.print("Please select any row first");
+                        }
+                    } else {
+                        session.invalidate();
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
                     }
-                } else {
-                    session.invalidate();
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

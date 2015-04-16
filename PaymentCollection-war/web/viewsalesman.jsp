@@ -54,26 +54,29 @@
                             <s:forEach var="salesman" items="${requestScope['salesmanList']}">
                                 <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
                                     <td>${salesman.id}</td>
-                                    <td><a href="UpdateSalesman?sid=${salesman.id}">${salesman.s_name}</a></td>
+                                    <td>${salesman.s_name}</td>
                                     <td>${salesman.s_phonenumber}</td>
                                     <td>${salesman.s_emailid}</td>
                                     <td>${salesman.s_address}</td>
                                     <td>${salesman.s_dateofjoining}</td>
                                 </tr>
                             </s:forEach>
+                                <!--<a href="UpdateSalesman?sid=${salesman.id}">${salesman.s_name}</a>-->
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
-                            <form action="AddSalesman" method="POST">
-                                <input type="submit" name="previous" class="btn-style" value="Previous">
+                            <form name="toservlet" action="AddSalesman" method="POST">
+                                <input type="submit"  name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
-                                <input type="submit" name="add2" class="btn-style" value="Add Salesman">
-                                <input type="submit" name="update" class="btn-style" value="Update Salesman Details"> 
-                                <input type="submit" name="showroute" class="btn-style" value="Show Routes"> 
+                                <input type="submit" name="add" class="btn-style" value="Add Salesman">
+                                <button type="submit" id="editid_U" class="btn-style" name="update" value="update" onclick="callservlet();">
+                                    Update Salesman Details</button>
+                                <button type="submit" id="editid_R" class="btn-style" name="showroute" value="update" onclick="callservlet();">
+                                    Show Routes</button>
                             </form>
-                            <button id="editid" name="add" value="" onclick="callservlet()">Add</button>
+                            
                         </center>
                     </div>
                 </div>
@@ -84,8 +87,8 @@
             var orgBColor;
             var orgTColor;
             function myFunction(el, backColor, textColor) {
-                alert("Section row index is: " + el.sectionRowIndex);
-                if (typeof (preEl) != 'undefined') {
+//                alert("Section row index is: " + el.sectionRowIndex);
+                if (typeof (preEl) !== 'undefined') {
                     preEl.bgColor = orgBColor;
                     try {
                         ChangeTextColor(preEl, orgTColor);
@@ -105,20 +108,17 @@
                 preEl = el;
             }
             function ChangeTextColor(a_obj, a_color) {
-                for (i = 0; i < a_obj.cells.length; i++)
-                {
-
+                for (i = 0; i < a_obj.cells.length; i++){
                     var y = a_obj.cells;
                     var getId = y[0].innerHTML;
-                    document.getElementById("editid").value = getId;
-                    alert("Section row index is: " + y[0].innerHTML);
+                    document.getElementById("editid_U").value = getId;
+                    document.getElementById("editid_R").value = getId;
+                    //alert("Section row index is: " + y[0].innerHTML);
                     a_obj.cells(i).style.color = a_color;
                 }
-
             }
             function callservlet() {
-                
-                document.getElementsByName('editid')[0].submit();
+                document.getElementsByName('toservlet')[0].submit();
             }
         </script>
     </body>

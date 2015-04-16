@@ -58,21 +58,13 @@
                             <br><br>
                             <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;" value="<s:out value="${emailid}"/>"></font>
                             <br><br>
-                            <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;" value="<s:out value="${address}"/>"></font>
-                            <br><br>
-                            <font>Route 
-                            <select name="salesmanRoute" style="margin-left:113px;">
-                                <s:forEach var="route" items="${requestScope['routesList']}">
-                                    <option value="${route.id}">${route.r_name}</option>
-                                </s:forEach>
-                            </select></font>
+                            <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;" value="<s:out value="${address}"/>"></font>                            
                             <br><br>
                             <font>Date Of Joining<input type="date" name="salesmanDateOfJoining" style="margin-left:38px;" value="<s:out value="${dateofjoining}"/>"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="submit" name="update" class="btn-style" value="update">
-                            <input type="submit" name="delete" class="btn-style" value="Delete"><br><br>
-                            <input type="submit" name="route" class="btn-style" value="View Route">
+                            <input type="submit" name="update" class="btn-style" value="Update">
+                            <input type="submit" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>
