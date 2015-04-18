@@ -46,6 +46,10 @@
         <servlet-name>UpdateCustomer</servlet-name>
         <servlet-class>AdminServlets.UpdateCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCustomer</servlet-name>
+        <servlet-class>AdminServlets.AddCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -77,6 +81,10 @@
     <servlet-mapping>
         <servlet-name>UpdateCustomer</servlet-name>
         <url-pattern>/UpdateCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCustomer</servlet-name>
+        <url-pattern>/AddCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

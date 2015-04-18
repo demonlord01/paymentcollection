@@ -22,7 +22,6 @@
 
             <div id="navigation_inner">
                 <ul>
-
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -40,10 +39,10 @@
 
                 <div id="content_lower">
 
-                    <div id="CSS_Table_Example" >
+                    <div id="CSS_Table_Example">
 
                         <table style="width:930px;height:470px;">
-                            <tr> 
+                            <tr>
                                 <th>Salesman Id</th>
                                 <th>Salesman Name</th>
                                 <th>Phone Number</th>
@@ -70,12 +69,11 @@
                                 <input type="submit"  name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="submit" name="add" class="btn-style" value="Add Salesman">
-                                <button type="submit" id="editid_U" class="btn-style" name="update" value="update" onclick="callservlet();">
-                                    Update Salesman Details</button>
-                                <button type="submit" id="editid_R" class="btn-style" name="showroute" value="update" onclick="callservlet();">
-                                    Show Routes</button>
+                                <button type="submit" id="editid_U" class="btn-style" name="update"
+                                        value="update" onclick="callservlet();">Update Salesman Details</button>
+                                <button type="submit" id="editid_R" class="btn-style" name="showroute"
+                                        value="update" onclick="callservlet();">Show Routes</button>
                             </form>
-                            
                         </center>
                     </div>
                 </div>
@@ -107,7 +105,7 @@
                 preEl = el;
             }
             function ChangeTextColor(a_obj, a_color) {
-                for (i = 0; i < a_obj.cells.length; i++){
+                for (i = 0; i < a_obj.cells.length; i++) {
                     var y = a_obj.cells;
                     var getId = y[0].innerHTML;
                     document.getElementById("editid_U").value = getId;

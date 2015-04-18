@@ -22,7 +22,6 @@
 
             <div id="navigation_inner">
                 <ul>
-
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -66,11 +65,12 @@
 
                     <div id="content_lower_form">
                         <center>
-                            <form name="toservlet" action="" method="POST">
+                            <form name="toservlet" action="AddCustomer" method="POST">
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
-                                <input type="button" name="add" class="btn-style" value="Add Customer">
-                                <input type="button" name="update" class="btn-style" value="Update Customer">
+                                <input type="submit" name="add" class="btn-style" value="Add Customer">
+                                 <button type="submit" id="editid_C" class="btn-style" name="update"
+                                        value="update" onclick="callservlet();">Update Customer</button>
                             </form>
                         </center>
                     </div>
@@ -105,8 +105,7 @@
                 for (i = 0; i < a_obj.cells.length; i++) {
                     var y = a_obj.cells;
                     var getId = y[0].innerHTML;
-                    document.getElementById("editid_U").value = getId;
-                    document.getElementById("editid_R").value = getId;
+                    document.getElementById("editid_C").value = getId;
                     a_obj.cells(i).style.color = a_color;
                 }
             }

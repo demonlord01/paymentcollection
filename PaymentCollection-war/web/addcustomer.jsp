@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="r" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,27 +41,26 @@
 
                         <lower>
                             <br><br>
-                            <font>Customer Name<input type="text" name="Customer Name" style="margin-left:35px;"></font>
+                            <font>Customer Name<input type="text" name="customerName" style="margin-left:35px;"></font>
                             <br><br>
-                            <font>Phone Number<input type="text" name="Phone number" style="margin-left:45px;"></font>
+                            <font>Phone Number<input type="text" name="phoneNumber" style="margin-left:45px;"></font>
                             <br><br>
-                            <font>Email id<input type="text" name="Emailid" style="margin-left:95px;"></font>
+                            <font>Email id<input type="text" name="emailId" style="margin-left:95px;"></font>
                             <br><br>
-                            <font>Address<input type="text" name="Address" style="margin-left:98px;"></font>
+                            <font>Address<input type="text" name="address" style="margin-left:98px;"></font>
                             <br><br>
-                            <font>Route 
+                            <font>Route
                             <select name="route" style="margin-left:113px;">
-                                <option value="route1"></option>
-                                <option value="route2"></option>
+                                <r:forEach var="route" items="${requestScope['routeList']}">
+                                <option value="${route.id}">${route.r_name}</option>
+                                </r:forEach>
                             </select></font>
                             <br><br>
-                            <font>Payment Received<input type="text" name="Payment Received" style="margin-left:19px;"></font>
-                            <br><br>
-                            <font>Due Payment<input type="text" name="Due Payment" style="margin-left:55px;"></font>
+                            <font>Due Payment<input type="text" name="duePayment" style="margin-left:55px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="button" name="Submit" class="btn-style" value="Submit">
-                            <a href="editcustomer.html"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
+                            <input type="submit" name="submit" class="btn-style" value="Submit">
+                            <input type="button" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>
