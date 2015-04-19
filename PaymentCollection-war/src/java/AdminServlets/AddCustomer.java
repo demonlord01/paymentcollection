@@ -5,6 +5,7 @@
  */
 package AdminServlets;
 
+import Entities.Customer;
 import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,6 +46,7 @@ public class AddCustomer extends HttpServlet {
                 if (getAdmin.equals("admin")) {
                     String addBtn = request.getParameter("add");
                     String submitBtn = request.getParameter("submit");
+                    String updateBtn = request.getParameter("update");
                     if (addBtn != null) {
                         List<Route> routeList = paymentSession.getAllRoutes();
                         request.setAttribute("routeList", routeList);
@@ -59,8 +61,19 @@ public class AddCustomer extends HttpServlet {
 
                         Route route = paymentSession.getRouteByID(routeId);
                         paymentSession.insertCustomer(customerName, phoneNumber, emailId, address, duePayment, route);
-                        
+
                         response.sendRedirect("ViewCustomer");
+                    } else if (updateBtn != null) {
+                        if (!updateBtn.equals("update")) {
+                            System.out.println(updateBtn);
+                            Long id = Long.parseLong(updateBtn);
+                            Customer customer = paymentSession.getCustomerByID(id);
+
+                            request.setAttribute("customer", customer);
+                            request.getRequestDispatcher("addcustomer.jsp").forward(request, response);
+                        } else {
+                            response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
+                        }
                     }
                 } else {
                     session.invalidate();

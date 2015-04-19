@@ -1,17 +1,9 @@
-<%-- 
-    Document   : viewroute
-    Created on : Apr 7, 2015, 4:18:38 PM
-    Author     : Vaibhav Bhagat
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="r"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
-        <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
+        <link href="css/stylesheetassignroute.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
@@ -32,48 +24,78 @@
                 </ul>
             </div>
 
-            <div id="content">
+			<div id="content">
+			
+			<div id="content_upper">
+			<br>
+			<input type="text" hidden name="salesmanname">
+			<input type="text" hidden name="salesmanaddress" style="margin-left:80px;">
+			</div>
+			
+			<div id="content_lower">
+			
+			<div id="content_lower_left">
+			
+			<div id="content_lower_left_upper">
+			<h1 align="center">Assigned Routes</h1>
+			</div>
+			
+			<div id="content_lower_left_lower">
+			
+			  <div id="CSS_Table_Example" style="width:410px;height:400px;">
 
-                <div id="content_upper">
-                    <h1>Route List</h1>
-                </div>
-
-                <div id="content_lower">
-
-                    <center>
-                        <div id="CSS_Table_Example" style="width:500px;height:470px;">
-                    
-                            <table style="width:500px;height:470px;align:center">
+                            <table style="width:410px;height:410px;align:left">
                                 <tr>
                                     <th>        </th>
                                     <th>Route Id</th>
                                     <th>Route Name</th>
                                     <th>City</th>
                                 </tr>
-                                <r:forEach var="route" items="${requestScope['routeList']}">
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>${route.id}</td>
-                                        <td>${route.r_name}</td>
-                                        <td>${route.city}</td>                                        
-                                    </tr>
-                                </r:forEach>
                             </table>
                         </div>
                     
-                    <div id="content_lower_form">
-                        <center>
-                            <form>
-                                <input type="button" name="previous" class="btn-style" value="Previous">
-                                <input type="button" name="next" class="btn-style" value="Next"><br><br>
-
-                                <input type="button" name="assign" class="btn-style" value="Assign Route">
-                                <input type="button" name="delete" class="btn-style" value="Delete Route">
+					<form>
+					<br>
+                                <input type="submit" name="delete" class="btn-style" value="Delete" style="margin-left:150px;">
+                                
                             </form>
-                        </center>
-                    </div>
-                    </div>
-                </div>
-            </div>
+							</div>
+          
+        </div>
+		
+		
+		
+		
+		<div id="content_lower_right">
+			
+			<div id="content_lower_right_upper">
+			<h1 align="center">Unassigned Routes</h1>
+			</div>
+			
+			<div id="content_lower_right_lower">
+			
+			  <div id="CSS_Table_Example" style="width:410px;height:400px;">
+
+                            <table style="width:410px;height:410px;align:left">
+                                <tr>
+                                    <th>        </th>
+                                    <th>Route Id</th>
+                                    <th>Route Name</th>
+                                    <th>City</th>
+                                </tr>
+                            </table>
+                        </div>
+                    
+					<form>
+					<br>
+                                <input type="submit" name="assign" class="btn-style" value="Assign Route" style="margin-left:150px;">
+                                
+                            </form>
+							</div>
+          
+        </div>
+		</div>
+		</div>
+		</div>
     </body>
 </html>

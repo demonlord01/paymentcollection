@@ -72,7 +72,7 @@
                                 <button type="submit" id="editid_U" class="btn-style" name="update"
                                         value="update" onclick="callservlet();">Update Salesman Details</button>
                                 <button type="submit" id="editid_R" class="btn-style" name="showroute"
-                                        value="update" onclick="callservlet();">Show Routes</button>
+                                        value="showroute" onclick="callservlet();">Show Routes</button>
                             </form>
                         </center>
                     </div>

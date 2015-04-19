@@ -71,7 +71,7 @@ public class AddSalesman extends HttpServlet {
                             request.setAttribute("salesman", salesman);
                             request.getRequestDispatcher("updatesalesman.jsp").forward(request, response);
                         } else {
-                            out.print("Please select any row first");
+                            response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
                         }
                     } else if (showrouteBtn != null) {
                         if (!showrouteBtn.equals("showroute")) {
@@ -82,7 +82,7 @@ public class AddSalesman extends HttpServlet {
                             
                             request.getRequestDispatcher("assignroute.jsp").forward(request, response);
                         } else {
-                            out.print("Please select any row first");
+                            response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
                         }
                     } else {
                         session.invalidate();
