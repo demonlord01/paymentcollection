@@ -65,12 +65,17 @@ public class AddCustomer extends HttpServlet {
                         response.sendRedirect("ViewCustomer");
                     } else if (updateBtn != null) {
                         if (!updateBtn.equals("update")) {
-                            System.out.println(updateBtn);
                             Long id = Long.parseLong(updateBtn);
+
                             Customer customer = paymentSession.getCustomerByID(id);
+                            String customerRoute = paymentSession.getCustomerRoute(customer).getR_name();
+                            List<Route> routeList = paymentSession.getAllRoutes();
 
                             request.setAttribute("customer", customer);
-                            request.getRequestDispatcher("addcustomer.jsp").forward(request, response);
+                            request.setAttribute("customerRoute", customerRoute);
+                            request.setAttribute("routeList", routeList);
+                            
+                            request.getRequestDispatcher("updatecustomer.jsp").forward(request, response);
                         } else {
                             response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
                         }

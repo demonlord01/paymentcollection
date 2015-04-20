@@ -5,6 +5,7 @@
  */
 package AdminServlets;
 
+import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -41,9 +42,21 @@ public class UpdateCustomer extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    String updateBtn = request.getParameter("update");
-                    if (updateBtn != null) {
+                    String submitBtn = request.getParameter("submit");
+                    if (submitBtn != null) {
+                        Long id = Long.parseLong(request.getParameter("customerid"));
+                        String customerName = request.getParameter("customerName");
+                        Long customerPhoneNumber = Long.parseLong(request.getParameter("phoneNumber"));
+                        String customerEmailId = request.getParameter("emailId");
+                        String customerAddress = request.getParameter("address");
+                        Double customerDuePayment = Double.parseDouble(request.getParameter("duePayment"));
+                        Long customerRouteId = Long.parseLong(request.getParameter("route"));
 
+                        Route customerRoute = paymentSession.getRouteByID(customerRouteId);
+                        paymentSession.updateCustomer(id, customerName, customerPhoneNumber,
+                                customerEmailId, customerAddress, customerDuePayment, customerRoute);
+                        
+                        response.sendRedirect("ViewCustomer");
                     }
                 } else {
                     session.invalidate();

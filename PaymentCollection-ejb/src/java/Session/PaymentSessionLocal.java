@@ -67,7 +67,8 @@ public interface PaymentSessionLocal {
 
     public double getDuePaymentByCustomer(Customer c);
 
-    public boolean updateCustomer(String name, Long phonenumber, String emailid, String address, Long id);
+    public boolean updateCustomer(Long id, String name, Long phonenumber, String emailid,
+            String address, double duepayment, Route route);
 
     public boolean updateCustomerPayment(Customer c, double duepayment);
 

@@ -49,14 +49,14 @@
                             <br><br>
                             <font>Address<input type="text" name="address" style="margin-left:98px;"></font>
                             <br><br>
+                            <font>Due Payment<input type="text" name="duePayment" style="margin-left:55px;"></font>
+                            <br><br>
                             <font>Route
                             <select name="route" style="margin-left:113px;">
                                 <r:forEach var="route" items="${requestScope['routeList']}">
                                 <option value="${route.id}">${route.r_name}</option>
                                 </r:forEach>
                             </select></font>
-                            <br><br>
-                            <font>Due Payment<input type="text" name="duePayment" style="margin-left:55px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
                             <input type="submit" name="submit" class="btn-style" value="Submit">

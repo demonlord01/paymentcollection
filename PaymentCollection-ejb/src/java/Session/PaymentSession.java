@@ -223,10 +223,15 @@ public class PaymentSession implements PaymentSessionLocal {
     }
 
     @Override
-    public boolean updateCustomer(String name, Long phonenumber, String emailid, String address, Long id) {
-        em.createQuery("UPDATE Customer c SET c.c_name=" + name + "', c.c_phonenumber='" + phonenumber
-                + "', c.c_emailid='" + emailid + "', c.c_address='" + address
-                + "' WHERE c.id='" + id + "'").executeUpdate();
+    public boolean updateCustomer(Long id, String name, Long phonenumber, String emailid,
+            String address, double duepayment, Route route) {
+        em.createQuery("UPDATE Customer c SET c.c_name='" + name + "', c.c_phonenumber='" + phonenumber
+                + "', c.c_emailid='" + emailid + "', c.c_address='" + address + "', c.c_duepayment='"
+                + duepayment + "' WHERE c.id='" + id + "'").executeUpdate();
+        Customer customer = em.find(Customer.class, id);
+        if (customer != null) {
+            customer.setC_route(route);
+        }
         return true;
     }
 
