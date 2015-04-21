@@ -62,19 +62,28 @@ public class GenericResource {
     public String getLoginData(@QueryParam("username") String username, @QueryParam("password") String password) {
 //  http://localhost:8080/PaymentCollection-war/webresources/generic/logindata
 
-        SalesMan salesman = paymentSession.getSalesman(username, password);
-        String json = null;
-        if (salesman != null) {
-            Login login = new Login();
-            login.setId(salesman.getId());
-            login.setUsername(salesman.getS_emailid());
-            login.setPassword(salesman.getS_password());
+        if (username != null || password != null) {
+            String json;
+            if (paymentSession.verifySalesman(username, password) == true) {
+                SalesMan salesman = paymentSession.getSalesman(username, password);
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+                if (salesman != null) {
+                    Login login = new Login();
+                    login.setId(salesman.getId());
+                    login.setUsername(salesman.getS_emailid());
+                    login.setPassword(salesman.getS_password());
 
-            GsonBuilder builder = new GsonBuilder();
-            Gson gson = builder.create();
-            json = gson.toJson(login);
+                    json = gson.toJson(login);
+                } else {
+                    json = gson.toJson("false");
+                }
+                return json;
+            } else {
+                
+            }
         }
-        return json;
+        return null;
     }
 
     @GET

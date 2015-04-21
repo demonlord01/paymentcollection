@@ -47,6 +47,7 @@
                                 <th>Customer Name</th>
                                 <th>Phone Number</th>
                                 <th>Email Id</th>
+                                <th>Route</th>
                                 <th>Address</th>
                                 <th>Due Payment</th>
                             </tr>
@@ -56,6 +57,7 @@
                                     <td>${customer.c_name}</td>
                                     <td>${customer.c_phonenumber}</td>
                                     <td>${customer.c_emailid}</td>
+                                    <td>${customer.c_route.getR_name()}</td>
                                     <td>${customer.c_address}</td>
                                     <td>${customer.c_duepayment}</td>
                                 </tr>
