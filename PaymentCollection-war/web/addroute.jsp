@@ -52,18 +52,13 @@
 
                         <lower>
                             <br><br><br>
-                            <font>Route 
-                            <select name="route" style="margin-left:113px;">
-                                <s:forEach var="route" items="${requestScope['routesList']}">
-                                    <option value="${route.id}">${route.r_name}</option>
-                                </s:forEach>
-                            </select></font>
+                            <font>Route<input type="text" name="route" style="margin-left:85px;"></font>
                             <br><br>
 
-                            <font>City<input type="text" name="City" style="margin-left:96px;"></font>
+                            <font>City<input type="text" name="city" style="margin-left:96px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="button" name="Submit" class="btn-style" value="Submit">
+                            <input type="submit" name="Submit" class="btn-style" value="Submit">
                             <a href="editroute.html"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
                             </font>
                         </lower>

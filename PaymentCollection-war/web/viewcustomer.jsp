@@ -57,6 +57,7 @@
                                     <td>${customer.c_phonenumber}</td>
                                     <td>${customer.c_emailid}</td>
                                     <td>${customer.c_address}</td>
+                                    <td>${customer.c_route.r_name}</td>
                                     <td>${customer.c_duepayment}</td>
                                 </tr>
                             </c:forEach>

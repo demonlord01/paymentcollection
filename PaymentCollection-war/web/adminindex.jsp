@@ -1,6 +1,6 @@
 <html>
 <head>
-<link href="css/stylesheetsalesman.css" type="text/css" rel="stylesheet">
+<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
 
 </head>
 
@@ -14,11 +14,12 @@
 <div id="navigation_inner2">
 <ul>
 
-<li><a href="salesmanroute.jsp">Route Details</a></li>
-<li><a href="salesmanpayment.jsp">Payment Details</a></li>
-<li><a href="salesmanreceive.jsp">Receive Payment</a></li>
-<li><a href="salesmanconfirm">Change Password</a></li>
-<li><a href="logout">Logout</a></li>
+<li><a href="#">Salesman</a></li>
+<li><a href="#">Customer</a></li>
+<li><a href="#">Route</a></li>
+<li><a href="#">Payment Details</a></li>
+<li><a href="#">Change Password</a></li>
+<li><a href="#">Logout</a></li>
 </ul>
 </div>
 

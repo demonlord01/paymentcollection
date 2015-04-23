@@ -13,6 +13,7 @@
         <link href="css/stylesheetlogin.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        
         <div id="wrapper">
 
             <div id="header">
@@ -33,12 +34,12 @@
             <div id="content">
                 <div id="content_inner">
 
-                    <form align="center" autocomplete="on">
+                    <form action=ConfirmPassword method=POST align="center" autocomplete="on">
                         <br><br>
                         <p>Old Password <input type="password" name="oldpassword" style="margin-left:28px;"></p>
                         <p>Password <input type="password" name="newpassword" style="margin-left:55px;"></p>
                         <p>Confirm Password<input type="password" name="confirmpassword" style="margin-left:5px;"></p>
-                        <p><input type="button" value="OK" class="btn-style"></p>
+                        <p><input type="submit" value="OK" class="btn-style"></p>
                     </form>
 
                 </div>
@@ -57,5 +58,6 @@
                 </div>
             </div>
         </div>
+
     </body>
 </html>

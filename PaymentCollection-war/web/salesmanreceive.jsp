@@ -15,11 +15,11 @@
 <div id="navigation_inner">
 <ul>
 
-<li><a href="#">Customer Details</a></li>
+<li><a href="#">Route Details</a></li>
 <li><a href="#">Payment Details</a></li>
 <li><a href="#">Receive Payment</a></li>
 <li><a href="#">Change Password</a></li>
-<li><a href="first.html">Logout</a></li>
+<li><a href="#">Logout</a></li>
 </ul>
 </div>
 

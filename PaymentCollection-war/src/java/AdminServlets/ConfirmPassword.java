@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package AdminServlets;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,50 +18,48 @@ import session.PaymentSessionLocal;
 
 /**
  *
- * @author Vaibhav Bhagat
+ * @author asdzsfsdg
  */
-public class Login extends HttpServlet {
-
+public class ConfirmPassword extends HttpServlet {
     @EJB
     private PaymentSessionLocal paymentSession;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                HttpSession session = request.getSession(false);
-                if (session == null) {
-                    session = request.getSession();
-                }
-                if (session != null) {
-                    session.setAttribute("Usertype", "admin");
-                }
-                request.getRequestDispatcher("ViewSalesman").forward(request, response);
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
-                    HttpSession session = request.getSession(false);
-                    if (session == null) {
-                        session = request.getSession();
+           HttpSession session = request.getSession(false);
+            if (session != null) {
+                String getAdmin = (String) session.getAttribute("Usertype");
+                if (getAdmin.equals("admin")) {
+                    String oldpassword = request.getParameter("oldpassword");
+                    String newpassword = request.getParameter("newpassword");
+                    String confirmpassword = request.getParameter("confirmpassword");
+                    
+                    
+                    if(!(newpassword.equals(confirmpassword)))
+                    {
+                        request.getRequestDispatcher("confirmpassword.jsp");
+                        out.println("Passwords do not match");
                     }
-                    if (session != null) {
-                        session.setAttribute("Usertype", "salesman");
+                    
+                    else if(newpassword.equals("")||confirmpassword.equals(""))
+                    {
+                        
+                        out.println("Both fields are required");
                     }
-                    request.getRequestDispatcher("salesmanindex.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
+                    
+                    else if(newpassword.equals(confirmpassword))
+                    {
+                        if(!(newpassword.equals(" ")||confirmpassword.equals(" ")))
+                        {
+                       paymentSession.changepassword(oldpassword, newpassword);
+                       out.println("Password changed Successfully");
+                        }
+                        else
+                            out.println("No field can be empty");
+                    }
+        }
             }
         }
     }

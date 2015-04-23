@@ -50,6 +50,14 @@
         <servlet-name>AddCustomer</servlet-name>
         <servlet-class>AdminServlets.AddCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewSalesmanCustomer</servlet-name>
+        <servlet-class>SalesmanServlets.ViewSalesmanCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmPassword</servlet-name>
+        <servlet-class>AdminServlets.ConfirmPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -85,6 +93,14 @@
     <servlet-mapping>
         <servlet-name>AddCustomer</servlet-name>
         <url-pattern>/AddCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSalesmanCustomer</servlet-name>
+        <url-pattern>/ViewSalesmanCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmPassword</servlet-name>
+        <url-pattern>/ConfirmPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

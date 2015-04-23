@@ -63,12 +63,12 @@
 
                     <div id="content_lower_form">
                         <center>
-                            <form>
-                                <input type="button" name="previous" class="btn-style" value="Previous">
-                                <input type="button" name="next" class="btn-style" value="Next"><br><br>
+                            <form name="toservlet" action="AddRoute" method="POST">
+                                <input type="submit" name="previous" class="btn-style" value="Previous">
+                                <input type="submit" name="next" class="btn-style" value="Next"><br><br>
 
-                                <input type="button" name="add" class="btn-style" value="Add Route">
-                                <input type="button" name="delete" class="btn-style" value="Delete Route">
+                                <input type="submit" name="add" class="btn-style" value="Add Route">
+                                <input type="submit" name="delete" class="btn-style" value="Delete Route">
 
                             </form>
                         </center>

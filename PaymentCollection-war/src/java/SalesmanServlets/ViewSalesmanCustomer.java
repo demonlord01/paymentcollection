@@ -1,12 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlet;
 
+package SalesmanServlets;
+
+import Entities.Customer;
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,53 +17,46 @@ import session.PaymentSessionLocal;
 
 /**
  *
- * @author Vaibhav Bhagat
+ * @author asdzsfsdg
  */
-public class Login extends HttpServlet {
-
+public class ViewSalesmanCustomer extends HttpServlet {
     @EJB
     private PaymentSessionLocal paymentSession;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                HttpSession session = request.getSession(false);
-                if (session == null) {
-                    session = request.getSession();
-                }
-                if (session != null) {
-                    session.setAttribute("Usertype", "admin");
-                }
-                request.getRequestDispatcher("ViewSalesman").forward(request, response);
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
-                    HttpSession session = request.getSession(false);
-                    if (session == null) {
-                        session = request.getSession();
-                    }
-                    if (session != null) {
-                        session.setAttribute("Usertype", "salesman");
-                    }
-                    request.getRequestDispatcher("salesmanindex.jsp").forward(request, response);
+            
+             HttpSession session = request.getSession(false);
+            if (session != null) {
+                String getAdmin = (String) session.getAttribute("Usertype");
+                if (getAdmin.equals("salesman")) {
+                   
+                  List<Customer> customerlist = paymentSession.getAllCustomer();
+                    request.setAttribute("customerList", customerlist);
+//                    Iterator it=customerlist.iterator();
+//                    while(it.hasNext())
+//                    {
+//                        Customer c=(Customer) it.next();
+//                        System.out.println("id"+c.getId());
+//                        System.out.println("name"+c.getC_name());
+//                        
+//                    }
+                    
+                    request.getRequestDispatcher("salesmancustomer.jsp").forward(request, response);
+                  
                 } else {
+                    session.invalidate();
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         }
-    }
+   
+    
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -302,6 +302,7 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public double getTotalPayment() {
+        
         double totalPayment = 0;
         return totalPayment;
     }
@@ -337,6 +338,18 @@ public class PaymentSession implements PaymentSessionLocal {
             System.out.println("********************ERROR: NoResultException********************:" + e);
         }
         return false;
+    }
+    
+    
+    @Override
+    public boolean changepassword(String oldpassword, String newpassword)
+    {
+        
+        //Long id = c.getId();
+        em.createQuery("UPDATE AdminTable a SET a.password='" + newpassword + "' WHERE a.password='"
+                + oldpassword + "'").executeUpdate();
+        return true;
+        
     }
 
 }

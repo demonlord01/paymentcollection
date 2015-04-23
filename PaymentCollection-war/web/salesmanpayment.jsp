@@ -15,11 +15,11 @@
 <div id="navigation_inner">
 <ul>
 
-<li><a href="#">Customer Details</a></li>
+<li><a href="#">Route Details</a></li>
 <li><a href="#">Payment Details</a></li>
 <li><a href="#">Receive Payment</a></li>
 <li><a href="#">Change Password</a></li>
-<li><a href="first.html">Logout</a></li>
+<li><a href="#">Logout</a></li>
 </ul>
 </div>
 
@@ -34,13 +34,13 @@
 
 <div id="CSS_Table_Example" >
 
-<table style="width:930px;height:540px;">
+<table style="width:930px;height:520px;">
 				<tr> 
 				
 					<td>
 						Payment Id
 					</td>
-					<td >
+					<td>
 						Payment Due
 					</td>
 					<td>
@@ -66,7 +66,7 @@
 <div id="content_lower_form">
 <center>
 <form>
-<br>
+
 <input type="button" name="Previous" class="btn-style" value="Previous">
 <input type="button" name="Next" class="btn-style" value="Next"><br><br>
 </form>

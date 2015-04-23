@@ -95,4 +95,6 @@ public interface PaymentSessionLocal {
 //----------------------------------------------------Admin-------------------------------------------------------
     public boolean verifyAdmin(String usermane, String password);
 
+    public boolean changepassword(String oldpassword, String newpassword);
+
 }
