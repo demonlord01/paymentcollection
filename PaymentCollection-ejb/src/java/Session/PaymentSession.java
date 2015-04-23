@@ -99,7 +99,7 @@ public class PaymentSession implements PaymentSessionLocal {
                 }
             }
         } catch (NoResultException e) {
-            System.out.println("********************ERROR: NoResultException********************:" + e);
+            System.out.println("********************ERROR: verifySalesman-NoResultException********************:" + e);
         }
         return false;
     }
@@ -335,7 +335,7 @@ public class PaymentSession implements PaymentSessionLocal {
                 }
             }
         } catch (NoResultException e) {
-            System.out.println("********************ERROR: NoResultException********************:" + e);
+            System.out.println("********************ERROR: verifyAdmin-NoResultException********************:" + e);
         }
         return false;
     }
