@@ -54,8 +54,8 @@
 
 <br><br><br>
 <font style="margin-left:120px;">
-<input type="button" name="Submit" class="btn-style" value="Submit">
-<a href="editpayment.html"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
+<input type="submit" name="Submit" class="btn-style" value="Submit">
+<a href="#"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
 
 </font>
 

@@ -32,7 +32,7 @@
 <p>Old Password <input type="text" name="old_password" style="margin-left:28px;"></p>
 <p>Password <input type="password" name="new_password" style="margin-left:55px;"></p>
 <p>Confirm Password<input type="confirm password" name="confirm_password" style="margin-left:5px;"></p>
-<p><input type="button" value="OK" class="btn-style"></p>
+<p><input type="submit" value="OK" class="btn-style"></p>
 </form>
 
 </div>

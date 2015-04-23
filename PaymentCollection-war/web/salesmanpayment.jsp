@@ -67,8 +67,8 @@
 <center>
 <form>
 
-<input type="button" name="Previous" class="btn-style" value="Previous">
-<input type="button" name="Next" class="btn-style" value="Next"><br><br>
+<input type="submit" name="Previous" class="btn-style" value="Previous">
+<input type="submit" name="Next" class="btn-style" value="Next"><br><br>
 </form>
 </center>
 </div>
