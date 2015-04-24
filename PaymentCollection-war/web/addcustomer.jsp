@@ -60,7 +60,7 @@
                             <br><br><br>
                             <font style="margin-left:120px;">
                             <input type="submit" name="submit" class="btn-style" value="Submit">
-                            <input type="button" name="reset" class="btn-style" value="Reset">
+                            <input type="reset" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>

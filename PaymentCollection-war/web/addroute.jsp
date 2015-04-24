@@ -59,7 +59,7 @@
                             <br><br><br>
                             <font style="margin-left:120px;">
                             <input type="submit" name="Submit" class="btn-style" value="Submit">
-                            <a href="editroute.html"><input type="button" name="Reset" class="btn-style" value="Reset"></a>
+                            <input type="reset" name="Reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>
