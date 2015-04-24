@@ -10,11 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
-        <link href="css/stylesheetlogin.css" type="text/css" rel="stylesheet">
+        <link href="css/stylesheet2.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
-
             <div id="header">
                 <h1>Payment Collection</h1>
             </div>
@@ -30,26 +29,39 @@
             </div>
 
             <div id="content">
-                <div id="content_inner">
-                    <form align="center" autocomplete="on">
-                        <br><br>
-                        <p>Old Password <input type="text" name="old_password" style="margin-left:28px;"></p>
-                        <p>Password <input type="password" name="new_password" style="margin-left:55px;"></p>
-                        <p>Confirm Password<input type="confirm password" name="confirm_password" style="margin-left:5px;"></p>
-                        <p><input type="submit" value="OK" class="btn-style"></p>
-                    </form>
-                </div>
-            </div>
 
-            <div id="content_inner2">
-                <div id="content_lower">
-                    <div id="footer">
-                        <h1> Payment Collection</h1>
-                        <p>This web application is a solution for product based industry which is easy to use for salesman for receiving payment from customer.
-                            In this web application, administrator manage over all tasks of the company.
-                            This application manages payment received by customer and due payment record.</p>
-                    </div>
-                </div>
+                <center>
+                    <form>
+
+                        <upper>
+                            <h1>Payment Details</h1>
+                        </upper>
+
+                        <lower>
+                            <br><br>
+                            <font>Payment due<input type="text" name="Payment due" style="margin-left:54px;"></font>
+                            <br><br>
+                            <font>Route 
+                            <select name="route" style="margin-left:106px;">
+                                <option value="route1"></option>
+                                <option value="route2"></option>
+                            </select></font>
+                            <br><br>
+                            <font>Salesman<input type="text" name="Salesman" style="margin-left:82px;"></font>
+                            <br><br>
+                            <font>Customer<input type="text" name="Customer" style="margin-left:82px;"></font>
+                            <br><br>
+                            <font>Payment Received<input type="text" name="Payment Received" style="margin-left:16px;"></font>
+                            <br><br>
+                            <font>Date of payment<input type="text" name="Date of payment" style="margin-left:29px;"></font>
+                            <br><br><br>
+                            <font style="margin-left:120px;">
+                            <input type="submit" name="Submit" class="btn-style" value="Submit">
+                            <input type="reset" name="Reset" class="btn-style" value="Reset">
+                            </font>
+                        </lower>
+                    </form>
+                </center>
             </div>
         </div>
     </body>
