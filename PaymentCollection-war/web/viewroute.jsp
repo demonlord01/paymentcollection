@@ -27,7 +27,7 @@
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
-                    <li><a href="confirmpassword.jsp">Change Password</a></li>
+                    <li><a href="changepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>

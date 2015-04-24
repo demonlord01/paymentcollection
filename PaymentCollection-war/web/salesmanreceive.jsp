@@ -23,7 +23,7 @@
                     <li><a href="ViewRouteDetails">Route Details</a></li>
                     <li><a href="#">Payment Details</a></li>
                     <li><a href="#">Receive Payment</a></li>
-                    <li><a href="#">Change Password</a></li>
+                    <li><a href="changepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>

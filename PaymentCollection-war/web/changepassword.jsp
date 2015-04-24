@@ -26,7 +26,7 @@
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
                     <li><a href="viewpayment.jsp">Payment Details</a></li>
-                    <li><a href="confirmpassword.jsp">Change Password</a></li>
+                    <li><a href="changepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
@@ -34,11 +34,11 @@
             <div id="content">
                 <div id="content_inner">
 
-                    <form action=ConfirmPassword method=POST align="center" autocomplete="on">
+                    <form action="ChangePassword" method=POST align="center">
                         <br><br>
-                        <p>Old Password <input type="password" name="oldpassword" style="margin-left:28px;"></p>
-                        <p>Password <input type="password" name="newpassword" style="margin-left:55px;"></p>
-                        <p>Confirm Password<input type="password" name="confirmpassword" style="margin-left:5px;"></p>
+                        <p>Old Password <input type="password" name="oldPassword" style="margin-left:28px;"></p>
+                        <p>Password <input type="password" name="newPassword" style="margin-left:55px;"></p>
+                        <p>Confirm Password<input type="password" name="confirmPassword" style="margin-left:5px;"></p>
                         <p><input type="submit" value="OK" class="btn-style"></p>
                     </form>
 

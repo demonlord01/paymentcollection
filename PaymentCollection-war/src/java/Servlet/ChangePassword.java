@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdminServlets;
+package Servlet;
 
-
+import Entities.AdminTable;
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -18,48 +19,65 @@ import session.PaymentSessionLocal;
 
 /**
  *
- * @author asdzsfsdg
+ * @author Vaibhav Bhagat
  */
-public class ConfirmPassword extends HttpServlet {
+public class ChangePassword extends HttpServlet {
+
     @EJB
     private PaymentSessionLocal paymentSession;
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(false);
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    String oldpassword = request.getParameter("oldpassword");
-                    String newpassword = request.getParameter("newpassword");
-                    String confirmpassword = request.getParameter("confirmpassword");
-                    
-                    
-                    if(!(newpassword.equals(confirmpassword)))
-                    {
-                        request.getRequestDispatcher("confirmpassword.jsp");
-                        out.println("Passwords do not match");
-                    }
-                    
-                    else if(newpassword.equals("")||confirmpassword.equals(""))
-                    {
-                        
-                        out.println("Both fields are required");
-                    }
-                    
-                    else if(newpassword.equals(confirmpassword))
-                    {
-                        if(!(newpassword.equals(" ")||confirmpassword.equals(" ")))
-                        {
-                       paymentSession.changepassword(oldpassword, newpassword);
-                       out.println("Password changed Successfully");
+                    AdminTable admin = (AdminTable) session.getAttribute("adminLogin");
+                    String oldPassword = request.getParameter("oldPassword");
+                    String newPassword = request.getParameter("newPassword");
+                    String confirmPassword = request.getParameter("confirmPassword");
+
+                    if (paymentSession.verifyAdminOldPassowrd(admin, oldPassword) == true) {
+                        if (newPassword.equals(confirmPassword)) {
+                            paymentSession.changeAdminPassword(admin, newPassword);
+                        } else {
+
                         }
-                        else
-                            out.println("No field can be empty");
+                    } else {
+
                     }
-        }
+                    response.sendRedirect("ViewSalesman");
+                } else if (getAdmin.equals("salesman")) {
+                    SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
+                    String oldPassword = request.getParameter("oldPassword");
+                    String newPassword = request.getParameter("newPassword");
+                    String confirmPassword = request.getParameter("confirmPassword");
+
+                    if (paymentSession.verifySalesmanOldPassowrd(salesman, oldPassword) == true) {
+                        if (newPassword.equals(confirmPassword)) {
+                            paymentSession.changeSalesmanPassword(salesman, newPassword);
+                        } else {
+
+                        }
+                    } else {
+
+                    }
+                    response.sendRedirect("ViewRouteDetails");
+                } else {
+                    session.invalidate();
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
             }
         }
     }

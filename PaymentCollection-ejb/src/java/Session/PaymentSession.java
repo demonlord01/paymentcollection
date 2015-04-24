@@ -104,7 +104,31 @@ public class PaymentSession implements PaymentSessionLocal {
         return false;
     }
 
+    @Override
+    public boolean verifySalesmanOldPassowrd(SalesMan salesman, String oldpassword) {
+        if (salesman != null || oldpassword != null) {
+            Long salesmanId = salesman.getId();
+            String getOldPassword = (String) em.createQuery("SELECT s.s_password FROM SalesMan s WHERE s.id='"
+                    + salesmanId + "'").getSingleResult();
+            if (getOldPassword.equals(oldpassword)){
+                return true;
+            }
+        }
+        return false;
+    }
+    @Override
+    public boolean changeSalesmanPassword(SalesMan salesman, String newassword) {
+        if (salesman != null || newassword != null) {
+            Long salesmanId = salesman.getId();
+            em.createQuery("UPDATE SalesMan s SET s.s_password='" + newassword + "' WHERE s.id='"
+                    + salesmanId + "'").executeUpdate();
+        } else {
+            return false;
+        }
+        return true;
+    }
 //---------------------------------------------------Route-------------------------------------------------------
+
     @Override
     public boolean insertRoute(String name, String city) {
         Route r = new Route();
@@ -302,7 +326,7 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public double getTotalPayment() {
-        
+
         double totalPayment = 0;
         return totalPayment;
     }
@@ -325,6 +349,16 @@ public class PaymentSession implements PaymentSessionLocal {
 
 //----------------------------------------------------Admin-------------------------------------------------------
     @Override
+    public AdminTable getAdmin(String username, String password) {
+        AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='"
+                + username + "'").getSingleResult();
+        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+            return admin;
+        }
+        return null;
+    }
+
+    @Override
     public boolean verifyAdmin(String username, String password) {
         try {
             AdminTable admin = (AdminTable) em.createQuery("SELECT a FROM AdminTable a WHERE a.username='"
@@ -339,17 +373,30 @@ public class PaymentSession implements PaymentSessionLocal {
         }
         return false;
     }
-    
-    
+
     @Override
-    public boolean changepassword(String oldpassword, String newpassword)
-    {
-        
-        //Long id = c.getId();
-        em.createQuery("UPDATE AdminTable a SET a.password='" + newpassword + "' WHERE a.password='"
-                + oldpassword + "'").executeUpdate();
+    public boolean verifyAdminOldPassowrd(AdminTable admin, String oldpassword) {
+        if (admin != null || oldpassword != null) {
+            Long adminId = admin.getId();
+            String getOldPassword = (String) em.createQuery("SELECT a.password FROM AdminTable a WHERE a.id='"
+                    + adminId + "'").getSingleResult();
+            if (getOldPassword.equals(oldpassword)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean changeAdminPassword(AdminTable admin, String newpassword) {
+        if (admin != null || newpassword != null) {
+            Long adminId = admin.getId();
+            em.createQuery("UPDATE AdminTable a SET a.password='" + newpassword + "' WHERE a.id='"
+                    + adminId + "'").executeUpdate();
+        } else {
+            return false;
+        }
         return true;
-        
     }
 
 }

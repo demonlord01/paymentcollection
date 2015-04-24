@@ -5,6 +5,7 @@
  */
 package session;
 
+import Entities.AdminTable;
 import Entities.Customer;
 import Entities.Payment;
 import Entities.Route;
@@ -18,7 +19,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface PaymentSessionLocal {
-    
+
 //--------------------------------------------------SalesMan-----------------------------------------------------
     public boolean insertSalesman(String name, String password, Long phonenumber,
             String emailid, String address, String dateofjoining, List<Route> routes);
@@ -35,6 +36,10 @@ public interface PaymentSessionLocal {
     public boolean deleteSalesman(Long id);
 
     public boolean verifySalesman(String emailid, String password);
+
+    public boolean verifySalesmanOldPassowrd(SalesMan salesman, String oldpassword);
+
+    public boolean changeSalesmanPassword(SalesMan salesman, String newassword);
 
 //---------------------------------------------------Route-------------------------------------------------------
     public boolean insertRoute(String name, String city);
@@ -60,7 +65,7 @@ public interface PaymentSessionLocal {
     public List<Customer> getAllCustomer();
 
     public Customer getCustomerByID(Long id);
-    
+
     public List<Customer> getCustomersByRoute(Route route);
 
     public Route getCustomerRoute(Customer c);
@@ -85,16 +90,20 @@ public interface PaymentSessionLocal {
     public List<Payment> getAllPaymentByCustomer(Customer c);
 
     public List<Payment> getAllPaymentBySalesman(SalesMan c);
-    
+
     public double getTotalPayment();
-    
+
     public List<Double> getPaymentByDate(String date);
-    
+
     public boolean deletePayment(Long id);
-    
+
 //----------------------------------------------------Admin-------------------------------------------------------
+    public AdminTable getAdmin(String username, String password);
+
     public boolean verifyAdmin(String usermane, String password);
 
-    public boolean changepassword(String oldpassword, String newpassword);
+    public boolean verifyAdminOldPassowrd(AdminTable admin, String oldpassword);
+
+    public boolean changeAdminPassword(AdminTable admin, String newpassword);
 
 }

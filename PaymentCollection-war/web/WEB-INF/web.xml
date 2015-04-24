@@ -66,6 +66,10 @@
         <servlet-name>ViewSalesmanCustomers</servlet-name>
         <servlet-class>SalesmanServlets.ViewSalesmanCustomers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>Servlet.ChangePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -117,6 +121,10 @@
     <servlet-mapping>
         <servlet-name>ViewSalesmanCustomers</servlet-name>
         <url-pattern>/ViewSalesmanCustomers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Entities.AdminTable;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,6 +49,17 @@ public class Login extends HttpServlet {
                 if (session != null) {
                     session.setAttribute("Usertype", "admin");
                 }
+
+                try {
+                    AdminTable adminLogin = paymentSession.getAdmin(username, password);
+                    if (adminLogin != null) {
+                        session.setAttribute("adminLogin", adminLogin);
+                    }
+                } catch (NullPointerException e) {
+                    System.out.println("********************ERROR: Admin_Login"
+                            + "-NullPointerException********************:" + e);
+                }
+
                 response.sendRedirect("ViewSalesman");
             } else {
                 if (paymentSession.verifySalesman(username, password) == true) {
