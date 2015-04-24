@@ -51,12 +51,16 @@
         <servlet-class>AdminServlets.AddCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewSalesmanCustomer</servlet-name>
-        <servlet-class>SalesmanServlets.ViewSalesmanCustomer</servlet-class>
+        <servlet-name>ViewRouteDetails</servlet-name>
+        <servlet-class>SalesmanServlets.ViewRouteDetails</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ConfirmPassword</servlet-name>
-        <servlet-class>AdminServlets.ConfirmPassword</servlet-class>
+        <servlet-name>ViewPaymentDetails</servlet-name>
+        <servlet-class>SalesmanServlets.ViewPaymentDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewReceivePayment</servlet-name>
+        <servlet-class>SalesmanServlets.ViewReceivePayment</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -95,12 +99,16 @@
         <url-pattern>/AddCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewSalesmanCustomer</servlet-name>
-        <url-pattern>/ViewSalesmanCustomer</url-pattern>
+        <servlet-name>ViewRouteDetails</servlet-name>
+        <url-pattern>/ViewRouteDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ConfirmPassword</servlet-name>
-        <url-pattern>/ConfirmPassword</url-pattern>
+        <servlet-name>ViewPaymentDetails</servlet-name>
+        <url-pattern>/ViewPaymentDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReceivePayment</servlet-name>
+        <url-pattern>/ViewReceivePayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
