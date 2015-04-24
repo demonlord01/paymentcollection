@@ -58,8 +58,8 @@
                             <form>
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
-                                <input type="button" name="add" class="btn-style" value="Add Payment">
-                                 <input type="button" name="update" class="btn-style" value="Update Payment Details">
+                                <input type="submit" name="add" class="btn-style" value="Add Payment">
+                                <input type="submit" name="update" class="btn-style" value="Update Payment Details">
                             </form>
                         </center>
                     </div>

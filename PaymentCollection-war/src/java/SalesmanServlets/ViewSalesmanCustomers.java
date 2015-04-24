@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package SalesmanServlets;
 
-import Entities.SalesMan;
+import Entities.Customer;
+import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +22,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class Login extends HttpServlet {
-
+public class ViewSalesmanCustomers extends HttpServlet {
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -38,40 +39,24 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                HttpSession session = request.getSession(false);
-                if (session == null) {
-                    session = request.getSession();
-                }
-                if (session != null) {
-                    session.setAttribute("Usertype", "admin");
-                }
-                response.sendRedirect("ViewSalesman");
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
-                    HttpSession session = request.getSession(false);
-                    if (session == null) {
-                        session = request.getSession();
-                    }
-                    if (session != null) {
-                        session.setAttribute("Usertype", "salesman");
-                    }
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                String getAdmin = (String) session.getAttribute("Usertype");
+                if (getAdmin.equals("salesman")) {
+                    String showcustomersBtn = request.getParameter("showcustomers");
 
-                    try {
-                        SalesMan salesmanLogin = paymentSession.getSalesman(username, password);
-                        if (salesmanLogin != null) {
-                            session.setAttribute("salesmanLogin", salesmanLogin);
-                        }
-                    } catch (NullPointerException e) {
-                        System.out.println("********************ERROR: Salesman_Login"
-                                + "-NullPointerException********************:" + e);
+                    if (showcustomersBtn != null) {
+                        Long getRouteId = Long.parseLong(showcustomersBtn);
+                        
+                        Route route = paymentSession.getRouteByID(getRouteId);
+                        List<Customer> customerList = paymentSession.getCustomersByRoute(route);
+                        
+                        request.setAttribute("customerList", customerList);
+                        request.getRequestDispatcher("viewcustomer.jsp").forward(request, response);
                     }
-
-                    response.sendRedirect("salesmanindex.jsp");
                 } else {
-                    response.sendRedirect("login.jsp");
+                    session.invalidate();
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         }

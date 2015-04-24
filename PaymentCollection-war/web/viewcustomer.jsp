@@ -57,9 +57,8 @@
                                     <td>${customer.c_name}</td>
                                     <td>${customer.c_phonenumber}</td>
                                     <td>${customer.c_emailid}</td>
-                                    <td>${customer.c_route.getR_name()}</td>
-                                    <td>${customer.c_address}</td>
                                     <td>${customer.c_route.r_name}</td>
+                                    <td>${customer.c_address}</td>
                                     <td>${customer.c_duepayment}</td>
                                 </tr>
                             </c:forEach>
@@ -72,7 +71,7 @@
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="submit" name="add" class="btn-style" value="Add Customer">
-                                 <button type="submit" id="editid_C" class="btn-style" name="update"
+                                <button type="submit" id="editid_C" class="btn-style" name="update"
                                         value="update" onclick="callservlet();">Update Customer</button>
                             </form>
                         </center>
