@@ -93,6 +93,8 @@ public interface PaymentSessionLocal {
 
     public double getTotalPayment();
 
+    public Payment getPaymentById(Long id);
+
     public List<Double> getPaymentByDate(String date);
 
     public boolean deletePayment(Long id);

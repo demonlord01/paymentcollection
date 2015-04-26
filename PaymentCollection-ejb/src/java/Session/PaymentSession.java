@@ -110,12 +110,13 @@ public class PaymentSession implements PaymentSessionLocal {
             Long salesmanId = salesman.getId();
             String getOldPassword = (String) em.createQuery("SELECT s.s_password FROM SalesMan s WHERE s.id='"
                     + salesmanId + "'").getSingleResult();
-            if (getOldPassword.equals(oldpassword)){
+            if (getOldPassword.equals(oldpassword)) {
                 return true;
             }
         }
         return false;
     }
+
     @Override
     public boolean changeSalesmanPassword(SalesMan salesman, String newassword) {
         if (salesman != null || newassword != null) {
@@ -332,6 +333,13 @@ public class PaymentSession implements PaymentSessionLocal {
     }
 
     @Override
+    public Payment getPaymentById(Long id) {
+        Payment payment = (Payment) em.createQuery("SELECT p FROM Payment p WHERE p.id='"
+                + id + "'").getSingleResult();
+        return payment;
+    }
+
+    @Override
     public List<Double> getPaymentByDate(String date) {
         List<Double> plist = em.createQuery("SELECT p.p_recievepayment FROM Payment p WHERE p.p_date='"
                 + date + "'").getResultList();
@@ -380,7 +388,7 @@ public class PaymentSession implements PaymentSessionLocal {
             Long adminId = admin.getId();
             String getOldPassword = (String) em.createQuery("SELECT a.password FROM AdminTable a WHERE a.id='"
                     + adminId + "'").getSingleResult();
-            if (getOldPassword.equals(oldpassword)){
+            if (getOldPassword.equals(oldpassword)) {
                 return true;
             }
         }

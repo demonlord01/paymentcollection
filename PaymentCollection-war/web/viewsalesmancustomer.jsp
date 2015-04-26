@@ -1,11 +1,11 @@
 <%-- 
-    Document   : salesmanconfirm
-    Created on : Apr 24, 2015, 12:21:06 PM
+    Document   : viewcustomer
+    Created on : Apr 7, 2015, 4:18:11 PM
     Author     : Vaibhav Bhagat
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +33,7 @@
             <div id="content">
 
                 <div id="content_upper">
-                    <h1>Search By Name<input type="text" name="CustomerId" style="margin-left:20px;"></h1>
+                    <h1>Customer List</h1>
                 </div>
 
                 <div id="content_lower">
@@ -42,27 +42,35 @@
 
                         <table style="width:930px;height:470px;">
                             <tr> 
-                                <th>Route Id</th>
-                                <th>Route Name</th>
-                                <th>City</th>
+                                <th>Customer Id</th>
+                                <th>Customer Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <th>Route</th>
+                                <th>Address</th>
+                                <th>Due Payment</th>
                             </tr>
-                            <s:forEach var="salesmanroutes" items="${requestScope['salesmanRoutes']}">
+                            <c:forEach var="customer" items="${requestScope['customerList']}">
                                 <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
-                                    <td>${salesmanroutes.id}</td>
-                                    <td>${salesmanroutes.r_name}</td>
-                                    <td>${salesmanroutes.city}</td>
+                                    <td>${customer.id}</td>
+                                    <td>${customer.c_name}</td>
+                                    <td>${customer.c_phonenumber}</td>
+                                    <td>${customer.c_emailid}</td>
+                                    <td>${customer.c_route.r_name}</td>
+                                    <td>${customer.c_address}</td>
+                                    <td>${customer.c_duepayment}</td>
                                 </tr>
-                            </s:forEach>
+                            </c:forEach>
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
-                            <form name="toservlet" action="ViewSalesmanCustomers" method="POST">
-                                <input type="submit" name="Previous" class="btn-style" value="Previous">
-                                <input type="submit" name="Next" class="btn-style" value="Next"><br><br>
-                                <button type="submit" id="editid_C" class="btn-style" name="showcustomers"
-                                        value="update" onclick="callservlet();">Show Customers</button>
+                            <form name="toservlet" action="ViewPaymentDetails" method="POST">
+                                <input type="button" name="previous" class="btn-style" value="Previous">
+                                <input type="button" name="next" class="btn-style" value="Next"><br><br>
+                                <button type="submit" id="editid_C" class="btn-style" name="viewcustomerpayments"
+                                        value="update" onclick="callservlet();">View Customer Payments</button>
                             </form>
                         </center>
                     </div>

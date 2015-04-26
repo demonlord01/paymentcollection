@@ -5,19 +5,28 @@
  */
 package SalesmanServlets;
 
+import Entities.Customer;
+import Entities.Payment;
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.PaymentSessionLocal;
 
 /**
  *
  * @author Vaibhav Bhagat
  */
 public class ViewPaymentDetails extends HttpServlet {
+
+    @EJB
+    private PaymentSessionLocal paymentSession;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +45,23 @@ public class ViewPaymentDetails extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("salesman")) {
-                    
+                    String viewcustomerpaymentsBtn = request.getParameter("viewcustomerpayments");
+                    if (viewcustomerpaymentsBtn == null) {
+                        SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
+
+                        List<Payment> paymentList = paymentSession.getAllPaymentBySalesman(salesman);
+
+                        request.setAttribute("paymentList", paymentList);
+                        request.getRequestDispatcher("salesmanpayment.jsp").forward(request, response);
+                    } else {
+                        Long customerId = Long.parseLong(viewcustomerpaymentsBtn);
+
+                        Customer customer = paymentSession.getCustomerByID(customerId);
+                        List<Payment> customerPaymentList = paymentSession.getAllPaymentByCustomer(customer);
+
+                        request.setAttribute("paymentList", customerPaymentList);
+                        request.getRequestDispatcher("salesmanpayment.jsp").forward(request, response);
+                    }
                 } else {
                     session.invalidate();
                     request.getRequestDispatcher("login.jsp").forward(request, response);

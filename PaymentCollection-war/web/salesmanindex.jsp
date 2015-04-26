@@ -22,9 +22,9 @@
             <div id="navigation_inner2">
                 <ul>
                     <li><a href="ViewRouteDetails">Route Details</a></li>
-                    <li><a href="#">Payment Details</a></li>
-                    <li><a href="#">Receive Payment</a></li>
-                    <li><a href="changepassword.jsp">Change Password</a></li>
+                    <li><a href="ViewPaymentDetails">Payment Details</a></li>
+                    <li><a href="RecievePayment">Receive Payment</a></li>
+                    <li><a href="salesmanchangepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>

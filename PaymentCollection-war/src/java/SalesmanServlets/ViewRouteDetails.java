@@ -23,6 +23,7 @@ import session.PaymentSessionLocal;
  * @author Vaibhav Bhagat
  */
 public class ViewRouteDetails extends HttpServlet {
+
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -47,7 +48,7 @@ public class ViewRouteDetails extends HttpServlet {
                     Long getSalesmanId = getSalesman.getId();
 
                     List<Route> salesmanRoutes = paymentSession.getAllRoutesBySalesMan(getSalesmanId);
-                    
+
                     request.setAttribute("salesmanRoutes", salesmanRoutes);
                     request.getRequestDispatcher("salesmanroute.jsp").forward(request, response);
                 } else {

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="p" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,9 +23,9 @@
             <div id="navigation_inner">
                 <ul>
                     <li><a href="ViewRouteDetails">Route Details</a></li>
-                    <li><a href="#">Payment Details</a></li>
-                    <li><a href="#">Receive Payment</a></li>
-                    <li><a href="changepassword.jsp">Change Password</a></li>
+                    <li><a href="ViewPaymentDetails">Payment Details</a></li>
+                    <li><a href="RecievePayment">Receive Payment</a></li>
+                    <li><a href="salesmanchangepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
@@ -45,23 +46,72 @@
                                 <td>Payment Due</td>
                                 <td>Salesman</td>
                                 <td>Customer </td>
-                                <td>Address</td>
+                                <td>Location</td>
                                 <td>Payment Received</td>
                                 <td>Date Of Payment</td>
                             </tr>
+                            <p:forEach var="payment" items="${requestScope['paymentList']}">
+                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
+                                    <td>${payment.id}</td>
+                                    <td>${payment.p_recievepayment}</td>
+                                    <td>${payment.p_salesman.s_name}</td>
+                                    <td>${payment.p_customer.c_name}</td>
+                                    <td>${payment.p_gpslocation}</td>
+                                    <td>${payment.p_recievepayment}</td>
+                                    <td>${payment.p_date}</td>
+                                </tr>
+                            </p:forEach>
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
-                            <form>
+                            <form name="toservlet" action="ViewReceivePayment" method="POST">
                                 <input type="submit" name="Previous" class="btn-style" value="Previous">
                                 <input type="submit" name="Next" class="btn-style" value="Next"><br><br>
+                                <button type="submit" id="editid_C" class="btn-style" name="receivepayment"
+                                        value="receivepayment" onclick="callservlet();">Receive Payment</button>
                             </form>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var preEl;
+            var orgBColor;
+            var orgTColor;
+            function myFunction(el, backColor, textColor) {
+                if (typeof (preEl) !== 'undefined') {
+                    preEl.bgColor = orgBColor;
+                    try {
+                        ChangeTextColor(preEl, orgTColor);
+                    } catch (e) {
+                        ;
+                    }
+                }
+                orgBColor = el.bgColor;
+                orgTColor = el.style.color;
+                el.bgColor = backColor;
+
+                try {
+                    ChangeTextColor(el, textColor);
+                } catch (e) {
+                    ;
+                }
+                preEl = el;
+            }
+            function ChangeTextColor(a_obj, a_color) {
+                for (i = 0; i < a_obj.cells.length; i++) {
+                    var y = a_obj.cells;
+                    var getId = y[0].innerHTML;
+                    document.getElementById("editid_C").value = getId;
+                    a_obj.cells(i).style.color = a_color;
+                }
+            }
+            function callservlet() {
+                document.getElementsByName('toservlet')[0].submit();
+            }
+        </script>
     </body>
 </html>

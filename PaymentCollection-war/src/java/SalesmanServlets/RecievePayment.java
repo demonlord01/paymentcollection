@@ -5,7 +5,7 @@
  */
 package SalesmanServlets;
 
-import Entities.Payment;
+import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -20,7 +20,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class ViewReceivePayment extends HttpServlet {
+public class RecievePayment extends HttpServlet {
 
     @EJB
     private PaymentSessionLocal paymentSession;
@@ -42,14 +42,30 @@ public class ViewReceivePayment extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("salesman")) {
-                    String receivepaymentBtn = request.getParameter("receivepayment");
-                    if (receivepaymentBtn != null) {
-                        Long paymentId = Long.parseLong(receivepaymentBtn);
+                    String submitBtn = request.getParameter("submit");
+                    if (submitBtn == null) {
+                        
+                        
+                        request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
+                    } else {
+                        if (submitBtn.equals("update")) {
+                            Double paymentReceived = Double.parseDouble(request.getParameter("paymentreceived"));
+                            String dateOfPayment = request.getParameter("dateofpayment");
+                            SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
+//                            name="customer"
+//                            name="salesman"
+//                            name="route"
+//                            name="paymentdue"
+//                            name="paymentreceived"
+//                            name="dateofpayment"
+                            paymentSession.insertPayment(paymentReceived, null, dateOfPayment, salesman, null);
 
-                        Payment payment = paymentSession.getPaymentById(paymentId);
+                            response.sendRedirect("ViewPaymentDetails");
+                        } else if (submitBtn.equals("")) {
+                            paymentSession.insertPayment(0, null, null, null, null);
+                        } else {
 
-                        request.setAttribute("payment", payment);
-                        request.getRequestDispatcher("salesmanreceive2.jsp").forward(request, response);
+                        }
                     }
                 } else {
                     session.invalidate();

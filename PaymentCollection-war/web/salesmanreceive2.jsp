@@ -47,25 +47,20 @@
 
                         <lower>
                             <br><br>
-                            <font>Route
-                            <select name="route" style="margin-left:113px;">
-                                <p:forEach var="route" items="${requestScope['routeList']}">
-                                <option value="${route.id}">${route.r_name}</option>
-                                </p:forEach>
-                            </select></font>
+                            <font>Customer<input type="text" disabled name="customer" style="margin-left:82px;" value="<p:out value="${customer}"/>"></font>
                             <br><br>
-                            <font>Salesman<input type="text" name="salesman" style="margin-left:85px;" value="<p:out value="${salesman}"/>"></font>
+                            <font>Salesman<input type="text" disabled name="salesman" style="margin-left:85px;" value="<p:out value="${salesman}"/>"></font>
                             <br><br>
-                            <font>Route<input type="text" name="route" style="margin-left:111px;" value="<p:out value="${route}"/>"></font>
+                            <font>Route<input type="text" disabled name="route" style="margin-left:111px;" value="<p:out value="${route}"/>"></font>
                             <br><br>
-                            <font>Payment due<input type="number" name="paymentdue" style="margin-left:57px;" value="<p:out value="${duepayment}"/>"></font>
+                            <font>Payment due<input type="number" disabled name="paymentdue" style="margin-left:57px;" value="<p:out value="${duepayment}"/>"></font>
                             <br><br>
                             <font>Payment Received<input type="number" name="paymentreceived" style="margin-left:16px;" value="<p:out value="${recievepayment}"/>"></font>
                             <br><br>
                             <font>Date of payment<input type="date" name="dateofpayment" style="margin-left:29px;" value="<p:out value="${date}"/>"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="submit" name="submit" class="btn-style" value="Submit">
+                            <input type="submit" name="update" class="btn-style" value="Update">
                             <input type="reset" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>

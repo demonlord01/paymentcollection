@@ -23,6 +23,7 @@ import session.PaymentSessionLocal;
  * @author Vaibhav Bhagat
  */
 public class ViewSalesmanCustomers extends HttpServlet {
+
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -47,12 +48,12 @@ public class ViewSalesmanCustomers extends HttpServlet {
 
                     if (showcustomersBtn != null) {
                         Long getRouteId = Long.parseLong(showcustomersBtn);
-                        
+
                         Route route = paymentSession.getRouteByID(getRouteId);
                         List<Customer> customerList = paymentSession.getCustomersByRoute(route);
-                        
+
                         request.setAttribute("customerList", customerList);
-                        request.getRequestDispatcher("viewcustomer.jsp").forward(request, response);
+                        request.getRequestDispatcher("viewsalesmancustomer.jsp").forward(request, response);
                     }
                 } else {
                     session.invalidate();
