@@ -1,5 +1,5 @@
 <%-- 
-    Document   : editpayment
+    Document   : addpayment
     Created on : Apr 7, 2015, 4:12:04 PM
     Author     : Vaibhav Bhagat
 --%>

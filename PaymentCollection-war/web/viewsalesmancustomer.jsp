@@ -1,5 +1,5 @@
 <%-- 
-    Document   : viewcustomer
+    Document   : viewsalesmancustomer
     Created on : Apr 7, 2015, 4:18:11 PM
     Author     : Vaibhav Bhagat
 --%>

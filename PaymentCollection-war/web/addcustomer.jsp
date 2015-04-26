@@ -1,5 +1,5 @@
 <%-- 
-    Document   : editcustomer
+    Document   : addcustomer
     Created on : Apr 7, 2015, 4:11:49 PM
     Author     : Vaibhav Bhagat
 --%>
