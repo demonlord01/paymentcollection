@@ -46,6 +46,7 @@ public class ViewSalesman extends HttpServlet {
                     String addBtn = request.getParameter("add");
                     String updateBtn = request.getParameter("update");
                     String showrouteBtn = request.getParameter("showroute");
+                    
                     if (addBtn != null) {
                         request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
                     } else if (updateBtn != null) {

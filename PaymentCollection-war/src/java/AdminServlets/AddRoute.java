@@ -8,7 +8,6 @@ package AdminServlets;
 import Entities.Route;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,8 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class ViewRoute extends HttpServlet {
+public class AddRoute extends HttpServlet {
+
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -41,12 +41,42 @@ public class ViewRoute extends HttpServlet {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
-                
+
                 if (getAdmin.equals("admin")) {
-                    List<Route> routelist = paymentSession.getAllRoutes();
-                    
-                    request.setAttribute("routeList", routelist);
-                    request.getRequestDispatcher("viewroute.jsp").forward(request, response);
+                    String addBtn = request.getParameter("add");
+                    String updateBtn = request.getParameter("update");
+                    String submitBtn = request.getParameter("submit");
+                    String updaterouteBtn = request.getParameter("updateroute");
+
+                    if (addBtn != null) {
+                        response.sendRedirect("addroute.jsp");
+                    } else if (updateBtn != null) {
+                        Long getId = Long.parseLong(updateBtn);
+
+                        if (getId != null) {
+                            Route route = paymentSession.getRouteByID(getId);
+
+                            request.setAttribute("route", route);
+                            request.getRequestDispatcher("updateroute.jsp").forward(request, response);
+                        } else {
+
+                        }
+                    } else if (submitBtn != null) {
+                        String routeName = request.getParameter("routename");
+                        String city = request.getParameter("city");
+
+                        paymentSession.insertRoute(routeName, city);
+
+                        response.sendRedirect("ViewRoute");
+                    } else if (updaterouteBtn != null) {
+                        Long getId = Long.parseLong(request.getParameter("id"));
+                        String routeName = request.getParameter("routename");
+                        String city = request.getParameter("city");
+
+                        paymentSession.updateRoute(getId, routeName, city);
+                        
+                        response.sendRedirect("ViewRoute");
+                    }
                 } else {
                     session.invalidate();
                     request.getRequestDispatcher("login.jsp").forward(request, response);

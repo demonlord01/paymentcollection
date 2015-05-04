@@ -22,6 +22,7 @@ import session.PaymentSessionLocal;
  * @author Vaibhav Bhagat
  */
 public class ViewCustomer extends HttpServlet {
+
     @EJB
     private PaymentSessionLocal paymentSession;
 
@@ -42,18 +43,18 @@ public class ViewCustomer extends HttpServlet {
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("admin")) {
-                    
-                     String addBtn = request.getParameter("add");
+
+                    String addBtn = request.getParameter("add");
                     String updateBtn = request.getParameter("update");
                     String showrouteBtn = request.getParameter("showroute");
-                     if (addBtn != null) {
+                    if (addBtn != null) {
                         request.getRequestDispatcher("addcustomer.jsp").forward(request, response);
                     } else if (updateBtn != null) {
                         request.getRequestDispatcher("updatecustomer.jsp").forward(request, response);
                     } else if (showrouteBtn != null) {
 
                     }
-                     
+
                     List<Customer> customerlist = paymentSession.getAllCustomer();
                     request.setAttribute("customerList", customerlist);
                     request.getRequestDispatcher("viewcustomer.jsp").forward(request, response);

@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,22 +43,20 @@
             <div id="content">
 
                 <center>
-                    <form>
-
+                    <form action="AddRoute" method="POST">
                         <upper>
                             <h1>Route Details</h1>
                         </upper>
-
                         <lower>
                             <br><br><br>
-                            <font>Route<input type="text" name="route" style="margin-left:85px;"></font>
+                            <font>Route Name<input type="text" name="routename" style="margin-left:85px;"></font>
                             <br><br>
 
-                            <font>City<input type="text" name="city" style="margin-left:96px;"></font>
+                            <font>City<input type="text" name="city" style="margin-left:149px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="submit" name="Submit" class="btn-style" value="Submit">
-                            <input type="reset" name="Reset" class="btn-style" value="Reset">
+                            <input type="submit" name="submit" class="btn-style" value="Submit">
+                            <input type="reset" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>

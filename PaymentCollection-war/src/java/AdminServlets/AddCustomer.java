@@ -43,10 +43,12 @@ public class AddCustomer extends HttpServlet {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
+                
                 if (getAdmin.equals("admin")) {
                     String addBtn = request.getParameter("add");
                     String submitBtn = request.getParameter("submit");
                     String updateBtn = request.getParameter("update");
+                    
                     if (addBtn != null) {
                         List<Route> routeList = paymentSession.getAllRoutes();
                         request.setAttribute("routeList", routeList);
