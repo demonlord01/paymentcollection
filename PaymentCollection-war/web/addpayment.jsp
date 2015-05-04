@@ -24,7 +24,7 @@
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
-                    <li><a href="viewpayment.jsp">Payment Details</a></li>
+                    <li><a href="ViewPayment">Payment Details</a></li>
                     <li><a href="changepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
@@ -59,8 +59,8 @@
 
                             <br><br><br>
                             <font style="margin-left:120px;">
-                            <input type="submit" name="Submit" class="btn-style" value="Submit">
-                            <input type="reset" name="Reset" class="btn-style" value="Reset">
+                            <input type="submit" name="submit" class="btn-style" value="Submit">
+                            <input type="reset" name="reset" class="btn-style" value="Reset">
                             </font>
                         </lower>
                     </form>

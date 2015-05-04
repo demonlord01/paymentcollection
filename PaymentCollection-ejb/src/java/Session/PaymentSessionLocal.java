@@ -87,6 +87,8 @@ public interface PaymentSessionLocal {
     public boolean insertPayment(double recievepayment, String gpslocation, String date,
             SalesMan salesman, Customer customer);
 
+    public List<Payment> getAllPayments();
+
     public List<Payment> getAllPaymentByCustomer(Customer c);
 
     public List<Payment> getAllPaymentBySalesman(SalesMan c);

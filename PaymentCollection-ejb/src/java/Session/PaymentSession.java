@@ -311,6 +311,11 @@ public class PaymentSession implements PaymentSessionLocal {
         return true;
     }
 
+    public List<Payment> getAllPayments() {
+        List<Payment> allPayments = em.createQuery("SELECT p FROM Payment p").getResultList();
+        return allPayments;
+    }
+
     @Override
     public List<Payment> getAllPaymentByCustomer(Customer c) {
         List<Payment> plist = em.createQuery("SELECT p FROM Payment p WHERE p.p_customer = :customerobj")

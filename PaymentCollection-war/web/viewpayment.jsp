@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="p" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,11 +22,10 @@
 
             <div id="navigation_inner">
                 <ul>
-
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
-                    <li><a href="viewpayment.jsp">Payment Details</a></li>
+                    <li><a href="ViewPayment">Payment Details</a></li>
                     <li><a href="changepassword.jsp">Change Password</a></li>
                     <li><a href="Logout">Logout</a></li>
                 </ul>
@@ -44,27 +44,77 @@
                         <table style="width:930px;height:470px;">
                             <tr>
                                 <td>Payment Id</td>
-                                <td>Payment Due</td>
-                                <td>Salesman</td>
                                 <td>Customer</td>
+                                <td>Salesman</td>
                                 <td>Payment Received</td>
+                                <td>Payment Due</td>
+                                <td>Location</td>
                                 <td>Date Of Payment</td>
                             </tr>
+                            <p:forEach var="payment" items="${requestScope['paymentList']}">
+                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
+                                    <td>${payment.id}</td>
+                                    <td>${payment.p_customer.c_name}</td>
+                                    <td>${payment.p_salesman.s_name}</td>
+                                    <td>${payment.p_recievepayment}</td>
+                                    <td>${payment.p_recievepayment}</td>
+                                    <td>${payment.p_gpslocation}</td>
+                                    <td>${payment.p_date}</td>
+                                </tr>
+                            </p:forEach>
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
-                            <form>
+                            <form name="toservlet" action="AddPayment" method="POST">
                                 <input type="button" name="previous" class="btn-style" value="Previous">
                                 <input type="button" name="next" class="btn-style" value="Next"><br><br>
                                 <input type="submit" name="add" class="btn-style" value="Add Payment">
-                                <input type="submit" name="update" class="btn-style" value="Update Payment Details">
+                                <button type="submit" id="editid_U" class="btn-style" name="updatepaymentdetails"
+                                        value="updatepaymentdetails" onclick="callservlet();">
+                                    Update Payment Details</button>
                             </form>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var preEl;
+            var orgBColor;
+            var orgTColor;
+            function myFunction(el, backColor, textColor) {
+                if (typeof (preEl) !== 'undefined') {
+                    preEl.bgColor = orgBColor;
+                    try {
+                        ChangeTextColor(preEl, orgTColor);
+                    } catch (e) {
+                        ;
+                    }
+                }
+                orgBColor = el.bgColor;
+                orgTColor = el.style.color;
+                el.bgColor = backColor;
+
+                try {
+                    ChangeTextColor(el, textColor);
+                } catch (e) {
+                    ;
+                }
+                preEl = el;
+            }
+            function ChangeTextColor(a_obj, a_color) {
+                for (i = 0; i < a_obj.cells.length; i++) {
+                    var y = a_obj.cells;
+                    var getId = y[0].innerHTML;
+                    document.getElementById("editid_U").value = getId;
+                    a_obj.cells(i).style.color = a_color;
+                }
+            }
+            function callservlet() {
+                document.getElementsByName('toservlet')[0].submit();
+            }
+        </script>
     </body>
 </html>
