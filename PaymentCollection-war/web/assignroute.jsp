@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="r" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,11 +31,6 @@
             </div>
 
             <div id="content">
-                <div id="content_upper">
-                    <br>
-                    <input type="text" hidden name="salesmanname">
-                    <input type="text" hidden name="salesmanaddress" style="margin-left:80px;">
-                </div>
 
                 <div id="content_lower">
                     <div id="content_lower_left">
@@ -43,20 +39,26 @@
                         </div>
 
                         <div id="content_lower_left_lower">
-                            <div id="CSS_Table_Example" style="width:410px;height:400px;">
-                                <table style="width:410px;height:410px;align:left">
-                                    <tr>
-                                        <th>        </th>
-                                        <th>Route Id</th>
-                                        <th>Route Name</th>
-                                        <th>City</th>
-                                    </tr>
-                                </table>
-                            </div>
+                            <form action="AssignRoutes" method="POST">
+                                <div id="CSS_Table_Example" style="width:410px;height:400px;">
+                                    <table style="width:410px;height:410px;">
+                                        <tr>
+                                            <th></th>
+                                            <th>Route Name</th>
+                                            <th>City</th>
+                                        </tr>
+                                        <r:forEach var="assignedroute" items="${requestScope['salesmanroute']}">
+                                            <tr>
+                                                <td><input type="checkbox" name="assignedrouteid" value="${assignedroute.id}"></td>
+                                                <td>${assignedroute.r_name}</td>
+                                                <td>${assignedroute.city}</td>
+                                            </tr>
+                                        </r:forEach>
+                                    </table>
+                                </div>
 
-                            <form>
                                 <br>
-                                <input type="submit" name="delete" class="btn-style" value="Delete" style="margin-left:150px;">
+                                <input type="submit" name="deleteroute" class="btn-style" value="Delete" style="margin-left:150px;">
                             </form>
                         </div>
                     </div>
@@ -66,20 +68,26 @@
                             <h1 align="center">Unassigned Routes</h1>
                         </div>
                         <div id="content_lower_right_lower">
-                            <div id="CSS_Table_Example" style="width:410px;height:400px;">
-                                <table style="width:410px;height:410px;align:left">
-                                    <tr>
-                                        <th>        </th>
-                                        <th>Route Id</th>
-                                        <th>Route Name</th>
-                                        <th>City</th>
-                                    </tr>
-                                </table>
-                            </div>
+                            <form action="AssignRoutes" method="POST">
+                                <div id="CSS_Table_Example" style="width:410px;height:400px;">
+                                    <table style="width:410px;height:410px;">
+                                        <tr>
+                                            <th></th>
+                                            <th>Route Name</th>
+                                            <th>City</th>
+                                        </tr>
+                                        <r:forEach var="unassignedroute" items="${requestScope['allRoutes']}">
+                                            <tr>
+                                                <td><input type="checkbox" name="unassignedrouteid" value="${unassignedroute.id}"></td>
+                                                <td>${unassignedroute.r_name}</td>
+                                                <td>${unassignedroute.city}</td>
+                                            </tr>
+                                        </r:forEach>
+                                    </table>
+                                </div>
 
-                            <form>
                                 <br>
-                                <input type="submit" name="assign" class="btn-style" value="Assign Route" style="margin-left:150px;">
+                                <input type="submit" name="assignroute" class="btn-style" value="Assign Route" style="margin-left:150px;">
                             </form>
                         </div>
                     </div>

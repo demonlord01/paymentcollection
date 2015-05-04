@@ -22,7 +22,7 @@ import session.PaymentSessionLocal;
  *
  * @author Vaibhav Bhagat
  */
-public class AddSalesman extends HttpServlet {
+public class AssignRoutes extends HttpServlet {
 
     @EJB
     private PaymentSessionLocal paymentSession;
@@ -43,57 +43,54 @@ public class AddSalesman extends HttpServlet {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 String getAdmin = (String) session.getAttribute("Usertype");
+
                 if (getAdmin.equals("admin")) {
-                    String addBtn = request.getParameter("add");
-                    String submitBtn = request.getParameter("submit"); //for Insertion (addsalesman Page)
-                    String updateBtn = request.getParameter("update");
-                    String showrouteBtn = request.getParameter("showroute");
+                    SalesMan salesman = (SalesMan) session.getAttribute("admin_salesman");
+                    Long salesmanid = salesman.getId();
+                    String deleterouteBtn = request.getParameter("deleteroute");
+                    String assignrouteBtn = request.getParameter("assignroute");
 
-                    if (request.getParameter("add") != null) {
-                        request.getRequestDispatcher("addsalesman.jsp").forward(request, response);
-                    } else if (submitBtn != null) {
-                        String salesmanName = request.getParameter("salesmanName");
-                        String salesmanPassword = request.getParameter("salesmanPassword");
-                        Long salesmanPhoneNumber = Long.parseLong(request.getParameter("salesmanPhoneNumber"));
-                        String salesmanEmailid = request.getParameter("salesmanEmailid");
-                        String salesmanAddress = request.getParameter("salesmanAddress");
-                        String salesmanDateOfJoining = request.getParameter("salesmanDateOfJoining");
+                    if (deleterouteBtn != null) {
+                        String assignedrouteid[] = request.getParameterValues("assignedrouteid");
 
-                        paymentSession.insertSalesman(salesmanName, salesmanPassword, salesmanPhoneNumber,
-                                salesmanEmailid, salesmanAddress, salesmanDateOfJoining, null);
+                        for (int i = 0; i < assignedrouteid.length; i++) {
+                            Long routeId = Long.parseLong(assignedrouteid[i]);
 
-                        response.sendRedirect("ViewSalesman");
-                    } else if (updateBtn != null) {
-                        if (!updateBtn.equals("update")) {
-                            Long id = Long.parseLong(updateBtn);
-                            SalesMan salesman = paymentSession.getSalesmanByID(id);
-
-                            request.setAttribute("salesman", salesman);
-                            request.getRequestDispatcher("updatesalesman.jsp").forward(request, response);
-                        } else {
-                            response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
+                            Route route = paymentSession.getRouteByID(routeId);
+                            paymentSession.deleteRouteOfSalesman(salesman, route);
                         }
-                    } else if (showrouteBtn != null) {
-                        if (!showrouteBtn.equals("showroute")) {
-                            Long salesmanId = Long.parseLong(showrouteBtn);
-                            
-                            SalesMan admin_salesman = paymentSession.getSalesmanByID(salesmanId);
-                            
-                            session.setAttribute("admin_salesman", admin_salesman);
-                            response.sendRedirect("AssignRoutes");
-                        } else {
-                            response.sendError(901, "PLEASE SELECT ANY ROW FIRST !!");
+                        response.sendRedirect("AssignRoutes");
+                    } else if (assignrouteBtn != null) {
+                        String unassignedrouteid[] = request.getParameterValues("unassignedrouteid");
+
+                        for (int j = 0; j < unassignedrouteid.length; j++) {
+                            Long routeId = Long.parseLong(unassignedrouteid[j]);
+
+                            Route route = paymentSession.getRouteByID(routeId);
+                            paymentSession.assignNewRouteToSalesman(salesman, route);
                         }
+                        response.sendRedirect("AssignRoutes");
+                    } else if (salesmanid != null) {
+                        List<Route> allRoutes = paymentSession.getAllRoutes();
+                        List<Route> routes = paymentSession.getAllRoutesBySalesMan(salesmanid);
+                        allRoutes.removeAll(routes);
+
+                        request.setAttribute("allRoutes", allRoutes);
+                        request.setAttribute("salesmanroute", routes);
+                        request.getRequestDispatcher("assignroute.jsp").forward(request, response);
                     } else {
                         session.invalidate();
                         request.getRequestDispatcher("login.jsp").forward(request, response);
                     }
                 }
+            } else {
+                session.invalidate();
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

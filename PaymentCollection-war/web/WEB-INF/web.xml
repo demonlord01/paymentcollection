@@ -86,6 +86,10 @@
         <servlet-name>AddPayment</servlet-name>
         <servlet-class>AdminServlets.AddPayment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AssignRoutes</servlet-name>
+        <servlet-class>AdminServlets.AssignRoutes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -157,6 +161,10 @@
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssignRoutes</servlet-name>
+        <url-pattern>/AssignRoutes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
