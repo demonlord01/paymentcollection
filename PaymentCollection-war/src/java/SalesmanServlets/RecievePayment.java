@@ -5,9 +5,11 @@
  */
 package SalesmanServlets;
 
+import Entities.Route;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,10 @@ public class RecievePayment extends HttpServlet {
                 if (getAdmin.equals("salesman")) {
                     String submitBtn = request.getParameter("submit");
                     if (submitBtn == null) {
+                        SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
+                        Long salesmanId = salesman.getId();
                         
+                        List<Route> route  = paymentSession.getAllRoutesBySalesMan(salesmanId);
                         
                         request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
                     } else {

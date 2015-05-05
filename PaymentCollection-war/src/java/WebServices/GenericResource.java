@@ -125,6 +125,28 @@ public class GenericResource {
         return json;
     }
 
+//    @GET
+//    @Produces("application/json")
+//    @Path("routecustomers")
+//    public String recievePayment(@QueryParam("recievepayment") double recievepayment, String gpslocation, String date, 
+//            SalesMan salesman, Customer customer) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers
+
+//        Route route = paymentSession.getRouteByID(routeId);
+//        List<Customer> customers = paymentSession.getCustomersByRoute(route);
+//        String json = null;
+//        if (customers != null) {
+//            RouteCustomers rCustomers = new RouteCustomers();
+//            rCustomers.setCustomers(customers);
+//
+//            GsonBuilder builder = new GsonBuilder();
+//            Gson gson = builder.create();
+//            json = gson.toJson(rCustomers);
+//        }
+//        return json;
+//    }
+//     public boolean insertPayment(double recievepayment, String gpslocation, String date,
+//            SalesMan salesman, Customer customer)
     /**
      * PUT method for updating or creating an instance of GenericResource
      *

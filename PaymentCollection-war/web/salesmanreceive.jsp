@@ -47,16 +47,12 @@
 
                         <lower>
                             <br><br>
-                            <font>Route
+                            <font>Customer
                             <select name="route" style="margin-left:113px;">
                                 <p:forEach var="route" items="${requestScope['routeList']}">
                                 <option value="${route.id}">${route.r_name}</option>
                                 </p:forEach>
                             </select></font>
-                            <br><br>
-                            <font>Salesman<input type="text" name="salesman" style="margin-left:85px;" value="<p:out value="${salesman}"/>"></font>
-                            <br><br>
-                            <font>Route<input type="text" name="route" style="margin-left:111px;" value="<p:out value="${route}"/>"></font>
                             <br><br>
                             <font>Payment due<input type="number" name="paymentdue" style="margin-left:57px;" value="<p:out value="${duepayment}"/>"></font>
                             <br><br>
