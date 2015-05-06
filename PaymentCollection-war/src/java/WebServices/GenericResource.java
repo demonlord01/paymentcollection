@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.NoResultException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -60,14 +61,18 @@ public class GenericResource {
     @Produces("application/json")
     @Path("logindata")
     public String getLoginData(@QueryParam("username") String username, @QueryParam("password") String password) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/logindata
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/logindata?username=&password=
+
+        String json = null;
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
 
         if (username != null || password != null) {
-            String json;
+
             if (paymentSession.verifySalesman(username, password) == true) {
                 SalesMan salesman = paymentSession.getSalesman(username, password);
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson = builder.create();
+
                 if (salesman != null) {
                     Login login = new Login();
                     login.setId(salesman.getId());
@@ -76,31 +81,40 @@ public class GenericResource {
 
                     json = gson.toJson(login);
                 } else {
-                    json = gson.toJson("false");
+                    errorResponse.setResponse("false");
+                    json = gson.toJson(errorResponse);
                 }
-                return json;
+
             } else {
-                
+                errorResponse.setResponse("false");
+                json = gson.toJson(errorResponse);
             }
         }
-        return null;
+        return json;
     }
 
     @GET
     @Produces("application/json")
     @Path("salesmanroutes")
     public String getRoutes(@QueryParam("sid") long salesmanId) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/salesmanroutes
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/salesmanroutes?sid=
+
+        String json;
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
 
         SalesMan salesman = paymentSession.getSalesmanByID(salesmanId);
-        String json = null;
+
         if (salesman != null) {
             SalesmanRoutes sRoutes = new SalesmanRoutes();
             sRoutes.setRoutes(salesman.getS_route());
 
-            GsonBuilder builder = new GsonBuilder();
-            Gson gson = builder.create();
             json = gson.toJson(sRoutes);
+        } else {
+            errorResponse.setResponse("false");
+            json = gson.toJson(errorResponse);
         }
         return json;
     }
@@ -109,44 +123,62 @@ public class GenericResource {
     @Produces("application/json")
     @Path("routecustomers")
     public String getCustomers(@QueryParam("rid") long routeId) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers?rid=
+
+        String json = null;
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
 
         Route route = paymentSession.getRouteByID(routeId);
-        List<Customer> customers = paymentSession.getCustomersByRoute(route);
-        String json = null;
-        if (customers != null) {
-            RouteCustomers rCustomers = new RouteCustomers();
-            rCustomers.setCustomers(customers);
 
-            GsonBuilder builder = new GsonBuilder();
-            Gson gson = builder.create();
-            json = gson.toJson(rCustomers);
+        if (route != null) {
+            List<Customer> customers = paymentSession.getCustomersByRoute(route);
+
+            if (customers != null) {
+                RouteCustomers rCustomers = new RouteCustomers();
+                rCustomers.setCustomers(customers);
+
+                json = gson.toJson(rCustomers);
+            } else {
+                errorResponse.setResponse("false");
+                json = gson.toJson(errorResponse);
+            }
+        } else {
+            errorResponse.setResponse("false");
+            json = gson.toJson(errorResponse);
         }
         return json;
     }
 
-//    @GET
-//    @Produces("application/json")
-//    @Path("routecustomers")
-//    public String recievePayment(@QueryParam("recievepayment") double recievepayment, String gpslocation, String date, 
-//            SalesMan salesman, Customer customer) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers
+    @GET
+    @Produces("application/json")
+    @Path("recievepayment")
+    public String recievePayment(@QueryParam("amount") double recievepayment,
+            @QueryParam("location") String gpslocation, @QueryParam("date") String date,
+            @QueryParam("sid") Long salesman, @QueryParam("cid") Long customer) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/recievepayment?amount=50&location=Chandigarh&date=6/5/2015&sid=3&cid=4
 
-//        Route route = paymentSession.getRouteByID(routeId);
-//        List<Customer> customers = paymentSession.getCustomersByRoute(route);
-//        String json = null;
-//        if (customers != null) {
-//            RouteCustomers rCustomers = new RouteCustomers();
-//            rCustomers.setCustomers(customers);
-//
-//            GsonBuilder builder = new GsonBuilder();
-//            Gson gson = builder.create();
-//            json = gson.toJson(rCustomers);
-//        }
-//        return json;
-//    }
-//     public boolean insertPayment(double recievepayment, String gpslocation, String date,
-//            SalesMan salesman, Customer customer)
+        String json;
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
+
+        if (gpslocation != null && date != null && salesman != null && customer != null) {
+            if (paymentSession.insertPaymentFromAndroid(recievepayment, gpslocation, date, salesman, customer) == true) {
+                errorResponse.setResponse("true");
+                json = gson.toJson(errorResponse);
+            } else {
+                errorResponse.setResponse("false");
+                json = gson.toJson(errorResponse);
+            }
+        } else {
+            errorResponse.setResponse("false");
+            json = gson.toJson(errorResponse);
+        }
+        return json;
+    }
+
     /**
      * PUT method for updating or creating an instance of GenericResource
      *

@@ -51,8 +51,15 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public SalesMan getSalesmanByID(Long id) {
-        SalesMan salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.id='" + id
-                + "'").getSingleResult();
+        SalesMan salesman;
+        try {
+            salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.id='" + id
+                    + "'").getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("************Salesman : Invaild Id************: " + e);
+            return null;
+        }
+
         return salesman;
     }
 
@@ -156,8 +163,14 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public Route getRouteByID(Long id) {
-        Route route = (Route) em.createQuery("SELECT r FROM Route r WHERE r.id='" + id
-                + "'").getSingleResult();
+        Route route;
+        try {
+            route = (Route) em.createQuery("SELECT r FROM Route r WHERE r.id='" + id
+                    + "'").getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("************Route : Invaild Id************: " + e);
+            return null;
+        }
         return route;
     }
 
@@ -232,8 +245,14 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public List<Customer> getCustomersByRoute(Route route) {
-        List<Customer> customers = em.createQuery("SELECT c FROM Customer c WHERE c.c_route=:route")
+        List<Customer> customers;
+        try{
+        customers = em.createQuery("SELECT c FROM Customer c WHERE c.c_route=:route")
                 .setParameter("route", route).getResultList();
+        }catch(NoResultException e){
+            System.out.println("************Customers : Invaild route************: " + e);
+            return null;
+        }
         return customers;
     }
 
@@ -311,6 +330,17 @@ public class PaymentSession implements PaymentSessionLocal {
         return true;
     }
 
+    @Override
+    public boolean insertPaymentFromAndroid(double recievepayment, String gpslocation, String date,
+            Long salesmanId, Long customerId) {
+        SalesMan salesman = getSalesmanByID(salesmanId);
+        Customer customer = getCustomerByID(customerId);
+
+        insertPayment(recievepayment, gpslocation, date, salesman, customer);
+        return true;
+    }
+
+    @Override
     public List<Payment> getAllPayments() {
         List<Payment> allPayments = em.createQuery("SELECT p FROM Payment p").getResultList();
         return allPayments;
