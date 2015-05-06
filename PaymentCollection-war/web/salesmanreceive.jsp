@@ -47,10 +47,17 @@
 
                         <lower>
                             <br><br>
-                            <font>Customer
+                            <font>Routes
                             <select name="route" style="margin-left:113px;">
                                 <p:forEach var="route" items="${requestScope['routeList']}">
                                 <option value="${route.id}">${route.r_name}</option>
+                                </p:forEach>
+                            </select></font>
+                            <br><br>
+                            <font>Customer
+                            <select name="route" style="margin-left:113px;">
+                                <p:forEach var="customer" items="${requestScope['routeListList']}">
+                                <option></option>
                                 </p:forEach>
                             </select></font>
                             <br><br>

@@ -45,12 +45,14 @@ public class RecievePayment extends HttpServlet {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("salesman")) {
                     String submitBtn = request.getParameter("submit");
+                    
                     if (submitBtn == null) {
                         SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
                         Long salesmanId = salesman.getId();
                         
-                        List<Route> route  = paymentSession.getAllRoutesBySalesMan(salesmanId);
+                        List<Route> routeList = paymentSession.getAllRoutesBySalesMan(salesmanId);
                         
+                        request.setAttribute("routeList", routeList);
                         request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
                     } else {
                         if (submitBtn.equals("update")) {
