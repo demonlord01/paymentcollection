@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.mail.SimpleEmail;
 
 /**
  *
@@ -56,7 +57,7 @@ public class PaymentSession implements PaymentSessionLocal {
             salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.id='" + id
                     + "'").getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("************Salesman : Invaild Id************: " + e);
+            System.out.println("********************ERROR: getSalesmanByID-NoResultException********************:" + e);
             return null;
         }
 
@@ -146,15 +147,6 @@ public class PaymentSession implements PaymentSessionLocal {
         return true;
     }
 
-//    @Override
-//    public boolean insertRoute(String name, String city, List<SalesMan> salesMans) {
-//        Route r = new Route();
-//        r.setR_name(name);
-//        r.setCity(city);
-//        r.setSalesMans(salesMans);
-//        em.persist(r);
-//        return true;
-//    }
     @Override
     public List<Route> getAllRoutes() {
         List<Route> allRoutes = em.createQuery("SELECT r FROM Route r ").getResultList();
@@ -168,7 +160,7 @@ public class PaymentSession implements PaymentSessionLocal {
             route = (Route) em.createQuery("SELECT r FROM Route r WHERE r.id='" + id
                     + "'").getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("************Route : Invaild Id************: " + e);
+            System.out.println("********************ERROR: getRouteByID-NoResultException********************:" + e);
             return null;
         }
         return route;
@@ -196,19 +188,16 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public boolean assignNewRouteToSalesman(SalesMan s, Route r) {
-        List<Route> newRouteList = new ArrayList<>();
-        newRouteList = s.getS_route();
+        List<Route> newRouteList = s.getS_route();
         newRouteList.add(r);
         s.setS_route(newRouteList);
         em.merge(s);
-//        em.createQuery("UPDATE SalesMan s SET s.route='" + newRouteList + "'").executeUpdate();
         return true;
     }
 
     @Override
     public boolean deleteRouteOfSalesman(SalesMan s, Route r) {
-        List<Route> oldRouteList = new ArrayList<>();
-        oldRouteList = s.getS_route();
+        List<Route> oldRouteList = s.getS_route();
         oldRouteList.remove(r);
         s.setS_route(oldRouteList);
         em.merge(s);
@@ -246,11 +235,11 @@ public class PaymentSession implements PaymentSessionLocal {
     @Override
     public List<Customer> getCustomersByRoute(Route route) {
         List<Customer> customers;
-        try{
-        customers = em.createQuery("SELECT c FROM Customer c WHERE c.c_route=:route")
-                .setParameter("route", route).getResultList();
-        }catch(NoResultException e){
-            System.out.println("************Customers : Invaild route************: " + e);
+        try {
+            customers = em.createQuery("SELECT c FROM Customer c WHERE c.c_route=:route")
+                    .setParameter("route", route).getResultList();
+        } catch (NoResultException e) {
+            System.out.println("********************ERROR: getCustomersByRoute-NoResultException********************:" + e);
             return null;
         }
         return customers;
@@ -296,13 +285,10 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public boolean deleteCustomer(Customer c) {
-//        deleteCustomerRoute(c);
-//        if (c.getC_route() == null) {
         Long id = c.getId();
         c = em.find(Customer.class, id);
         if (c != null) {
             em.remove(c);
-//            }
         }
         return true;
     }
@@ -440,6 +426,55 @@ public class PaymentSession implements PaymentSessionLocal {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean forgetPassword(String userEmail) throws Exception {
+        SalesMan salesman;
+        String recipients;
+        String password;
+
+        try {
+            salesman = (SalesMan) em.createQuery("SELECT s FROM SalesMan s WHERE s.s_emailid='"
+                    + userEmail + "'").getSingleResult();
+        } catch (NoResultException e) {
+            salesman = null;
+            System.out.println("********************ERROR: forgetPassword-NoSalesman********************:" + e);
+        }
+
+        if (salesman != null) {
+            password = salesman.getS_password();
+            recipients = salesman.getS_emailid();
+
+            if (password != null) {
+
+                if (recipients != null) {
+                    SimpleEmail email = new SimpleEmail();
+                    
+                    email.addTo(recipients);
+                    email.setHostName("smtp.gmail.com");
+                    email.setAuthentication("dirshinfotech@gmail.com", "dirshinfotech123"); //write correct username and password
+
+                    email.setFrom("taxi4uu@gmail.com", "taxi4utaxi4u");
+                    email.setSubject("Payment Collection: Password request.");
+
+                    email.setMsg("Your Password for Username: " + userEmail + " is : '" + password + "'.");
+
+                    email.setSmtpPort(465);
+                    email.setSSL(true);
+                    email.setTLS(true);
+                    email.send();
+                    return true;
+                } else {
+                    System.out.println("############### No E-Mail id found. ###############");
+                }
+            } else {
+                System.out.println("############### No password found. ###############");
+            }
+        } else {
+            System.out.println("############### No Salesman exist. ###############");
+        }
+        return false;
     }
 
 }

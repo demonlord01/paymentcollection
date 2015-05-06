@@ -9,6 +9,8 @@ import Entities.AdminTable;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,52 +41,62 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = (String) request.getParameter("username");
-            String password = (String) request.getParameter("password");
-            if (paymentSession.verifyAdmin(username, password) == true) {
-                HttpSession session = request.getSession(false);
-                if (session == null) {
-                    session = request.getSession();
-                }
-                if (session != null) {
-                    session.setAttribute("Usertype", "admin");
-                }
+            String loginBtn = request.getParameter("login");
+            String forgetpasswordBtn = request.getParameter("forgetpassword");
 
-                try {
-                    AdminTable adminLogin = paymentSession.getAdmin(username, password);
-                    if (adminLogin != null) {
-                        session.setAttribute("adminLogin", adminLogin);
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("********************ERROR: Admin_Login"
-                            + "-NullPointerException********************:" + e);
-                }
+            if (loginBtn != null) {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
 
-                response.sendRedirect("ViewSalesman");
-            } else {
-                if (paymentSession.verifySalesman(username, password) == true) {
+                if (paymentSession.verifyAdmin(username, password) == true) {
                     HttpSession session = request.getSession(false);
                     if (session == null) {
                         session = request.getSession();
                     }
                     if (session != null) {
-                        session.setAttribute("Usertype", "salesman");
+                        session.setAttribute("Usertype", "admin");
                     }
 
                     try {
-                        SalesMan salesmanLogin = paymentSession.getSalesman(username, password);
-                        if (salesmanLogin != null) {
-                            session.setAttribute("salesmanLogin", salesmanLogin);
+                        AdminTable adminLogin = paymentSession.getAdmin(username, password);
+                        if (adminLogin != null) {
+                            session.setAttribute("adminLogin", adminLogin);
                         }
                     } catch (NullPointerException e) {
-                        System.out.println("********************ERROR: Salesman_Login"
+                        System.out.println("********************ERROR: Admin_Login"
                                 + "-NullPointerException********************:" + e);
                     }
 
-                    response.sendRedirect("salesmanindex.jsp");
+                    response.sendRedirect("ViewSalesman");
                 } else {
-                    response.sendRedirect("login.jsp");
+                    if (paymentSession.verifySalesman(username, password) == true) {
+                        HttpSession session = request.getSession(false);
+                        if (session == null) {
+                            session = request.getSession();
+                        }
+                        if (session != null) {
+                            session.setAttribute("Usertype", "salesman");
+                        }
+
+                        try {
+                            SalesMan salesmanLogin = paymentSession.getSalesman(username, password);
+                            if (salesmanLogin != null) {
+                                session.setAttribute("salesmanLogin", salesmanLogin);
+                            }
+                        } catch (NullPointerException e) {
+                            System.out.println("********************ERROR: Salesman_Login"
+                                    + "-NullPointerException********************:" + e);
+                        }
+
+                        response.sendRedirect("salesmanindex.jsp");
+                    } else {
+                        response.sendRedirect("login.jsp");
+                    }
                 }
+            } else if (forgetpasswordBtn != null) {
+
+            } else {
+                response.sendRedirect("login.jsp");
             }
         }
     }

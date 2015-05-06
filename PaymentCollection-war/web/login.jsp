@@ -41,9 +41,9 @@
                         <label for="admin_password">Password:</label>
                         <input id="admin_password" type="password" name="password" placeholder="Password" size="24"><br><br>
 
-                        <input type="submit" value="Login" class="btn-style">
+                        <input type="submit" name="login" value="Login" class="btn-style">
                         <br><br>
-                        <input type="submit" value="Forget Password" class="btn-style">
+                        <input type="submit" name="forgetpassword" value="Forget Password" class="btn-style">
 
                     </form>
                 </div>

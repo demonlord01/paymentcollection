@@ -63,6 +63,7 @@ public class GenericResource {
 //  http://localhost:8080/PaymentCollection-war/webresources/generic/logindata?username=&password=
 
         String json = null;
+
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         ErrorResponse errorResponse = new ErrorResponse();
@@ -124,7 +125,8 @@ public class GenericResource {
     public String getCustomers(@QueryParam("rid") long routeId) {
 //  http://localhost:8080/PaymentCollection-war/webresources/generic/routecustomers?rid=
 
-        String json = null;
+        String json;
+
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         ErrorResponse errorResponse = new ErrorResponse();
@@ -156,15 +158,17 @@ public class GenericResource {
     public String recievePayment(@QueryParam("amount") double recievepayment,
             @QueryParam("location") String gpslocation, @QueryParam("date") String date,
             @QueryParam("sid") Long salesman, @QueryParam("cid") Long customer) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/recievepayment?amount=50&location=Chandigarh&date=6/5/2015&sid=3&cid=4
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/recievepayment?amount=&location=&date=&sid=&cid=
 
         String json;
+
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         ErrorResponse errorResponse = new ErrorResponse();
 
         if (gpslocation != null && date != null && salesman != null && customer != null) {
-            if (paymentSession.insertPaymentFromAndroid(recievepayment, gpslocation, date, salesman, customer) == true) {
+            if (paymentSession.insertPaymentFromAndroid(recievepayment, gpslocation, date, salesman, customer)
+                    == true) {
                 errorResponse.setResponse("true");
                 json = gson.toJson(errorResponse);
             } else {
@@ -173,6 +177,44 @@ public class GenericResource {
             }
         } else {
             errorResponse.setResponse("false");
+            json = gson.toJson(errorResponse);
+        }
+        return json;
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("changepassword")
+    public String changePassword(@QueryParam("sid") long salesmanId, @QueryParam("oldpassword") String oldPassword,
+            @QueryParam("newpassword") String newPassword) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/changepassword?sid=&oldpassword=&newpassword=
+
+        String json;
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
+
+        SalesMan salesman = paymentSession.getSalesmanByID(salesmanId);
+
+        if (salesman != null) {
+            if (!oldPassword.equals("") && paymentSession.verifySalesmanOldPassowrd(salesman, oldPassword)
+                    == true) {
+                if (!newPassword.equals("")) {
+                    paymentSession.changeSalesmanPassword(salesman, newPassword);
+
+                    errorResponse.setResponse("true");
+                    json = gson.toJson(errorResponse);
+                } else {
+                    errorResponse.setResponse("New password should not be null");
+                    json = gson.toJson(errorResponse);
+                }
+            } else {
+                errorResponse.setResponse("Incorrect old password");
+                json = gson.toJson(errorResponse);
+            }
+        } else {
+            errorResponse.setResponse("No salesman exists");
             json = gson.toJson(errorResponse);
         }
         return json;

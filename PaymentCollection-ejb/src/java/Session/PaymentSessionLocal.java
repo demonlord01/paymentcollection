@@ -113,4 +113,6 @@ public interface PaymentSessionLocal {
 
     public boolean changeAdminPassword(AdminTable admin, String newpassword);
 
+    public boolean forgetPassword(String userEmail) throws Exception;
+
 }
