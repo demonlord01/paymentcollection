@@ -185,6 +185,7 @@
     font-weight:bold;
     border:1px solid #000000;
     border-width:0px 1px 1px 0px;
+    
 }
 
 
@@ -242,6 +243,7 @@
     font-size:18px;
 }
 
+
 #CSS_Table_Example tr:first-child td:first-child {
     border-width:0px 0px 1px 0px;
 }
@@ -251,10 +253,7 @@
 }
 
 #CSS_Table_Example td {
-    background:-o-linear-gradient(bottom, #6091ba 5%, #6091ba 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6091ba), color-stop(1, #6091ba) ); 
-    background:-moz-linear-gradient( center top, #6091ba 5%, #6091ba 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#6091ba", endColorstr="#6091ba");	background: -o-linear-gradient(top,#6091ba,6091ba);
-    background-color:#6091ba;
+    background:#6091ba;
     border:1px solid #000000;
     border-width:0px 1px 1px 0px;
     text-align:left;
@@ -262,6 +261,7 @@
     font-size:18px;
     text-align:center;
     color:white;
+    
 }
 
 #CSS_Table_Example tr:last-child td {
