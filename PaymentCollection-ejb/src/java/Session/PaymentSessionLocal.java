@@ -87,9 +87,6 @@ public interface PaymentSessionLocal {
     public boolean insertPayment(double recievepayment, String gpslocation, String date,
             SalesMan salesman, Customer customer);
 
-    public boolean insertPaymentFromAndroid(double recievepayment, String gpslocation,
-            String date, Long salesmanId, Long customerId);
-
     public List<Payment> getAllPayments();
 
     public List<Payment> getAllPaymentByCustomer(Customer c);

@@ -227,8 +227,14 @@ public class PaymentSession implements PaymentSessionLocal {
 
     @Override
     public Customer getCustomerByID(Long id) {
-        Customer customer = (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.id='" + id
-                + "'").getSingleResult();
+        Customer customer;
+        try {
+            customer = (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.id='" + id
+                    + "'").getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("********************ERROR: getCustomerByID-NoResultException********************:" + e);
+            return null;
+        }
         return customer;
     }
 
@@ -313,16 +319,6 @@ public class PaymentSession implements PaymentSessionLocal {
         p.setP_salesman(salesman);
         p.setP_customer(customer);
         em.persist(p);
-        return true;
-    }
-
-    @Override
-    public boolean insertPaymentFromAndroid(double recievepayment, String gpslocation, String date,
-            Long salesmanId, Long customerId) {
-        SalesMan salesman = getSalesmanByID(salesmanId);
-        Customer customer = getCustomerByID(customerId);
-
-        insertPayment(recievepayment, gpslocation, date, salesman, customer);
         return true;
     }
 
@@ -450,7 +446,7 @@ public class PaymentSession implements PaymentSessionLocal {
 
                 if (recipients != null) {
                     SimpleEmail email = new SimpleEmail();
-                    
+
                     email.addTo(recipients);
                     email.setHostName("smtp.gmail.com");
                     email.setAuthentication("dirshinfotech@gmail.com", "dirshinfotech123"); //write correct username and password
