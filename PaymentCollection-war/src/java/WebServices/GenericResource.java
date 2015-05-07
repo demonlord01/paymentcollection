@@ -154,11 +154,11 @@ public class GenericResource {
 
     @GET
     @Produces("application/json")
-    @Path("recievepayment")
+    @Path("receivepayment")
     public String recievePayment(@QueryParam("amount") double recievepayment,
             @QueryParam("location") String gpslocation, @QueryParam("date") String date,
-            @QueryParam("sid") Long salesman, @QueryParam("cid") Long customer) {
-//  http://localhost:8080/PaymentCollection-war/webresources/generic/recievepayment?amount=&location=&date=&sid=&cid=
+            @QueryParam("sid") Long salesmanId, @QueryParam("cid") Long customerId) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/receivepayment?amount=&location=&date=&sid=&cid=
 
         String json;
 
@@ -166,17 +166,49 @@ public class GenericResource {
         Gson gson = builder.create();
         ErrorResponse errorResponse = new ErrorResponse();
 
-        if (gpslocation != null && date != null && salesman != null && customer != null) {
-            if (paymentSession.insertPaymentFromAndroid(recievepayment, gpslocation, date, salesman, customer)
-                    == true) {
-                errorResponse.setResponse("true");
-                json = gson.toJson(errorResponse);
+        if (salesmanId != null) {
+            SalesMan salesman = paymentSession.getSalesmanByID(salesmanId);
+            if (salesman != null) {
+                if (customerId != null) {
+                    Customer customer = paymentSession.getCustomerByID(customerId);
+                    if (customer != null) {
+                        if (!gpslocation.equals("")) {
+                            if (!date.equals("")) {
+                                if (recievepayment != 0) {
+                                    if (paymentSession.insertPayment(recievepayment, gpslocation,
+                                            date, salesman, customer) == true) {
+                                        errorResponse.setResponse("true");
+                                        json = gson.toJson(errorResponse);
+                                    } else {
+                                        errorResponse.setResponse("false");
+                                        json = gson.toJson(errorResponse);
+                                    }
+                                } else {
+                                    errorResponse.setResponse("Received Amount is Zero");
+                                    json = gson.toJson(errorResponse);
+                                }
+                            } else {
+                                errorResponse.setResponse("Date can not be null");
+                                json = gson.toJson(errorResponse);
+                            }
+                        } else {
+                            errorResponse.setResponse("No GPS location");
+                            json = gson.toJson(errorResponse);
+                        }
+                    } else {
+                        errorResponse.setResponse("Invalid customer");
+                        json = gson.toJson(errorResponse);
+                    }
+                } else {
+                    errorResponse.setResponse("Customer Id should not be null");
+                    json = gson.toJson(errorResponse);
+                }
             } else {
-                errorResponse.setResponse("false");
+                errorResponse.setResponse("Invalid salesman");
                 json = gson.toJson(errorResponse);
             }
         } else {
-            errorResponse.setResponse("false");
+            errorResponse.setResponse("Salesman Id should not be null");
             json = gson.toJson(errorResponse);
         }
         return json;
