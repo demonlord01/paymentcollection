@@ -252,6 +252,36 @@ public class GenericResource {
         return json;
     }
 
+    @GET
+    @Produces("application/json")
+    @Path("passwordrecovery")
+    public String forgottenPassword(@QueryParam("username") String username) {
+//  http://localhost:8080/PaymentCollection-war/webresources/generic/passwordrecovery?username=
+
+        String json;
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        ErrorResponse errorResponse = new ErrorResponse();
+
+        try {
+            if (paymentSession.forgetPassword(username) == true) {
+                errorResponse.setResponse("true");
+                json = gson.toJson(errorResponse);
+            } else {
+                errorResponse.setResponse("User account does not exist");
+                json = gson.toJson(errorResponse);
+            }
+        } catch (Exception e) {
+            errorResponse.setResponse("Unable to send email due to some error");
+            json = gson.toJson(errorResponse);
+            System.out.println("**************** Error: Unexpacted exception, for more details "
+                    + "please check log file ****************: " + e);
+            Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return json;
+    }
+
     /**
      * PUT method for updating or creating an instance of GenericResource
      *

@@ -43,6 +43,7 @@ public class Login extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String loginBtn = request.getParameter("login");
             String forgetpasswordBtn = request.getParameter("forgetpassword");
+            String searchBtn = request.getParameter("search");
 
             if (loginBtn != null) {
                 String username = request.getParameter("username");
@@ -94,7 +95,21 @@ public class Login extends HttpServlet {
                     }
                 }
             } else if (forgetpasswordBtn != null) {
+                response.sendRedirect("forgotpassword.jsp");
+            } else if (searchBtn != null) {
+                String emailId = request.getParameter("emailid");
 
+                try {
+                    if (paymentSession.forgetPassword(emailId) == true) {
+                        response.sendRedirect("login.jsp");
+                    } else {
+                        out.print("Error Sending Email Please Try Again.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("**************** Error: Unexpacted exception, for more "
+                            + "details please check log file ****************: " + e);
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+                }
             } else {
                 response.sendRedirect("login.jsp");
             }

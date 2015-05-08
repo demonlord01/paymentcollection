@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Apr 7, 2015, 3:21:56 PM
+    Document   : forgotpassword
+    Created on : May 8, 2015, 4:32:03 PM
     Author     : Vaibhav Bhagat
 --%>
 
@@ -31,17 +31,17 @@
 
             <div id="content">
                 <div id="content_inner">
+                    <font style="margin-left: 160px;font-size: x-large;font-weight: bold;">Find Your Account</font>
+                    <hr style="margin: 1px 20px;size: 1px;">
+                    <form action="Login" method="POST" align="center" autocomplete="on">
 
-                    <form action="ForgotPassword" method="POST" align="center" autocomplete="off">
-
-                        <br><br><br><br><br>
+                        <br><br><br>
                         <label>Email Id:</label>
-                        <input type="text" name="EmailId" placeholder="Enter your email id" size="24"><br><br>
+                        <input type="text" name="emailid" placeholder="Enter your email id" size="24"><br><br>
 
-
-                        <input type="submit" value="Send" class="btn-style">
+                        <input type="submit" name="search" value="Search" class="btn-style">
                         <br><br>
-                       
+
                     </form>
                     <a href="login.jsp" style="text-decoration: none;margin-left: 230px;">Cancel</a>
                 </div>

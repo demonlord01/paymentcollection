@@ -452,7 +452,7 @@ public class PaymentSession implements PaymentSessionLocal {
                     email.setAuthentication("dirshinfotech@gmail.com", "dirshinfotech123"); //write correct username and password
 
                     email.setFrom("taxi4uu@gmail.com", "taxi4utaxi4u");
-                    email.setSubject("Payment Collection: Password request.");
+                    email.setSubject("Payment Collection: Password Recovery");
 
                     email.setMsg("Your Password for Username: " + userEmail + " is : '" + password + "'.");
 
