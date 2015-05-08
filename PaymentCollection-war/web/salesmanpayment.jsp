@@ -47,6 +47,7 @@
                                 <td>Customer </td>
                                 <td>Location</td>
                                 <td>Payment Received</td>
+                                <td>Due Payment</td>
                                 <td>Date Of Payment</td>
                             </tr>
                             <p:forEach var="payment" items="${requestScope['paymentList']}">
@@ -56,6 +57,7 @@
                                     <td>${payment.p_customer.c_name}</td>
                                     <td>${payment.p_gpslocation}</td>
                                     <td>${payment.p_recievepayment}</td>
+                                    <td>${payment.p_duepayment}</td>
                                     <td>${payment.p_date}</td>
                                 </tr>
                             </p:forEach>

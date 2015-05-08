@@ -312,14 +312,19 @@ public class PaymentSession implements PaymentSessionLocal {
     public boolean insertPayment(double recievepayment, String gpslocation, String date,
             SalesMan salesman, Customer customer) {
         if (updateTotalPayment(customer, recievepayment) == true) {
+            double duepayment = customer.getC_duepayment();
+            duepayment = duepayment - recievepayment;
+            
             Payment p = new Payment();
+            
             p.setP_recievepayment(recievepayment);
+            p.setP_duepayment(duepayment);
             p.setP_gpslocation(gpslocation);
             p.setP_date(date);
             p.setP_salesman(salesman);
             p.setP_customer(customer);
             em.persist(p);
-        }else {
+        } else {
             return false;
         }
         return true;
@@ -349,8 +354,8 @@ public class PaymentSession implements PaymentSessionLocal {
     public boolean updateTotalPayment(Customer customer, double recievedpayment) {
         double duepayment = customer.getC_duepayment();
         if ((duepayment >= recievedpayment) && (recievedpayment != 0)) {
-            double totalDuePayment = duepayment - recievedpayment;
-            updateCustomerPayment(customer, totalDuePayment);
+            duepayment = duepayment - recievedpayment;
+            updateCustomerPayment(customer, duepayment);
         } else {
             return false;
         }
