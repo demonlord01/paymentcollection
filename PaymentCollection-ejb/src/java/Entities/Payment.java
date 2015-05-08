@@ -18,11 +18,13 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Payment implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double p_recievepayment;
+    private double p_duepayment;
     private String p_gpslocation;
     private String p_date;
     @ManyToOne
@@ -36,6 +38,14 @@ public class Payment implements Serializable {
 
     public void setP_recievepayment(double p_recievepayment) {
         this.p_recievepayment = p_recievepayment;
+    }
+
+    public double getP_duepayment() {
+        return p_duepayment;
+    }
+
+    public void setP_duepayment(double p_duepayment) {
+        this.p_duepayment = p_duepayment;
     }
 
     public String getP_gpslocation() {
@@ -102,5 +112,5 @@ public class Payment implements Serializable {
     public String toString() {
         return "Entities.Payment[ id=" + id + " ]";
     }
-    
+
 }

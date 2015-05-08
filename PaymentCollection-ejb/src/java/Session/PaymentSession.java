@@ -10,7 +10,6 @@ import Entities.Customer;
 import Entities.Payment;
 import Entities.Route;
 import Entities.SalesMan;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -312,13 +311,17 @@ public class PaymentSession implements PaymentSessionLocal {
     @Override
     public boolean insertPayment(double recievepayment, String gpslocation, String date,
             SalesMan salesman, Customer customer) {
-        Payment p = new Payment();
-        p.setP_recievepayment(recievepayment);
-        p.setP_gpslocation(gpslocation);
-        p.setP_date(date);
-        p.setP_salesman(salesman);
-        p.setP_customer(customer);
-        em.persist(p);
+        if (updateTotalPayment(customer, recievepayment) == true) {
+            Payment p = new Payment();
+            p.setP_recievepayment(recievepayment);
+            p.setP_gpslocation(gpslocation);
+            p.setP_date(date);
+            p.setP_salesman(salesman);
+            p.setP_customer(customer);
+            em.persist(p);
+        }else {
+            return false;
+        }
         return true;
     }
 
@@ -343,10 +346,15 @@ public class PaymentSession implements PaymentSessionLocal {
     }
 
     @Override
-    public double getTotalPayment() {
-
-        double totalPayment = 0;
-        return totalPayment;
+    public boolean updateTotalPayment(Customer customer, double recievedpayment) {
+        double duepayment = customer.getC_duepayment();
+        if ((duepayment >= recievedpayment) && (recievedpayment != 0)) {
+            double totalDuePayment = duepayment - recievedpayment;
+            updateCustomerPayment(customer, totalDuePayment);
+        } else {
+            return false;
+        }
+        return true;
     }
 
     @Override

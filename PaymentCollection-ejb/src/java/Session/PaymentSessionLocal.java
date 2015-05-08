@@ -93,7 +93,7 @@ public interface PaymentSessionLocal {
 
     public List<Payment> getAllPaymentBySalesman(SalesMan c);
 
-    public double getTotalPayment();
+    public boolean updateTotalPayment(Customer customer, double recievedpayment);
 
     public Payment getPaymentById(Long id);
 

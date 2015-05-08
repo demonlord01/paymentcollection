@@ -43,7 +43,6 @@
                         <table style="width:930px;height:520px;">
                             <tr> 
                                 <td>Payment Id</td>
-                                <td>Payment Due</td>
                                 <td>Salesman</td>
                                 <td>Customer </td>
                                 <td>Location</td>
@@ -53,7 +52,6 @@
                             <p:forEach var="payment" items="${requestScope['paymentList']}">
                                 <tr>
                                     <td>${payment.id}</td>
-                                    <td>${payment.p_recievepayment}</td>
                                     <td>${payment.p_salesman.s_name}</td>
                                     <td>${payment.p_customer.c_name}</td>
                                     <td>${payment.p_gpslocation}</td>
