@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
+          <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -30,6 +31,7 @@
                 </ul>
             </div>
 
+             <div class="clear"></div>
             <div id="content">
 
                 <div id="content_upper">
@@ -40,16 +42,19 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table style="width:930px;height:520px;">
+                        <table id="datatableExm" style="width:930px;height:480px;">
+                            <thead>
                             <tr> 
-                                <td>Payment Id</td>
-                                <td>Salesman</td>
-                                <td>Customer </td>
-                                <td>Location</td>
-                                <td>Payment Received</td>
-                                <td>Due Payment</td>
-                                <td>Date Of Payment</td>
+                                <th>Payment Id</th>
+                                <th>Salesman</th>
+                                <th>Customer </th>
+                                <th>Location</th>
+                                <th>Payment Received</th>
+                                <th>Due Payment</th>
+                                <th>Date Of Payment</th>
                             </tr>
+                            </thead>
+                            <tbody>
                             <p:forEach var="payment" items="${requestScope['paymentList']}">
                                 <tr>
                                     <td>${payment.id}</td>
@@ -61,19 +66,32 @@
                                     <td>${payment.p_date}</td>
                                 </tr>
                             </p:forEach>
+                            </tbody>
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
                             <form name="toservlet" action="ViewReceivePayment" method="POST">
-                                <input type="submit" name="Previous" class="btn-style" value="Previous">
-                                <input type="submit" name="Next" class="btn-style" value="Next"><br><br>
+                              <!--  <input type="submit" name="Previous" class="btn-style" value="Previous">
+                                <input type="submit" name="Next" class="btn-style" value="Next"><br><br>-->
                             </form>
                         </center>
                     </div>
+                     <div class="clear"></div>
                 </div>
+                 <div class="clear"></div>
             </div>
+              <div class="clear"></div>
         </div>
+          <script type="text/javascript" src="js/jquery-1.11.1.min.js">
+        </script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js">
+        </script>
+           <script type="text/javascript">
+            $(document).ready(function(){
+                $("#datatableExm").dataTable();
+            });
+            </script>
     </body>
 </html>

@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
+        <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -30,6 +31,8 @@
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
+            
+            <div class="clear"></div>
 
             <div id="content">
 
@@ -41,7 +44,8 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table style="width:930px;height:470px;">
+                        <table id="datatableExm" style="width:930px;height:470px;">
+                            <thead>
                             <tr>
                                 <td>Payment Id</td>
                                 <td>Customer</td>
@@ -51,6 +55,8 @@
                                 <td>Location</td>
                                 <td>Date Of Payment</td>
                             </tr>
+                            </thead>
+                            <tbody>
                             <p:forEach var="payment" items="${requestScope['paymentList']}">
                                 <tr>
                                     <td>${payment.id}</td>
@@ -62,6 +68,7 @@
                                     <td>${payment.p_date}</td>
                                 </tr>
                             </p:forEach>
+                            </tbody>
                         </table>
                     </div>
 
@@ -73,8 +80,20 @@
                             </form>
                         </center>
                     </div>
+                    <div class="clear"></div>
                 </div>
+                <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
+         <script type="text/javascript" src="js/jquery-1.11.1.min.js">
+        </script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js">
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#datatableExm").dataTable();
+            });
+            </script>
     </body>
 </html>

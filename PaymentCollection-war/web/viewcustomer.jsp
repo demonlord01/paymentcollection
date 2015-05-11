@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
+        <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -30,7 +31,7 @@
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
-
+             <div class="clear"></div>
             <div id="content">
 
                 <div id="content_upper">
@@ -41,7 +42,8 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table style="width:930px;height:470px;">
+                        <table id="datatableExm" style="width:930px;height:470px;">
+                            <thead>
                             <tr> 
                                 <th>Customer Id</th>
                                 <th>Customer Name</th>
@@ -51,6 +53,8 @@
                                 <th>Address</th>
                                 <th>Due Payment</th>
                             </tr>
+                            </thead>
+                            <tbody>
                             <c:forEach var="customer" items="${requestScope['customerList']}">
                                 <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
                                     <td>${customer.id}</td>
@@ -61,25 +65,38 @@
                                     <td>${customer.c_address}</td>
                                     <td>${customer.c_duepayment}</td>
                                 </tr>
+                           
                             </c:forEach>
+                                 </tbody>
                         </table>
                     </div>
 
                     <div id="content_lower_form">
                         <center>
                             <form name="toservlet" action="AddCustomer" method="POST">
-                                <input type="button" name="previous" class="btn-style" value="Previous">
-                                <input type="button" name="next" class="btn-style" value="Next"><br><br>
+                               <!-- <input type="button" name="previous" class="btn-style" value="Previous">
+                                <input type="button" name="next" class="btn-style" value="Next"><br><br>-->
                                 <input type="submit" name="add" class="btn-style" value="Add Customer">
                                 <button type="submit" id="editid_C" class="btn-style" name="update"
                                         value="update" onclick="callservlet();">Update Customer</button>
                             </form>
                         </center>
+                       
                     </div>
+                    <div class="clear"></div>
                 </div>
+                <div class="clear"></div>
             </div>
+             <div class="clear"></div>
         </div>
-        <script>
+         <script type="text/javascript" src="js/jquery-1.11.1.min.js">
+        </script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js">
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#datatableExm").dataTable();
+            });
             var preEl;
             var orgBColor;
             var orgTColor;

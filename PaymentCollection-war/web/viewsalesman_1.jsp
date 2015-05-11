@@ -1,18 +1,18 @@
 <%-- 
-    Document   : viewroute
-    Created on : Apr 7, 2015, 4:18:38 PM
+    Document   : viewsalesman
+    Created on : Apr 7, 2015, 3:28:27 PM
     Author     : Vaibhav Bhagat
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="r"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="s"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Collection</title>
-        <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
         <link href="css/stylesheet1.css" type="text/css" rel="stylesheet">
+        <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
@@ -23,7 +23,6 @@
 
             <div id="navigation_inner">
                 <ul>
-
                     <li><a href="ViewSalesman">Salesman</a></li>
                     <li><a href="ViewCustomer">Customer</a></li>
                     <li><a href="ViewRoute">Route</a></li>
@@ -32,65 +31,67 @@
                     <li><a href="Logout">Logout</a></li>
                 </ul>
             </div>
-             <div class="clear"></div>
+
             <div id="content">
 
                 <div id="content_upper">
-                    <h1>Route List</h1>
+                    <h1>Salesman List</h1>
                 </div>
 
                 <div id="content_lower">
 
-                    <center>
-                        <div id="CSS_Table_Example" style="width:500px;height:470px;border:1px solid black;">
+                    <div id="CSS_Table_Example">
 
-                            <table id="datatableExm" style="width:500px;height:470px;border:1px solid black;">
-                                <thead>
-                                <tr> 
-                                    <th>Route Id</th>
-                                    <th>Route Name</th>
-                                    <th>City</th>
+                        <table id="datatableExm" style="width:930px;height:470px;">
+                            <thead>
+                            <tr>
+                                <th>Salesman Id</th>
+                                <th>Salesman Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <th>Address</th>
+                                <th>Date Of Joining</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <s:forEach var="salesman" items="${requestScope['salesmanList']}">
+                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
+                                    <td>${salesman.id}</td>
+                                    <td>${salesman.s_name}</td>
+                                    <td>${salesman.s_phonenumber}</td>
+                                    <td>${salesman.s_emailid}</td>
+                                    <td>${salesman.s_address}</td>
+                                    <td>${salesman.s_dateofjoining}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <r:forEach var="route" items="${requestScope['routeList']}">
-                                    <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
-                                        <td>${route.id}</td>
-                                        <td>${route.r_name}</td>
-                                        <td>${route.city}</td>                                        
-                                    </tr>
-                                </r:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </center>
+                            </s:forEach>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div id="content_lower_form">
                         <center>
-                            <form name="toservlet" action="AddRoute" method="POST">
-                                <input type="submit" name="previous" class="btn-style" value="Previous">
+                            <form name="toservlet" action="AddSalesman" method="POST">
+                                <input type="submit"  name="previous" class="btn-style" value="Previous">
                                 <input type="submit" name="next" class="btn-style" value="Next"><br><br>
-
-                                <input type="submit" name="add" class="btn-style" value="Add Route">
+                                <input type="submit" name="add" class="btn-style" value="Add Salesman">
                                 <button type="submit" id="editid_U" class="btn-style" name="update"
-                                        value="update" onclick="callservlet();">Update Route</button>
+                                        value="update" onclick="callservlet();">Update Salesman Details</button>
+                                <button type="submit" id="editid_R" class="btn-style" name="showroute"
+                                        value="showroute" onclick="callservlet();">Show Routes</button>
                             </form>
                         </center>
                     </div>
-                     <div class="clear"></div>
+                    <div class="clear"></div>
                 </div>
-                 <div class="clear"></div>
+                <div class="clear"></div>
             </div>
-              <div class="clear"></div>
+            <div class="clear"></div>
         </div>
          <script type="text/javascript" src="js/jquery-1.11.1.min.js">
         </script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js">
         </script>
-        <script type="text/javascript">
-             $(document).ready(function(){
-                $("#datatableExm").dataTable();
-            });
+        <script>
             var preEl;
             var orgBColor;
             var orgTColor;
@@ -120,6 +121,7 @@
                     var y = a_obj.cells;
                     var getId = y[0].innerHTML;
                     document.getElementById("editid_U").value = getId;
+                    document.getElementById("editid_R").value = getId;
                     //alert("Section row index is: " + y[0].innerHTML);
                     a_obj.cells(i).style.color = a_color;
                 }
