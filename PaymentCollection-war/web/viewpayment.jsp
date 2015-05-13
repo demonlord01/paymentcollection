@@ -44,16 +44,16 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table id="datatableExm" style="width:930px;height:470px;">
+                        <table id="datatableExm" style="width:930px;height:450px;">
                             <thead>
-                            <tr>
-                                <td>Payment Id</td>
-                                <td>Customer</td>
-                                <td>Salesman</td>
-                                <td>Payment Received</td>
-                                <td>Payment Due</td>
-                                <td>Location</td>
-                                <td>Date Of Payment</td>
+                            <tr style="background:silver;">
+                                <th>Payment Id</th>
+                                <th>Customer</th>
+                                <th>Salesman</th>
+                                <th>Payment Received</th>
+                                <th>Payment Due</th>
+                                <th>Location</th>
+                                <th>Date Of Payment</th>
                             </tr>
                             </thead>
                             <tbody>

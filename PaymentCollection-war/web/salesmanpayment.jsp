@@ -42,9 +42,9 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table id="datatableExm" style="width:930px;height:480px;">
+                        <table id="datatableExm" style="width:930px;height:450px;">
                             <thead>
-                            <tr> 
+                            <tr style="background:silver;"> 
                                 <th>Payment Id</th>
                                 <th>Salesman</th>
                                 <th>Customer </th>

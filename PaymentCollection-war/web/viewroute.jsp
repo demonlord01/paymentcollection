@@ -42,9 +42,9 @@
                 <div id="content_lower">
 
                     <center>
-                        <div id="CSS_Table_Example" style="width:500px;height:470px;border:1px solid black;">
+                        <div id="CSS_Table_Example" style="width:500px;height:510px;">
 
-                            <table id="datatableExm" style="width:500px;height:470px;border:1px solid black;">
+                            <table id="datatableExm" style="width:500px;height:440px;">
                                 <thead>
                                 <tr> 
                                     <th>Route Id</th>
@@ -54,7 +54,7 @@
                                 </thead>
                                 <tbody>
                                 <r:forEach var="route" items="${requestScope['routeList']}">
-                                    <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
+                                    <tr onclick="myFunction(this, 'silver', 'cc3333');">
                                         <td>${route.id}</td>
                                         <td>${route.r_name}</td>
                                         <td>${route.city}</td>                                        
@@ -68,8 +68,8 @@
                     <div id="content_lower_form">
                         <center>
                             <form name="toservlet" action="AddRoute" method="POST">
-                                <input type="submit" name="previous" class="btn-style" value="Previous">
-                                <input type="submit" name="next" class="btn-style" value="Next"><br><br>
+                               <!-- <input type="submit" name="previous" class="btn-style" value="Previous">
+                                <input type="submit" name="next" class="btn-style" value="Next"><br><br>-->
 
                                 <input type="submit" name="add" class="btn-style" value="Add Route">
                                 <button type="submit" id="editid_U" class="btn-style" name="update"

@@ -41,7 +41,7 @@
 
                     <div id="CSS_Table_Example" >
 
-                        <table id="datatableExm" style="width:930px;height:470px;">
+                        <table id="datatableExm" style="width:930px;height:450px;">
                             <thead>
                             <tr> 
                                 <th>Customer Id</th>
@@ -55,7 +55,7 @@
                             </thead>
                             <tbody>
                             <c:forEach var="customer" items="${requestScope['customerList']}">
-                                <tr onclick="myFunction(this, '#c9cc99', 'cc3333');">
+                                <tr onclick="myFunction(this, 'silver', 'cc3333');">
                                     <td>${customer.id}</td>
                                     <td>${customer.c_name}</td>
                                     <td>${customer.c_phonenumber}</td>
