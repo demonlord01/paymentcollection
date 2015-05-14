@@ -5,10 +5,15 @@
  */
 package SalesmanServlets;
 
+import Entities.Customer;
 import Entities.Route;
 import Entities.SalesMan;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -45,34 +50,30 @@ public class RecievePayment extends HttpServlet {
                 String getAdmin = (String) session.getAttribute("Usertype");
                 if (getAdmin.equals("salesman")) {
                     String submitBtn = request.getParameter("submit");
-                    
-                    if (submitBtn == null) {
+                    String routeId = request.getParameter("rid");
+
+                    if (routeId != null && !routeId.equals("Select Any Route")) {
+                        Long routeid = Long.parseLong(routeId);
+
+                        Route route = paymentSession.getRouteByID(routeid);
+                        List<Customer> customerList = paymentSession.getCustomersByRoute(route);
+
+                        request.setAttribute("customerList", customerList);
+                        request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
+                    } else if (routeId != null && routeId.equals("Select Any Route")) {
+                        
+                    } else if (submitBtn == null) {
                         SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
                         Long salesmanId = salesman.getId();
                         
-                        List<Route> routeList = paymentSession.getAllRoutesBySalesMan(salesmanId);
+                        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+                        Date date = new Date();
                         
+                        List<Route> routeList = paymentSession.getAllRoutesBySalesMan(salesmanId);
+
+                        request.setAttribute("date", df.format(date));
                         request.setAttribute("routeList", routeList);
                         request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
-                    } else {
-                        if (submitBtn.equals("update")) {
-                            Double paymentReceived = Double.parseDouble(request.getParameter("paymentreceived"));
-                            String dateOfPayment = request.getParameter("dateofpayment");
-                            SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
-//                            name="customer"
-//                            name="salesman"
-//                            name="route"
-//                            name="paymentdue"
-//                            name="paymentreceived"
-//                            name="dateofpayment"
-                            paymentSession.insertPayment(paymentReceived, null, dateOfPayment, salesman, null);
-
-                            response.sendRedirect("ViewPaymentDetails");
-                        } else if (submitBtn.equals("")) {
-                            paymentSession.insertPayment(0, null, null, null, null);
-                        } else {
-
-                        }
                     }
                 } else {
                     session.invalidate();
