@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -51,6 +50,7 @@ public class RecievePayment extends HttpServlet {
                 if (getAdmin.equals("salesman")) {
                     String submitBtn = request.getParameter("submit");
                     String routeId = request.getParameter("rid");
+                    String customerId = request.getParameter("cid");
 
                     if (routeId != null && !routeId.equals("Select Any Route")) {
                         Long routeid = Long.parseLong(routeId);
@@ -61,17 +61,32 @@ public class RecievePayment extends HttpServlet {
                         request.setAttribute("customerList", customerList);
                         request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
                     } else if (routeId != null && routeId.equals("Select Any Route")) {
-                        
+
+                    } else if (customerId != null) {
+                        Long cutomerid = Long.parseLong(customerId);
+
+                        double customerDuepayment = paymentSession.getCustomerByID(cutomerid).getC_duepayment();
+
+                        out.print(customerDuepayment);
+                    } else if (submitBtn != null) {
+                        Double paymentreceived = Double.parseDouble(request.getParameter("paymentreceived"));
+                        SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
+                        Long getCustomerId = Long.parseLong(request.getParameter("customerid"));
+                        String getDate = GetDate();
+
+                        Customer customer = paymentSession.getCustomerByID(getCustomerId);
+                        paymentSession.insertPayment(paymentreceived, null, getDate, salesman, customer);
+
+                        response.sendRedirect("ViewPaymentDetails");
                     } else if (submitBtn == null) {
                         SalesMan salesman = (SalesMan) session.getAttribute("salesmanLogin");
                         Long salesmanId = salesman.getId();
-                        
-                        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                        Date date = new Date();
-                        
+
+                        String getDate = GetDate();
+
                         List<Route> routeList = paymentSession.getAllRoutesBySalesMan(salesmanId);
 
-                        request.setAttribute("date", df.format(date));
+                        request.setAttribute("date", getDate);
                         request.setAttribute("routeList", routeList);
                         request.getRequestDispatcher("salesmanreceive.jsp").forward(request, response);
                     }
@@ -81,6 +96,12 @@ public class RecievePayment extends HttpServlet {
                 }
             }
         }
+    }
+
+    private String GetDate() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        Date date = new Date();
+        return df.format(date);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
