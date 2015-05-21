@@ -75,7 +75,7 @@ public class RecievePayment extends HttpServlet {
                         String getDate = GetDate();
 
                         Customer customer = paymentSession.getCustomerByID(getCustomerId);
-                        paymentSession.insertPayment(paymentreceived, null, getDate, salesman, customer);
+                        paymentSession.insertPayment(paymentreceived, "(Through Web)", getDate, salesman, customer);
 
                         response.sendRedirect("ViewPaymentDetails");
                     } else if (submitBtn == null) {
