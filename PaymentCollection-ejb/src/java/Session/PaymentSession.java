@@ -462,9 +462,9 @@ public class PaymentSession implements PaymentSessionLocal {
 
                     email.addTo(recipients);
                     email.setHostName("smtp.gmail.com");
-                    email.setAuthentication("dirshinfotech@gmail.com", "dirshinfotech123"); //write correct username and password
+                    email.setAuthentication("paymentcollection777@gmail.com", "paymentcollection7771"); //write correct username and password dirshinfotech@gmail.com", "dirshinfotech123
 
-                    email.setFrom("taxi4uu@gmail.com", "taxi4utaxi4u");
+                    email.setFrom("paymentcollection777@gmail.com", "PaymentCollection");
                     email.setSubject("Payment Collection: Password Recovery");
 
                     email.setMsg("Your Password for Username: " + userEmail + " is : '" + password + "'.");
