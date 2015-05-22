@@ -41,13 +41,13 @@
 
                         <lower>
                             <br><br>
-                            <font>Customer Name<input type="text" name="customerName" style="margin-left:35px;"></font>
+                            <font>Customer Name<input type="text" name="customerName" required style="margin-left:35px;"></font>
                             <br><br>
-                            <font>Phone Number<input type="text" name="phoneNumber" style="margin-left:45px;"></font>
+                            <font>Phone Number<input type="text" name="phoneNumber" min="1000000000" max="999999999999" maxlength="12" required style="margin-left:45px;"></font>
                             <br><br>
-                            <font>Email id<input type="text" name="emailId" style="margin-left:95px;"></font>
+                            <font>Email id<input type="text" name="emailId" required style="margin-left:95px;"></font>
                             <br><br>
-                            <font>Address<input type="text" name="address" style="margin-left:98px;"></font>
+                            <font>Address<input type="text" name="address" required style="margin-left:98px;"></font>
                             <br><br>
                             <font>Due Payment<input type="text" name="duePayment" style="margin-left:55px;"></font>
                             <br><br>

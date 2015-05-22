@@ -45,7 +45,7 @@
                             <br><br>
                             <font>Salesman Password<input type="text" name="salesmanPassword" required style="margin-left:8px;"></font>                            
                             <br><br>
-                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="1000000000" max="99999999999999" maxlength="12" required style="margin-left:45px;"></font>
+                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="1000000000" max="999999999999" maxlength="12" required style="margin-left:45px;"></font>
                             <br><br>
                             <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;"></font>
                             <br><br>

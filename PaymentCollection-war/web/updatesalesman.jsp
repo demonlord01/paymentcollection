@@ -50,13 +50,13 @@
                             <lower>
                                 <br><br>
                                 <input type="text" name="salesmanid" hidden style="margin-left:38px;" value="<s:out value="${id}"/>">
-                                <font>Salesman Name<input type="text" name="salesmanName" required style="margin-left:38px;" value="<s:out value="${name}"/>"></font>
+                                <font>Salesman Name<input type="text" name="salesmanName"  style="margin-left:38px;" value="<s:out value="${name}"/>"></font>
                             <br><br>
-                            <font>Salesman Password<input type="text" name="salesmanPassword" required style="margin-left:8px;" value="<s:out value="${password}"/>"></font>                            
+                            <font>Salesman Password<input type="text" name="salesmanPassword" r style="margin-left:8px;" value="<s:out value="${password}"/>"></font>                            
                             <br><br>
-                            <font>Phone Number<input type="number" name="salesmanPhoneNumber" min="10000000" max="999999999999999" maxlength="15" required style="margin-left:45px;" value="<s:out value="${phonenumber}"/>"></font>
+                            <font>Phone Number<input type="number" name="salesmanPhoneNumber"  style="margin-left:45px;" value="<s:out value="${phonenumber}"/>"></font>
                             <br><br>
-                            <font>Email id<input type="email" name="salesmanEmailid" required style="margin-left:95px;" value="<s:out value="${emailid}"/>"></font>
+                            <font>Email id<input type="email" name="salesmanEmailid"  style="margin-left:95px;" value="<s:out value="${emailid}"/>"></font>
                             <br><br>
                             <font>Address<input type="text" name="salesmanAddress" style="margin-left:98px;" value="<s:out value="${address}"/>"></font>                            
                             <br><br>
