@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -75,7 +77,15 @@ public class RecievePayment extends HttpServlet {
                         String getDate = GetDate();
 
                         Customer customer = paymentSession.getCustomerByID(getCustomerId);
-                        paymentSession.insertPayment(paymentreceived, "(Through Web)", getDate, salesman, customer);
+                        if (paymentSession.insertPayment(paymentreceived, "(From Web)", getDate, salesman, customer) == true) {
+                            try {
+                                paymentSession.confirmationPaymentEmail(customer.getC_emailid(), paymentreceived);
+                            } catch (Exception e) {
+                                System.out.println("**************** Error: Unexpacted exception, for more "
+                                        + "details please check log file ****************: " + e);
+                                Logger.getLogger(RecievePayment.class.getName()).log(Level.SEVERE, null, e);
+                            }
+                        }
 
                         response.sendRedirect("ViewPaymentDetails");
                     } else if (submitBtn == null) {

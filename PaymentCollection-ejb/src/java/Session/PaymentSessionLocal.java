@@ -112,4 +112,6 @@ public interface PaymentSessionLocal {
 
     public boolean forgetPassword(String userEmail) throws Exception;
 
+    public boolean confirmationPaymentEmail(String userEmail, double receivedPayment) throws Exception;
+
 }

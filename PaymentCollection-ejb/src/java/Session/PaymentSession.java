@@ -314,9 +314,9 @@ public class PaymentSession implements PaymentSessionLocal {
         if (updateTotalPayment(customer, recievepayment) == true) {
             double duepayment = customer.getC_duepayment();
             duepayment = duepayment - recievepayment;
-            
+
             Payment p = new Payment();
-            
+
             p.setP_recievepayment(recievepayment);
             p.setP_duepayment(duepayment);
             p.setP_gpslocation(gpslocation);
@@ -486,4 +486,47 @@ public class PaymentSession implements PaymentSessionLocal {
         return false;
     }
 
+    @Override
+    public boolean confirmationPaymentEmail(String userEmail, double receivedPayment) throws Exception {
+        Customer customer;
+        String recipients;
+
+        try {
+            customer = (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.c_emailid='"
+                    + userEmail + "'").getSingleResult();
+        } catch (NoResultException e) {
+            customer = null;
+            System.out.println("********************ERROR: confirmationPaymentEmail-NoCustomer********************:" + e);
+        }
+
+        if (customer != null) {
+            recipients = customer.getC_emailid();
+            String customerName = customer.getC_name();
+
+            if (recipients != null) {
+                SimpleEmail email = new SimpleEmail();
+
+                email.addTo(recipients);
+                email.setHostName("smtp.gmail.com");
+                email.setAuthentication("paymentcollection777@gmail.com", "paymentcollection7771"); //write correct username and password dirshinfotech@gmail.com", "dirshinfotech123
+
+                email.setFrom("paymentcollection777@gmail.com", "PaymentCollection");
+                email.setSubject("Payment Collection: Payment Received");
+
+                email.setMsg("Dear " + customerName + ",\n\nYour payment of Rs. " + receivedPayment 
+                        + "/- has been sucessfully received.\n\nWith Regards,\n\nPaymentCollection Team.");
+
+                email.setSmtpPort(465);
+                email.setSSL(true);
+                email.setTLS(true);
+                email.send();
+                return true;
+            } else {
+                System.out.println("############### No E-Mail id found. ###############");
+            }
+        } else {
+            System.out.println("############### No Customer exist. ###############");
+        }
+        return false;
+    }
 }
