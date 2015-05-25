@@ -35,9 +35,9 @@
                 <div id="content_inner">
                     <form action="ChangePassword" method=POST align="center">
                         <br><br>
-                        <p>Old Password <input type="password" required name="oldPassword" style="margin-left:28px;"></p>
-                        <p>Password <input type="password" required name="newPassword" style="margin-left:55px;"></p>
-                        <p>Confirm Password<input type="password" required name="confirmPassword" style="margin-left:5px;"></p>
+                        <p>Old Password <input type="password" required name="oldPassword" style="margin-left:51px;"></p>
+                        <p>New Password <input type="password" required name="newPassword" style="margin-left:42px;"></p>
+                        <p>Confirm Password<input type="password" required name="confirmPassword" style="margin-left:25px;"></p>
                         <p><input type="submit" value="OK" class="btn-style"></p>
                     </form>
                 </div>
