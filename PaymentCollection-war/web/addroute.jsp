@@ -49,10 +49,10 @@
                         </upper>
                         <lower>
                             <br><br><br>
-                            <font>Route Name<input type="text" name="routename" required style="margin-left:85px;"></font>
+                            <font>Route Name<input type="text" name="routename" required style="margin-left:55px;"></font>
                             <br><br>
 
-                            <font>City<input type="text" name="city" required style="margin-left:149px;"></font>
+                            <font>City<input type="text" name="city" required style="margin-left:117px;"></font>
                             <br><br><br>
                             <font style="margin-left:120px;">
                             <input type="submit" name="submit" class="btn-style" value="Submit">

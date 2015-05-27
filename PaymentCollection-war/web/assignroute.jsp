@@ -40,7 +40,7 @@
 
                         <div id="content_lower_left_lower">
                             <form action="AssignRoutes" method="POST">
-                                <div id="CSS_Table_Example" style="width:410px;height:400px;">
+                                <div id="CSS_Table_Example" style="width:410px;height:400px;overflow:auto;">
                                     <table style="width:410px;height:410px;">
                                         <tr>
                                             <th></th>
@@ -69,7 +69,7 @@
                         </div>
                         <div id="content_lower_right_lower">
                             <form action="AssignRoutes" method="POST">
-                                <div id="CSS_Table_Example" style="width:410px;height:400px;">
+                                <div id="CSS_Table_Example" style="width:410px;height:400px;overflow:auto;">
                                     <table style="width:410px;height:410px;">
                                         <tr>
                                             <th></th>
